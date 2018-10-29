@@ -6,6 +6,7 @@
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
     return ((Elmt(M, X, Y) == 'X') || (Elmt(M, X, Y) == 'M') || (Elmt(M, X, Y) == 'C'));
+    //tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
 }
 
 void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
