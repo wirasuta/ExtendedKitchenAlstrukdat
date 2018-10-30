@@ -29,14 +29,14 @@ typedef struct {
 typedef struct {
   char Status; //#: pesanan belom diambil, !: pesanan uda diambil, $: pesanan uda dikasi
   char Name[20]; //nama makanan
-  int Sum; //jumlah makanan yang dipesanan
+  int Nomor; //nomor meja
 } Order;
 
 typedef struct {
     Stack Hand;
     Stack Tray;
     POINT Position; //posisi dalam koordinat
-    Order POrder;
+    Order POrder[20];
 } Player;
 
 typedef struct {
