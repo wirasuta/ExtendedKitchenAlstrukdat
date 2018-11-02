@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include "boolean.h"
-#include "matriks.c"
-#include "input.c"
+#include "move.h"
 
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
@@ -137,7 +133,7 @@ void move(MATRIKS *M, int *X, int *Y,Kata command)
 
 
 
-int main()
+/* int main()
 {
     MATRIKS Map;
     Kata command;
@@ -222,4 +218,4 @@ KataEXIT.TabKata[3] = 'T';
 
     move(&Map, &X, &Y, KataGD);
     printf("Next Position: %d %d", X, Y);
-}
+} */

@@ -8,7 +8,6 @@ contoh:
     K1.TabKata[0] = 'k';
     K1.TabKata[1] = 'e';
     K1.TabKata[2] = 'l';
-
 */
 {
     //kamus
@@ -64,22 +63,17 @@ contoh:
     Kata a;
     Kata b;
     int i;
-
     b.TabKata[0] = 'k';
     b.TabKata[1] = 'e';
     b.TabKata[2] = 'l';
-
     // input kata untukk dibandingkan dengan 'kel'
     scanf(" %s", a.TabKata);
-
     //print input
     for (i = 0; i <4; i++)
     {
         printf("%c", a.TabKata[i]);
     }
-
     printf("\n");
-
     //print hasil perbandingan dengan kata kel
     printf("IsKataKel: %d", IsKataSama(a, b));
 }*/
