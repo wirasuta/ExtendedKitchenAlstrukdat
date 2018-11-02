@@ -1,4 +1,4 @@
-#ifndef process_H
+ p #ifndef process_H
 #define process_H
 
 #include "stackt.h"
@@ -37,7 +37,7 @@ boolean isAbleGive(Player P, Customer C, Table T);
 boolean isAbleTake(Player P, Ingredients Bahan);
 //untuk menentukan apakah player bisa mengambil bahan makanan atau tidak
 
-boolean isAblePlace(Player P, Customer C);
+boolean isAblePlace(Player P, Customer C, Table T);
 //untuk menentukan apakah player bisa menempatkan customer ke meja kosong
 
 
@@ -45,7 +45,7 @@ Stack ClearStack(Stack S);
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C);
+void TakeOrder(Player *P, Customer *C, Table T,IdxType i);
 //I.S. sembarang
 //F.S mengupdate status Player dan Customer
 //Proses: mengambil order customer, cek terlebih dahulu apakah player

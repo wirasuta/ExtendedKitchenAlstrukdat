@@ -21,14 +21,14 @@ typedef struct {
     int Life;
     double Money;
     JAM Time;
-    char Name[IdxMax]; //nama player
+    Kata Name; //nama player
 } Game;
 
 /* SELEKTOR UNTUK TIPE DATA GAME */
 #define life(G) (G).Life
 #define money(G) (G).Money
 #define tick(G) (G).Time
-#define ElmtName(G,i) (G).Name[(i)]
+#define ElmtName(G) (G).Name
 
 
 typedef struct {
@@ -57,6 +57,7 @@ typedef struct {
 #define IsStar(C) (C).Star
 #define timeQueue(C) (C).TimeQueue
 #define timeWaiting(C) (C).TimeWaiting
+#define Customers(C) (C).SumOfCustomer
 #define PosCustomer(C) (C).Position
 #define OrderC(C) (C).Food
 
@@ -71,17 +72,19 @@ typedef struct {
 
 typedef struct {
     char Status; //#: pesanan belom diambil, !: pesanan sudah diambil, $: pesanan sudah dikasi
-    char Name[IdxMax]; //nama makanan
+    Kata Name; //nama makanan
     int Nomor; //nomor meja
+    double Price; // Harga Makanan yang diorder
 } Order;
 
 /* SELEKTOR UNTUK TIPE DATA ORDER */
 #define StatOrder(O) (O).Status
 #define OrderName(O) (O).Name
 #define NoTableOrder(O) (O).Nomor
+#define OrderPrice(O) (O).Price
 
 typedef struct {
-    POINT Point[10]; //posisi table dan kursi dalam (X,Y)
+    POINT Point[IdxMax]; //posisi table dan kursi dalam (X,Y)
     int Kapasitas; //kapasitas table
     boolean Occupied;
     Customer Filled;
@@ -95,7 +98,7 @@ typedef struct {
 
 
 typedef struct{
-    char Name[IdxMax];
+    Kata Name;
     POINT Position;
 } Ingredients;
 

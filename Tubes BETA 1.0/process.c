@@ -11,10 +11,10 @@ boolean isAbleOrder(Player P, Customer C, Table T){
     check = false;
 
     i = 0;
-    for (i=0; i<20; i++){
-        if((P.Position.X == T.Point[i].X + 1) || (P.Position.X == T.Point[i].X - 1) ||
-           (P.Position.Y == T.Point[i].Y + 1) || (P.Position.Y == T.Point[i].Y -1)){
-               if(C.Food.Status == '#'){
+    for (i=0; i<IdxMax; i++){
+        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
+           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
+               if(StatOrder(OrderC(C)) == '#'){
                    check = true;
                }
         }
@@ -32,11 +32,11 @@ boolean isAbleGive(Player P, Customer C, Table T){
     check = false;
 
     i = 0;
-    for (i=0; i<20; i++){
-        if((P.Position.X == T.Point[i].X + 1) || (P.Position.X == T.Point[i].X - 1) ||
-           (P.Position.Y == T.Point[i].Y + 1) || (P.Position.Y == T.Point[i].Y -1)){
-               if(C.Food.Status == '!'){
-                   if(P.)
+    for (i=0; i<IdxMax; i++){
+        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
+           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
+               if(StatOrder(OrderC(C)) == '!' && IsKataSama(InfoTop(OnTray(P)),OrderName(OrderC(C)))) {
+                    check = true;
                }
         }
     }
@@ -48,12 +48,40 @@ boolean isAbleGive(Player P, Customer C, Table T){
 
 boolean isAbleTake(Player P, Ingredients Bahan){
     boolean check;
+
+    check = false;
+
+    if ((Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) + 1) || (Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) - 1) ||
+        (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) - 1)){
+               check = true;
+        }
+    }
+
+    return(check);
+
 }
 //mengembalikas true jika player bisa mengambil bahan makanan atau tidak
 //yaitu jika player berada di samping customer
 
-boolean isAblePlace(Player P, Customer C){
+boolean isAblePlace(Player P, Customer C, Table T){
     boolean check;
+    int i;
+
+    check = false;
+
+    i = 0;
+    for (i=0; i<IdxMax; i++){
+        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
+           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
+               if(IsOccupied(T) == false) {
+                    if(Customers(C) <= Capacity(T)) {
+                        check = true;
+                    }
+               }
+           }
+
+    return(check);
+
 }
 //mengembalikas true jika player bisa menempatkan customer ke meja kosong
 //yaitu jika player berada di samping meja dan sesuai dengan kapasitas
@@ -65,8 +93,14 @@ Stack ClearStack(Stack *S){
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C){
+void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 
+    if (isAbleOrder(*P,*C,T)) {
+        OrderList(*P,i) = OrderC(*C);
+        StatOrder(OrderC(C)) = '!'
+    } else {
+        printf("GAGAL MENGAMBIL ORDER !!!\n");
+    }
 }
 //I.S. sembarang
 //F.S mengupdate status Player dan Customer
