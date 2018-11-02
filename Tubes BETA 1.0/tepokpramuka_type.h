@@ -21,40 +21,86 @@ typedef struct {
     int Life;
     double Money;
     JAM Time;
-    char Name[20]; //nama player
-    int NWaitingList; //jumlah customer yang ngantri
+    char Name[IdxMax]; //nama player
 } Game;
+
+/* SELEKTOR UNTUK TIPE DATA GAME */
+#define life(G) (G).Life
+#define money(G) (G).Money
+#define tick(G) (G).Time
+#define ElmtName(G,i) (G).Name[(i)]
+
 
 typedef struct {
     Stack Hand;
     Stack Tray;
     POINT Position; //posisi dalam koordinat
-    Order POrder;
+    Order PArr[IdxMax];
 } Player;
+
+/* SELEKTOR UNTUK TIPE DATA PLAYER */
+#define OnHand(P) (P).Hand
+#define OnTray(P) (P).Tray
+#define PosPlayer(P) (P).position
+#define OrderList(P,i) (P).PArr[(i)]
 
 typedef struct {
     boolean Star; //priority customer
     int TimeQueue; //count waktu ketika mengantri
     int TimeWaiting; //count waktu ketika menunggu makanan
-    int N; 
-    Order COrder; //customer mau pesan apa
+    int SumOfCustomer; //jumlah orang
+    POINT Position; //posisi saat duduk
+    Order Food; //customer mau pesan apa
 } Customer;
+
+/* SELEKTOR UNTUK TIPE DATA CUSTOMER */
+#define IsStar(C) (C).Star
+#define timeQueue(C) (C).TimeQueue
+#define timeWaiting(C) (C).TimeWaiting
+#define PosCustomer(C) (C).Position
+#define OrderC(C) (C).Food
 
 typedef struct {
     MATRIKS Grid;
-    Table Arr[20]; //array of meja di restoran. nyimpen lokasi lokasi meja
+    Table Arr[IdxMax]; //array of meja di restoran. nyimpen lokasi lokasi meja
 } Room;
 
-typedef struct {
-    char Status; //#: pesanan belom diambil, !: pesanan uda diambil, $: pesanan uda dikasi
-    char Name[20]; //nama makanan
-    int Sum; //jumlah makanan yang dipesanan
-} Order;
+/* SELEKTOR UNTUK TIPE DATA ROOM */
+#define Layout(R) (R).Grid
+#define TableLoc(R,i) (R).Arr[(i)]
 
 typedef struct {
-    POINT Point; //posisi table dan kursi dalam (X,Y)
+    char Status; //#: pesanan belom diambil, !: pesanan sudah diambil, $: pesanan sudah dikasi
+    char Name[IdxMax]; //nama makanan
+    int Nomor; //nomor meja
+} Order;
+
+/* SELEKTOR UNTUK TIPE DATA ORDER */
+#define StatOrder(O) (O).Status
+#define OrderName(O) (O).Name
+#define NoTableOrder(O) (O).Nomor
+
+typedef struct {
+    POINT Point[10]; //posisi table dan kursi dalam (X,Y)
     int Kapasitas; //kapasitas table
     boolean Occupied;
+    Customer Filled;
 } Table;
+
+/* SELEKTOR UNTUK TIPE DATA TABLE */
+#define PosTable(T,i) (T).Point[(i)]
+#define Capacity(T) (T).Kapasitas
+#define IsOccupied(T) (T).Occupied
+#define CustomerSeat(T) (T).Filled
+
+
+typedef struct{
+    char Name[IdxMax];
+    POINT Position;
+} Ingredients;
+
+/* SELEKTOR UNTUK TIPE DATA INGREDIENTS */
+#define IngName(I) (I).Name
+#define PosIngredients(I) (I).Position
 
 #endif

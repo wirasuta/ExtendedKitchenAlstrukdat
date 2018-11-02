@@ -8,6 +8,7 @@
 #include "ADT/Queue/queue.h"
 #include "ADT/Stack/stackt.h"
 #include "ADT/Tree/bintree.h"
+#include "Tubes BETA 1.0/tepokpramuka_type.h"
 
 int main(int argc, char const *argv[]) {
 
