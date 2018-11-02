@@ -6,20 +6,20 @@
 #define queue_H
 
 #include "boolean.h"
+#include "tepokpramuka_type.h"
 
 #define queueNil 0
 /* Konstanta untuk mendefinisikan queueAddress tak terdefinisi */
 
 /* Definisi elemen dan queueAddress */
-typedef int infotype;
 typedef int queueAddress;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan QueueTail eksplisit, ukuran disimpan */
-typedef struct { infotype * T;   /* tabel penyimpan elemen */
+typedef struct { Customer * T;   /* tabel penyimpan elemen */
                  queueAddress HEAD;  /* alamat penghapusan */
                  queueAddress TAIL;  /* alamat penambahan */
                  int QueueMaxEl;     /* Max elemen queue */
-               } Queue;
+               } CustQueue;
 /* Definisi Queue kosong: HEAD=queueNil;  TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
@@ -32,16 +32,16 @@ typedef struct { infotype * T;   /* tabel penyimpan elemen */
 #define QueueMaxEl(Q) (Q).QueueMaxEl
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q);
+boolean IsQueueEmpty (CustQueue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Queue Q);
+boolean IsQueueFull (CustQueue Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak QueueMaxEl */
-int NBElmt (Queue Q);
+int NBElmtQueue (CustQueue Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max);
+void CreateEmptyQueue (CustQueue * Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
@@ -49,20 +49,21 @@ void CreateEmpty (Queue * Q, int Max);
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasi(Queue * Q);
+void DeAlokasiQueue(CustQueue * Q);
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, QueueMaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Add (Queue * Q, infotype X);
+void AddQueue (CustQueue * Q, Customer X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void Del (Queue * Q, infotype * X);
+void DelQueue (CustQueue * Q, Customer * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 
+void SearchFitQueue(CustQueue *Q, Customer *X, int N);
 #endif

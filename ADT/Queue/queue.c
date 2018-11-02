@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q)
+boolean IsQueueEmpty (CustQueue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 	{
 		// Kamus
@@ -14,7 +14,7 @@ boolean IsEmpty (Queue Q)
 		return ( (Q).HEAD == queueNil && (Q).TAIL == queueNil);
 	};
 
-boolean IsFull (Queue Q)
+boolean IsQueueFull (CustQueue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak QueueMaxEl */
 	{
@@ -26,13 +26,13 @@ boolean IsFull (Queue Q)
 		return ( count == (Q).QueueMaxEl );
 	}
 
-int NBElmt (Queue Q)
+int NBElmtQueue (CustQueue Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 	{
 		// Kamus
 
 		// Algoritma
-		if ( IsEmpty(Q) )
+		if ( IsQueueEmpty(Q) )
 			{
 				return(0);
 			}
@@ -43,7 +43,7 @@ int NBElmt (Queue Q)
 	};
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max)
+void CreateEmptyQueue (CustQueue * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
@@ -53,7 +53,7 @@ void CreateEmpty (Queue * Q, int Max)
 		// Kamus
 
 		// Algoritma
-		(*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype)); // ALokasi memori dinamik
+		(*Q).T = (Customer *) malloc ((Max+1) * sizeof(Customer)); // ALokasi memori dinamik
 		if ( (*Q).T != NULL )
 			{
 				(*Q).HEAD = queueNil;
@@ -67,7 +67,7 @@ void CreateEmpty (Queue * Q, int Max)
 	};
 
 /* *** Destruktor *** */
-void DeAlokasi(Queue * Q)
+void DeAlokasiQueue(CustQueue * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, QueueMaxEl(Q) diset 0 */
@@ -80,7 +80,7 @@ void DeAlokasi(Queue * Q)
 	}
 
 /* *** Primitif Add/Delete *** */
-void Add (Queue * Q, infotype X)
+void AddQueue (CustQueue * Q, Customer X)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
@@ -88,7 +88,7 @@ void Add (Queue * Q, infotype X)
 		// Kamus
 
 		// Algoritma
-		if ( IsEmpty(*Q) )
+		if ( IsQueueEmpty(*Q) )
 			{
 				(*Q).HEAD = 1;
 				(*Q).TAIL = 1;
@@ -100,7 +100,7 @@ void Add (Queue * Q, infotype X)
 				InfoTail(*Q) = X;
 			}
 	}
-void Del (Queue * Q, infotype * X)
+void DelQueue (CustQueue * Q, Customer * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
@@ -109,7 +109,7 @@ void Del (Queue * Q, infotype * X)
         	// Kamus
 
         	// Algoritma
-        	if ( NBElmt(*Q) == 1)
+        	if ( NBElmtQueue(*Q) == 1)
         		{
         			*X = InfoHead(*Q);
         			(*Q).HEAD = 0;
@@ -121,3 +121,33 @@ void Del (Queue * Q, infotype * X)
         			Head(*Q) = (Head(*Q) % QueueMaxEl(*Q)) + 1;
 				}
 		};
+
+void SearchFitQueue(CustQueue *Q, Customer *X, int N){
+// I.S Q tidak kosong
+//F.
+	CustQueue temp;
+	boolean found;
+
+	found = false;
+
+	CreateEmptyQueue(&temp, 20);
+
+	while((!IsQueueEmpty(*Q)) && (!found)){
+		if(N == InfoHead(*Q).N){
+			DelQueue(Q, X);
+			found = true;
+		}
+		else{
+			AddQueue(&temp, InfoHead(*Q));
+		}
+	}
+
+	while(!IsQueueEmpty(*Q)){
+		AddQueue(&temp, InfoHead(*Q));
+	}
+
+	while(!IsQueueEmpty(temp)){
+		AddQueue(Q,InfoHead(temp));
+	}
+
+}
