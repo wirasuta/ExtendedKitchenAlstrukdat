@@ -6,19 +6,21 @@
 #define stackt_H
 
 #include "boolean.h"
+#include "input.c"
+#include "mesinkata.c"
 
 #define StackNil 0
 #define MaxEl 10
 /* StackNil adalah stack dengan elemen kosong . */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
 
-typedef int infotype;
+
 typedef int stackAddress;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+	Kata T[MaxEl+1]; /* tabel penyimpan elemen */
 	stackAddress TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = StackNil */
@@ -33,26 +35,26 @@ typedef struct {
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S);
+void CreateEmptyStack (Stack *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai StackNil */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S);
+boolean IsStackEmpty (Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFull (Stack S);
+boolean IsStackFull (Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push (Stack * S, infotype X);
+void Push (Stack * S, Kata X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop (Stack * S, infotype* X);
+void Pop (Stack * S, Kata* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
