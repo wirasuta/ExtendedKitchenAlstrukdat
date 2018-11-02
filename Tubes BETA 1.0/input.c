@@ -59,7 +59,7 @@ contoh:
 
 //contoh penggunaan
 
-int main()
+/*int main()
 {
     Kata a;
     Kata b;
@@ -82,4 +82,4 @@ int main()
 
     //print hasil perbandingan dengan kata kel
     printf("IsKataKel: %d", IsKataSama(a, b));
-}
+}*/

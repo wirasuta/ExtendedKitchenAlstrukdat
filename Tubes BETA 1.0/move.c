@@ -1,21 +1,86 @@
 #include <stdio.h>
 #include <string.h>
 #include "boolean.h"
-#include "move.h"
+#include "matriks.c"
+#include "input.c"
 
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
     return ((Elmt(M, X, Y) == 'X') || (Elmt(M, X, Y) == 'M') || (Elmt(M, X, Y) == 'C'));
-    //tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
+    // tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
 }
 
-void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
+void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
 {
-    char string[4];
+Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH;
+Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
 
-    strcpy(string, a);
+//commands
 
-    if (strcmp(string, "GU") == 0)
+KataGU.TabKata[0] = 'G';
+KataGU.TabKata[1] = 'U';
+
+KataGD.TabKata[0] = 'G';
+KataGD.TabKata[1] = 'D';
+
+KataGL.TabKata[0] = 'G';
+KataGL.TabKata[1] = 'L';
+
+KataGR.TabKata[0] = 'G';
+KataGR.TabKata[1] = 'D';
+
+KataORDER.TabKata[0] = 'O';
+KataORDER.TabKata[1] = 'R';
+KataORDER.TabKata[2] = 'D';
+KataORDER.TabKata[3] = 'E';
+KataORDER.TabKata[4] = 'R';
+
+KataPUT.TabKata[0] = 'P';
+KataPUT.TabKata[1] = 'U';
+KataPUT.TabKata[2] = 'T';
+
+KataTAKE.TabKata[0] = 'T';
+KataTAKE.TabKata[1] = 'A';
+KataTAKE.TabKata[2] = 'K';
+KataTAKE.TabKata[3] = 'E';
+
+KataCH.TabKata[0] = 'C';
+KataCH.TabKata[1] = 'H';
+
+KataPLACE.TabKata[0] = 'P';
+KataPLACE.TabKata[1] = 'L';
+KataPLACE.TabKata[2] = 'A';
+KataPLACE.TabKata[3] = 'C';
+KataPLACE.TabKata[4] = 'E';
+
+KataGIVE.TabKata[0] = 'G';
+KataGIVE.TabKata[1] = 'I';
+KataGIVE.TabKata[2] = 'V';
+KataGIVE.TabKata[3] = 'E';
+
+KataRECIPE.TabKata[0] = 'R';
+KataRECIPE.TabKata[1] = 'E';
+KataRECIPE.TabKata[2] = 'C';
+KataRECIPE.TabKata[3] = 'I';
+KataRECIPE.TabKata[4] = 'P';
+KataRECIPE.TabKata[5] = 'E';
+
+KataSAVE.TabKata[0] = 'S';
+KataSAVE.TabKata[1] = 'A';
+KataSAVE.TabKata[2] = 'V';
+KataSAVE.TabKata[3] = 'E';
+
+KataLOAD.TabKata[0] = 'L';
+KataLOAD.TabKata[1] = 'O';
+KataLOAD.TabKata[2] = 'A';
+KataLOAD.TabKata[3] = 'D';
+
+KataEXIT.TabKata[0] = 'E';
+KataEXIT.TabKata[1] = 'X';
+KataEXIT.TabKata[2] = 'I';
+KataEXIT.TabKata[3] = 'T';
+
+    if (IsKataSama(command, KataGU))
     {
         if (pathFilled(M, *X, *Y-1))
         {
@@ -26,7 +91,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
         *Y = *Y - 1;
         }
     }
-    else if (strcmp(string, "GD") == 0)
+    else if (IsKataSama(command, KataGD))
     {
         if (pathFilled(M, *X, *Y+1))
         {
@@ -37,7 +102,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
         *Y = *Y + 1;
         }
     }
-    else if (strcmp(string, "GL") == 0)
+    else if (IsKataSama(command, KataGL))
     {
         if (pathFilled(M, *X - 1, *Y))
         {
@@ -48,7 +113,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
         *X = *X - 1;
         }
     }
-    else if (strcmp(string, "GR") == 0)
+    else if (IsKataSama(command, KataGR))
     {
         if (pathFilled(M, *X+1, *Y))
         {
@@ -61,11 +126,11 @@ void newCoordinate(MATRIKS M, int *X, int *Y, char a[4])
     }
 }
 
-void move(MATRIKS *M, int *X, int *Y,char a[4])
+void move(MATRIKS *M, int *X, int *Y,Kata command)
 {
 
         Elmt(*M, *X, *Y) = NULL;
-        newCoordinate(*M, X, Y, a);
+        newCoordinate(*M, X, Y, command);
         Elmt(*M, *X, *Y) = 'P';
 
 }
@@ -75,8 +140,75 @@ void move(MATRIKS *M, int *X, int *Y,char a[4])
 int main()
 {
     MATRIKS Map;
-    char command[4];
+    Kata command;
     int X, Y;
+    Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH;
+Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
+
+//commands
+
+KataGU.TabKata[0] = 'G';
+KataGU.TabKata[1] = 'U';
+
+KataGD.TabKata[0] = 'G';
+KataGD.TabKata[1] = 'D';
+
+KataGL.TabKata[0] = 'G';
+KataGL.TabKata[1] = 'L';
+
+KataGR.TabKata[0] = 'G';
+KataGR.TabKata[1] = 'D';
+
+KataORDER.TabKata[0] = 'O';
+KataORDER.TabKata[1] = 'R';
+KataORDER.TabKata[2] = 'D';
+KataORDER.TabKata[3] = 'E';
+KataORDER.TabKata[4] = 'R';
+
+KataPUT.TabKata[0] = 'P';
+KataPUT.TabKata[1] = 'U';
+KataPUT.TabKata[2] = 'T';
+
+KataTAKE.TabKata[0] = 'T';
+KataTAKE.TabKata[1] = 'A';
+KataTAKE.TabKata[2] = 'K';
+KataTAKE.TabKata[3] = 'E';
+
+KataCH.TabKata[0] = 'C';
+KataCH.TabKata[1] = 'H';
+
+KataPLACE.TabKata[0] = 'P';
+KataPLACE.TabKata[1] = 'L';
+KataPLACE.TabKata[2] = 'A';
+KataPLACE.TabKata[3] = 'C';
+KataPLACE.TabKata[4] = 'E';
+
+KataGIVE.TabKata[0] = 'G';
+KataGIVE.TabKata[1] = 'I';
+KataGIVE.TabKata[2] = 'V';
+KataGIVE.TabKata[3] = 'E';
+
+KataRECIPE.TabKata[0] = 'R';
+KataRECIPE.TabKata[1] = 'E';
+KataRECIPE.TabKata[2] = 'C';
+KataRECIPE.TabKata[3] = 'I';
+KataRECIPE.TabKata[4] = 'P';
+KataRECIPE.TabKata[5] = 'E';
+
+KataSAVE.TabKata[0] = 'S';
+KataSAVE.TabKata[1] = 'A';
+KataSAVE.TabKata[2] = 'V';
+KataSAVE.TabKata[3] = 'E';
+
+KataLOAD.TabKata[0] = 'L';
+KataLOAD.TabKata[1] = 'O';
+KataLOAD.TabKata[2] = 'A';
+KataLOAD.TabKata[3] = 'D';
+
+KataEXIT.TabKata[0] = 'E';
+KataEXIT.TabKata[1] = 'X';
+KataEXIT.TabKata[2] = 'I';
+KataEXIT.TabKata[3] = 'T';
 
     MakeMATRIKS(10, 10, &Map);
     X = 4;
@@ -87,8 +219,7 @@ int main()
 
     Elmt(Map, X, Y) = 'P';
     printf("Initial Position : %d %d \n", X, Y);
-    printf("Move Command : ");
-    scanf(" %s", command);
-    move(&Map, &X, &Y, command);
+
+    move(&Map, &X, &Y, KataGD);
     printf("Next Position: %d %d", X, Y);
 }
