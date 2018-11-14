@@ -5,9 +5,9 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "boolean.h"
-#include "matriks.c"
-#include "input.c"
+#include "../ADT/Header/boolean.h"
+#include "../ADT/Header/matriks.h"
+#include "../ADT/Header/mesinkata.h"
 
 boolean pathFilled(MATRIKS M, int x , int Y);
 // Menghasilkan true jika "kotak" sudah terisi

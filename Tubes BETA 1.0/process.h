@@ -1,8 +1,8 @@
- p #ifndef process_H
+#ifndef process_H
 #define process_H
 
-#include "stackt.h"
-#include "tepokpramuka_type.h"
+#include "../ADT/Header/stackt.h"
+#include "../ADT/Header/tepokpramuka_type.h"
 /*
 e. ORDER | Array
 Command ini digunakan untuk mengambil order dari meja yang bersebelahan

@@ -1,17 +1,17 @@
 #include <stdio.h>
-
+#include "command.h"
+#include "../ADT/Header/mesinkata.h"
 //Copy ini semua ke main
 
 
 //masukin yg ini ke kamus
-
-Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH;
+Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
-
 //commands
 
 KataGU.TabKata[0] = 'G';
 KataGU.TabKata[1] = 'U';
+KataGU.TabKata[2] = '\x00';
 
 KataGD.TabKata[0] = 'G';
 KataGD.TabKata[1] = 'D';
@@ -39,6 +39,9 @@ KataTAKE.TabKata[3] = 'E';
 
 KataCH.TabKata[0] = 'C';
 KataCH.TabKata[1] = 'H';
+
+KataCT.TabKata[0] = 'C';
+KataCT.TabKata[1] = 'T';
 
 KataPLACE.TabKata[0] = 'P';
 KataPLACE.TabKata[1] = 'L';
