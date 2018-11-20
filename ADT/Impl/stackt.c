@@ -36,7 +36,7 @@ boolean IsStackFull (Stack S)
 		// Kamus
 
 		// Algoritma
-		return ((S).TOP == MaxEl);
+		return ((S).TOP == MaxElStack);
 	};
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */

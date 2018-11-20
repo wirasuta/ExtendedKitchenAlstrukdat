@@ -75,7 +75,7 @@ boolean IsIdxEffMat (MATRIKS M, indeks i, indeks j)
 			return ((BrsMin<=i) && (i<=NBrsEff(M)) && ((KolMin<=j) && (j<=NKolEff(M))));
 	};
 
-ElType GetElmtDiagonal (MATRIKS M, indeks i)
+ElTypeMat GetElmtDiagonal (MATRIKS M, indeks i)
 /* Mengirimkan elemen M(i,i) */
 	{
 		// Kamus
@@ -131,7 +131,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK)
 			{
 				for ( j = GetFirstIdxKol(*M) ; j <= GetLastIdxKol(*M) ; j++)
 					{
-						scanf("%d",&(MatElmt(*M,i,j)));
+						scanf("%c",&(MatElmt(*M,i,j)));
 					};
 			}
 
@@ -156,7 +156,7 @@ void TulisMATRIKS (MATRIKS M)
 			{
 				for ( j = GetFirstIdxKol(M) ; j <= GetLastIdxKol(M) ; j++)
 					{
-						printf("%d",(M).Mem[i][j]);
+						printf("%c",(M).Mem[i][j]);
 						if ( j != GetLastIdxKol(M))
 							{
 								printf(" ");
@@ -241,7 +241,7 @@ MATRIKS KaliMATRIKS (MATRIKS M1, MATRIKS M2)
 		return(M);
 	};
 
-MATRIKS KaliKonsMat (MATRIKS M, ElType X)
+MATRIKS KaliKonsMat (MATRIKS M, ElTypeMat X)
 /* Mengirim hasil perkalian setiap elemen M dengan X */
 	{
 		// Kamus
@@ -261,7 +261,7 @@ MATRIKS KaliKonsMat (MATRIKS M, ElType X)
 		return (M3);
 
 	};
-void PKaliKons (MATRIKS * M, ElType K)
+void PKaliKons (MATRIKS * M, ElTypeMat K)
 /* I.S. M terdefinisi, K terdefinisi */
 /* F.S. Mengalikan setiap elemen M dengan K */
 	{

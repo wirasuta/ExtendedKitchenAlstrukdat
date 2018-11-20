@@ -255,7 +255,7 @@ boolean IsEQ (TabInt T1, TabInt T2) {
 }
 /* Mengirimkan true jika T1 sama dengan T2 yaitu jika ukuran T1 = T2 dan semua elemennya sama */
 boolean IsLess (TabInt T1, TabInt T2) {
-	int i,j,ls;
+	int i,j;
  /*algoritma*/
    	i = 1;
    	j = 0;
@@ -485,7 +485,7 @@ void MaxSortDesc (TabInt * T) {
 /* Proses : mengurutkan T sehingga elemennya menurun/mengecil */
 /*          tanpa menggunakan tabel kerja */
 void InsSortAsc (TabInt * T) {
-	int i,j,k,h,temp;
+	int i,j,temp;
 
 	for (i=2; i<=Neff(*T); i++) {
 		temp = Elmt(*T,i);

@@ -9,13 +9,19 @@
 #include "ADT/Header/stackt.h"
 #include "ADT/Header/bintree.h"
 #include "ADT/Header/tepokpramuka_type.h"
-#include "Tubes BETA 1.0/move.h"
-#include "Tubes BETA 1.0/process.h"
-#include "Tubes BETA 1.0/command.h"
+#include "Progress/move.h"
+#include "Progress/process.h"
+#include "Progress/command.h"
+#include "Progress/map.h"
+
+Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
+Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
+MATRIKS map;
+Player skidipapman;
 
 int main(int argc, char const *argv[]) {
   int input;
-  char username[100];
+  char username;
   Kata command;
 
   printf("(1)New Game\n");
@@ -28,7 +34,10 @@ int main(int argc, char const *argv[]) {
       printf("Inputan salah. Silahkan input angka yang valid.\n");
       scanf("%d",&input);
   }
-
+  InitKataCommand();
+  //TODO: Pindahkan initialization Player
+  PosPlayer(skidipapman) =  MakePOINT(5, 5);
+  InitMap(&map, PosPlayer(skidipapman));
   while (input!=4){
       switch (input){
           case 1:
@@ -39,21 +48,11 @@ int main(int argc, char const *argv[]) {
               printf("Masukkan command\n");
               scanf("%s", command.TabKata);
               while (!IsKataSama(command,KataEXIT)){
-                  if (IsKataSama(command, KataGU)){
-                    //fungsi GU
-                    printf("Berhasil Go Up\n");
-                  }
-                  else if (IsKataSama(command, KataGD)){
-                      //fungsi GD
-                      printf("Berhasil Go Down\n");
-                  }
-                  else if (IsKataSama(command, KataGL)){
-                      //fungsi GL
-                      printf("Berhasil Go Left\n");
-                  }
-                  else if (IsKataSama(command, KataGR)){
-                      //fungsi GR
-                      printf("Berhasil Go Right\n");
+                  if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
+                      //fungsi GU/GL/GD/GR
+                      move(&map, &(Absis(PosPlayer(skidipapman))), &(Ordinat(PosPlayer(skidipapman))), command);
+                      TulisMATRIKS(map);
+                      printf("\n");
                   }
                   else if (IsKataSama(command, KataORDER)){
                       //fungsi ORDER
@@ -87,7 +86,6 @@ int main(int argc, char const *argv[]) {
                   }
                   else {
                       printf("Command tidak valid. Silahkan input command lagi.\n");
-                      printf("%s\n", command.TabKata);
                   }
                   scanf("%s", command.TabKata);
               }

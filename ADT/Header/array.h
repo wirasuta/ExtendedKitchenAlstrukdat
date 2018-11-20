@@ -1,45 +1,26 @@
 /* MODUL TABEL INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan tabel integer */
 /* Penempatan elemen selalu rapat kiri */
-/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit, 
+/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit,
    memori tabel statik */
 
 #ifndef ARRAY_H
 #define ARRAY_H
 
 #include "boolean.h"
+#include "tepokpramuka_type.h"
 
-/*  Kamus Umum */
-#define IdxMax 100
-/* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
-#define IdxMin 1
-/* Indeks minimum array */
-#define IdxUndef -999 
-/* Indeks tak terdefinisi*/
-
-/* Definisi elemen dan koleksi objek */
-typedef int IdxType;  /* type indeks */
-typedef int ElType;   /* type elemen tabel */
-typedef struct { 
-	ElType TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
-	int Neff; /* >=0, banyaknya elemen efektif */
-} TabInt;
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabInt, cara deklarasi dan akses: */
 /* Deklarasi : T : TabInt */
-/* Maka cara akses: 
-   T.Neff  untuk mengetahui banyaknya elemen 
-   T.TI    untuk mengakses seluruh nilai elemen tabel 
+/* Maka cara akses:
+   T.Neff  untuk mengetahui banyaknya elemen
+   T.TI    untuk mengakses seluruh nilai elemen tabel
    T.TI[i] untuk mengakses elemen ke-i */
-/* Definisi : 
+/* Definisi :
   Tabel kosong: T.Neff = 0
-  Definisi elemen pertama : T.TI[i] dengan i=1 
+  Definisi elemen pertama : T.TI[i] dengan i=1
   Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
-  
-/* ********** SELEKTOR ********** */
-#define Neff(T)   (T).Neff
-#define TI(T)     (T).TI
-#define Elmt(T,i) (T).TI[(i)]
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
@@ -88,7 +69,7 @@ void BacaIsi (TabInt * T);
 /* 1. Baca banyaknya elemen diakhiri enter, misalnya N */
 /*    Pembacaan diulangi sampai didapat N yang benar yaitu 0 <= N <= MaxNbEl(T) */
 /*    Jika N tidak valid, tidak diberikan pesan kesalahan */
-/* 2. Jika 0 < N <= MaxNbEl(T); Lakukan N kali: Baca elemen mulai dari indeks 
+/* 2. Jika 0 < N <= MaxNbEl(T); Lakukan N kali: Baca elemen mulai dari indeks
       IdxMin satu per satu diakhiri enter */
 /*    Jika N = 0; hanya terbentuk T kosong */
 void BacaIsiTab (TabInt * T);
@@ -111,7 +92,7 @@ void TulisIsi (TabInt T);
    [4]50
 */
 void TulisIsiTab (TabInt T);
-/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku; 
+/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
    antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
    di tengah, atau di belakang, termasuk spasi dan enter */
 /* I.S. T boleh kosong */
@@ -164,14 +145,14 @@ boolean SearchSentinel (TabInt T, ElType X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* dengan metoda sequential search dengan sentinel */
-/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C 
+/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C
    yang tidak dipakai dalam definisi tabel */
 
 /* ********** NILAI EKSTREM ********** */
 ElType ValMax (TabInt T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan nilai maksimum tabel */
-ElType ValMin (TabInt T); 
+ElType ValMin (TabInt T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan nilai minimum tabel */
 /* *** Mengirimkan indeks elemen bernilai ekstrem *** */
@@ -218,7 +199,7 @@ void AddAsLastEl (TabInt * T, ElType X);
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
 void AddEli (TabInt * T, ElType X, IdxType i);
-/* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas 
+/* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas
    terhadap elemen yang sudah ada */
 /* I.S. Tabel tidak kosong dan tidak penuh */
 /*      i adalah indeks yang valid. */
@@ -247,9 +228,9 @@ void AddElUnik (TabInt * T, ElType X);
 /* Menambahkan X sebagai elemen terakhir tabel, pada tabel dengan elemen unik */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /*      dan semua elemennya bernilai unik, tidak terurut */
-/* F.S. Jika tabel belum penuh, menambahkan X sbg elemen terakhir T, 
-        jika belum ada elemen yang bernilai X. 
-		Jika sudah ada elemen tabel yang bernilai X maka I.S. = F.S. 
+/* F.S. Jika tabel belum penuh, menambahkan X sbg elemen terakhir T,
+        jika belum ada elemen yang bernilai X.
+		Jika sudah ada elemen tabel yang bernilai X maka I.S. = F.S.
 		dan dituliskan pesan "nilai sudah ada" */
 /* Proses : Cek keunikan dengan sequential search dengan sentinel */
 /*          Kemudian tambahkan elemen jika belum ada */

@@ -124,13 +124,7 @@ contoh:
             length1++;
         }
 
-        while (K2.TabKata[length2] != '\x00')
-        {
-            length2++;
-        }
-
-        printf("Len 1: %d\n", length1);
-        printf("Len 2: %d\n", length2);
+        length2 = K2.Length;
 
         i = 0;
         sama = true;
