@@ -1,20 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "process.h"
+#include "mesinkata.h"
 
-boolean isAbleOrder(Player P, Customer C, Table T){
+boolean IsNearTable (Player P, Table T){
     boolean check;
     int i;
 
     check = false;
 
     i = 0;
-    for (i=0; i<IdxMax; i++){
+    while ((i<IdxMax) || (check == true)){
         if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
            (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
-               if(StatOrder(OrderC(C)) == '#'){
-                   check = true;
-               }
+            check = true;
+        } else {
+            i++;
+        }
+}
+
+boolean IsNearTray(Player P, LocTray T){
+    return ((Absis(PosPlayer(P)) == Absis(PosTray(T)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTray(T)) - 1) ||
+           (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) - 1))
+}
+
+boolean IsAbleOrder(Player P, Customer C, Table T){
+    boolean check;
+
+    check = false;
+    if (IsNearTable(P,T)){
+        if(StatOrder(OrderC(C)) == '#'){
+            check = true;
         }
     }
 
@@ -23,19 +39,13 @@ boolean isAbleOrder(Player P, Customer C, Table T){
 //mengembalikas true jika player bisa megambil orderan dari customer,
 //yaitu jika player berada di samping customer
 
-boolean isAbleGive(Player P, Customer C, Table T){
+boolean IsAbleGive(Player P, Customer C, Table T){
     boolean check;
-    int i;
 
     check = false;
-
-    i = 0;
-    for (i=0; i<IdxMax; i++){
-        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
-           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
-               if(StatOrder(OrderC(C)) == '!' && IsKataSama(InfoTop(OnTray(P)),OrderName(OrderC(C)))) {
-                    check = true;
-               }
+    if (IsNearTable(P,T)) {
+        if(StatOrder(OrderC(C)) == '!' && IsKataSama(InfoTop(OnTray(P)),OrderName(OrderC(C)))) {
+            check = true;
         }
     }
 
@@ -44,54 +54,54 @@ boolean isAbleGive(Player P, Customer C, Table T){
 //mengembalikas true jika player bisa memberikan makanan ke customer
 //yaitu jika player berada di samping customer
 
-boolean isAbleTake(Player P, Ingredients Bahan){
+boolean IsAbleTake(Player P, Ingredients Bahan){
     boolean check;
 
     check = false;
 
-    if ((Absis(PosPlayer(P)) == (Absis(PosIngredients(Bahan)) + 1)) || (Absis(PosPlayer(P)) == (Absis(PosIngredients(Bahan)) - 1)) ||
-        (Ordinat(PosPlayer(P)) == (Ordinat(PosIngredients(Bahan)) + 1)) || (Ordinat(PosPlayer(P)) == (Ordinat(PosIngredients(Bahan)) - 1))){
+    if ((Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) + 1) || (Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) - 1) ||
+        (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) - 1)){
                check = true;
         }
-    return check;
+    }
+
+    return(check);
+
 }
 //mengembalikas true jika player bisa mengambil bahan makanan atau tidak
 //yaitu jika player berada di samping customer
 
-boolean isAblePlace(Player P, Customer C, Table T){
+boolean IsAblePlace(Player P, Customer C, Table T){
     boolean check;
-    int i;
 
     check = false;
 
-    i = 0;
-    for (i=0; i<IdxMax; i++){
-        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
-           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
-               if(IsOccupied(T) == false) {
-                    if(Customers(C) <= Capacity(T)) {
-                        check = true;
-                    }
-               }
-         }
+    if(IsNearTable(P,T)){
+        if(IsOccupied(T) == false) {
+            if(Customers(C) <= Capacity(T)) {
+                check = true;
+            }
+        }
     }
+
     return(check);
+
 }
 //mengembalikas true jika player bisa menempatkan customer ke meja kosong
 //yaitu jika player berada di samping meja dan sesuai dengan kapasitas
 
 
-void ClearStack(Stack *S){
-    CreateEmptyStack(S);
+Stack ClearStack(Stack *S){
+    CreateEmpty(S);
 }
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
 void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 
-    if (isAbleOrder(*P,*C,T)) {
+    if (IsAbleOrder(*P,*C,T)) {
         OrderList(*P,i) = OrderC(*C);
-        StatOrder(OrderC(*C)) = '!';
+        StatOrder(OrderC(*C)) = '!'
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
     }
@@ -102,8 +112,76 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
 
-void PutToTray(Player *P){
+void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
 
+    Customer CustTemp;
+
+    if (!IsQueueEmpty (*Q)) {
+        LastCustomer = InfoTail(*Q);
+        do {
+            DelQueue(Q,&CustTemp);
+            if(!IsAblePlace(P,InfoHead(*Q),*T)) {
+                AddQueue(Q,CustTemp);
+            } else {
+                CustomerSeat(*T) = CustTemp;
+                IsOccupied(*T) = true;
+            }
+        } while (CustTemp != LastCustomer);
+
+        if(IsAblePlace(P,&LastCustomer,*T)) {
+            DelQueue(Q,&CustTemp);
+            CustomerSeat(*T) = CustTemp;
+            IsOccupied(*T) = true;
+        }
+    }
+}
+
+void PutToTray(Player *P, BinTree *Adr, LocTray T){
+    boolean check;
+    Stack checkStack,Temp;
+    Kata food
+    BinTree C_Food;
+
+    if(IsNearTray(*P,T)) {
+        check = true;
+        C_Food = Adr;
+
+        CreateEmpty(&checkStack);
+        CreateEmpty(&Temp);
+        while(!IsEmpty(OnHand(*P))) {
+            Pop(&InfoTop(OnHand(*P)),&food);
+            Push(&checkStack,food);
+            Push(&Temp,food);
+        }
+
+        while((!check) || (!IsTreeEmpty(C_Food)) || (!IsEmpty(checkStack))) {
+                if(IsKataSama(InfoTop(checkStack),IngTree(Akar(C_Food))) {
+                    Pop(&checkStack,&food);
+                    if(IngTree(Akar(Left(C_Food))) == food) {
+                        C_Food = Left(C_Food);
+                    } else {
+                        C_Food = Right(C_Food);
+                    }
+                } else {
+                    check = false;
+                }
+        }
+    }
+
+    if(check = false) {
+        while(!IsEmpty(Temp)) {
+            Pop(&InfoTop(Temp),&food);
+            Push(&OnHand(*P),food);
+        }
+        printf("GAGAL MEMBUAT MAKANAN!!!\n");
+
+    } else {
+        if(!IsBiner(C_Food)) {
+            Push(&OnTray(*P),Akar(Left(C_Food)));
+        } else {
+            printf("BAHAN MAKANAN KURANG LENGKAP!\n");
+        }
+    }
 }
 //I.S sembarang
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
@@ -111,14 +189,31 @@ void PutToTray(Player *P){
 
 void TakeIngredient(Player *P, Ingredients Bahan){
 
+    if (IsAbleTake(*P,Bahan)) {
+        Push(&OnHand(*P),IngName(Bahan));
+    } else {
+        printf("GAGAL MENGAMBIL BAHAN MAKANAN !!!/n");
+    }
 }
 //I.S sembarang
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer *C){
+void GiveFood(Player *P, Customer *C, Table *T, Game *G){
+    Order or;
 
+    if (isAbleGive(P,C,T)){
+        Pop(&OnTray(*P),&or);
+        money(*G) += OrderPrice(or);
+        IsOccupied(*T) = false;
+    } else {
+        printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");
+    }
 }
 //I.S sembarang
 //F.S jika tumpukan paling atas sesuai dengan order customer yang bersebelahan
 //    dengan player, maka makanan akan diberikan
+
+void PrintRecipe(BinTree P,int H){
+    PrintTree(P,H);
+}
