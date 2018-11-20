@@ -1,6 +1,8 @@
 #include "move.h"
 #include "command.h"
 
+//
+
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
     return ((MatElmt(M, X, Y) == 'X') || (MatElmt(M, X, Y) == 'M') || (MatElmt(M, X, Y) == 'C'));
@@ -11,6 +13,28 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
 {
     if (IsKataSama(command, KataGU))
     {
+        if (pathFilled(M, *X-1, *Y))
+        {
+         printf("Path is Filled! \n");
+        }
+        else
+        {
+        *X = *X - 1;
+        }
+    }
+    else if (IsKataSama(command, KataGD))
+    {
+        if (pathFilled(M, *X+1, *Y))
+        {
+         printf("Path is Filled! \n");
+        }
+        else
+        {
+        *X = *X + 1;
+        }
+    }
+    else if (IsKataSama(command, KataGL))
+    {
         if (pathFilled(M, *X, *Y-1))
         {
          printf("Path is Filled! \n");
@@ -20,7 +44,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         *Y = *Y - 1;
         }
     }
-    else if (IsKataSama(command, KataGD))
+    else if (IsKataSama(command, KataGR))
     {
         if (pathFilled(M, *X, *Y+1))
         {
@@ -29,28 +53,6 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         else
         {
         *Y = *Y + 1;
-        }
-    }
-    else if (IsKataSama(command, KataGL))
-    {
-        if (pathFilled(M, *X - 1, *Y))
-        {
-         printf("Path is Filled! \n");
-        }
-        else
-        {
-        *X = *X - 1;
-        }
-    }
-    else if (IsKataSama(command, KataGR))
-    {
-        if (pathFilled(M, *X+1, *Y))
-        {
-         printf("Path is Filled! \n");
-        }
-        else
-        {
-        *X = *X + 1;
         }
     }
 }
