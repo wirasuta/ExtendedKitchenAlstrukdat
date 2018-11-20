@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "process.h"
-#include "mesinkata.h"
+
 
 boolean IsNearTable (Player P, Table T){
     boolean check;
@@ -17,11 +17,13 @@ boolean IsNearTable (Player P, Table T){
         } else {
             i++;
         }
+    }
+    return check;
 }
 
 boolean IsNearTray(Player P, LocTray T){
     return ((Absis(PosPlayer(P)) == Absis(PosTray(T)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTray(T)) - 1) ||
-           (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) - 1))
+           (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) - 1));
 }
 
 boolean IsAbleOrder(Player P, Customer C, Table T){

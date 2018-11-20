@@ -3,6 +3,7 @@
 
 #include "../ADT/Header/stackt.h"
 #include "../ADT/Header/point.h"
+#include "../ADT/Header/mesinkata.h"
 #include "../ADT/Header/tepokpramuka_type.h"
 /*
 e. ORDER | Array

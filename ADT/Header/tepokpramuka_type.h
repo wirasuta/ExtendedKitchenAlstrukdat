@@ -171,7 +171,7 @@ typedef struct{
 #define PosIngredients(I) (I).Position
 
 typedef struct{
-    Kata Bahan
+    Kata Bahan;
     double TreePrice;
 } Recipe;
 
@@ -181,7 +181,7 @@ typedef struct{
 
 typedef struct{
     POINT Point;
-} LocTray
+} LocTray;
 
 /* SELEKTOR UNTUK TIPE DATA LOCTRAY */
 #define PosTray(L) (L).Point
