@@ -12,12 +12,13 @@
 #include "Progress/move.h"
 #include "Progress/process.h"
 #include "Progress/command.h"
-#include "Progress/map.h"
+#include "Progress/initialize.h"
 
 Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
 MATRIKS map;
-Player skidipapman;
+Game gameData;
+Player player;
 
 int main(int argc, char const *argv[]) {
   int input;
@@ -35,9 +36,8 @@ int main(int argc, char const *argv[]) {
       scanf("%d",&input);
   }
   InitKataCommand();
-  //TODO: Pindahkan initialization Player
-  PosPlayer(skidipapman) =  MakePOINT(5, 5);
-  InitMap(&map, PosPlayer(skidipapman));
+  InitGame(&gameData);
+  InitMap(&map, PosPlayer(player));
   while (input!=4){
       switch (input){
           case 1:
@@ -50,7 +50,7 @@ int main(int argc, char const *argv[]) {
               while (!IsKataSama(command,KataEXIT)){
                   if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
                       //fungsi GU/GL/GD/GR
-                      move(&map, &(Absis(PosPlayer(skidipapman))), &(Ordinat(PosPlayer(skidipapman))), command);
+                      move(&map, &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
                       TulisMATRIKS(map);
                       printf("\n");
                   }
