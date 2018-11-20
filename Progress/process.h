@@ -29,18 +29,20 @@ l. RECIPE | Graf
 Command ini digunakan untuk menampilkan pohon makanan.
 */
 
-boolean isAbleOrder(Player P, Customer C, Table T);
+boolean IsAbleOrder(Player P, Customer C, Table T);
 //untuk menentukan apakah player bisa megambil orderan dari customer
 
-boolean isAbleGive(Player P, Customer C, Table T);
+boolean IsNearTray(Player P, LocTray T);
+//mengembalikan true jika posisi player berada di samping kanan/kiri/atas/bawah tray
+
+boolean IsAbleGive(Player P, Customer C, Table T);
 //untuk menentukan apakah player bisa memberikan makanan ke customer
 
-boolean isAbleTake(Player P, Ingredients Bahan);
+boolean IsAbleTake(Player P, Ingredients Bahan);
 //untuk menentukan apakah player bisa mengambil bahan makanan atau tidak
 
-boolean isAblePlace(Player P, Customer C, Table T);
+boolean IsAblePlace(Player P, Customer C, Table T);
 //untuk menentukan apakah player bisa menempatkan customer ke meja kosong
-
 
 void ClearStack(Stack *S);
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
@@ -68,5 +70,7 @@ void GiveFood(Player *P, Customer *C);
 //F.S jika tumpukan paling atas sesuai dengan order customer yang bersebelahan
 //    dengan player, maka makanan akan diberikan
 
+void PrintRecipe(BinTree P,int H);
+//Menampilkan Pohon Resep
 
 #endif

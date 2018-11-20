@@ -51,7 +51,7 @@ typedef int indeks; /* indeks baris, kolom */
 typedef char ElTypeMat;
 typedef struct {
 	ElTypeMat Mem[BrsMax+1][KolMax+1];
-  int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
+    int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
 	int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } MATRIKS;
 /**** Selektor type MATRIKS ****/
@@ -62,7 +62,7 @@ typedef struct {
 /**** Definisi type Kata ****/
 #define NMaxKata 50
 typedef struct {
-		char TabKata[NMaxKata+1]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
+    char TabKata[NMaxKata+1]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
     int Length;
 } Kata;
 
@@ -101,6 +101,13 @@ typedef struct {
   int Nomor; //nomor meja
   double Price; // Harga Makanan yang diorder
 } Order;
+
+/* SELEKTOR UNTUK TIPE DATA ORDER */
+#define StatOrder(O) (O).Status
+#define OrderName(O) (O).Name
+#define NoTableOrder(O) (O).Nomor
+#define OrderPrice(O) (O).Price
+
 
 typedef struct {
     Stack Hand;
@@ -154,13 +161,6 @@ typedef struct {
 #define Layout(R) (R).Grid
 #define TableLoc(R,i) (R).Arr[(i)]
 
-/* SELEKTOR UNTUK TIPE DATA ORDER */
-#define StatOrder(O) (O).Status
-#define OrderName(O) (O).Name
-#define NoTableOrder(O) (O).Nomor
-#define OrderPrice(O) (O).Price
-
-
 typedef struct{
     Kata Name;
     POINT Position;
@@ -169,5 +169,21 @@ typedef struct{
 /* SELEKTOR UNTUK TIPE DATA INGREDIENTS */
 #define IngName(I) (I).Name
 #define PosIngredients(I) (I).Position
+
+typedef struct{
+    Kata Bahan
+    double TreePrice;
+} Recipe;
+
+/* SELEKTOR UNTUK TIPE DATA RECIPE */
+#define IngTree(I) (I).Bahan
+#define RecipePrice(I) (I).TreePrice
+
+typedef struct{
+    POINT Point;
+} LocTray
+
+/* SELEKTOR UNTUK TIPE DATA LOCTRAY */
+#define PosTray(L) (L).Point
 
 #endif
