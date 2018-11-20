@@ -37,6 +37,7 @@ int main(int argc, char const *argv[]) {
   }
   InitKataCommand();
   InitGame(&gameData);
+  InitPlayer(&player);
   InitMap(&map, PosPlayer(player));
   while (input!=4){
       switch (input){
