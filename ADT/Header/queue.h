@@ -15,7 +15,7 @@
 typedef int queueAddress;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan QueueTail eksplisit, ukuran disimpan */
-typedef struct { Customer * T;   /* tabel penyimpan elemen */
+typedef struct { Customer T;   /* tabel penyimpan elemen */
                  queueAddress HEAD;  /* alamat penghapusan */
                  queueAddress TAIL;  /* alamat penambahan */
                  int QueueMaxEl;     /* Max elemen queue */

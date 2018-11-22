@@ -3,7 +3,8 @@
 
 #include "../ADT/Header/stackt.h"
 #include "../ADT/Header/point.h"
-#include "../ADT/Header/mesinkata.h"
+#include "../ADT/Header/bintree.h"
+#include "../ADT/Header/queue.h"
 #include "../ADT/Header/tepokpramuka_type.h"
 /*
 e. ORDER | Array
@@ -29,6 +30,9 @@ bertetanggaan
 l. RECIPE | Graf
 Command ini digunakan untuk menampilkan pohon makanan.
 */
+
+boolean IsNearTable (Player P, Table T);
+//mengembalikan true jika posisi pemain berada di dekat meja
 
 boolean IsAbleOrder(Player P, Customer C, Table T);
 //untuk menentukan apakah player bisa megambil orderan dari customer
@@ -56,7 +60,7 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i);
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
 
-void PutToTray(Player *P);
+void PutToTray(Player *P, BinTree *Adr, LocTray T;
 //I.S sembarang
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
 //    berhasil dibuat, makanan dimasukkan ke stack Tray

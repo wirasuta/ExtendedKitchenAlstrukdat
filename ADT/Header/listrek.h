@@ -8,11 +8,12 @@
 #include "boolean.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "tepokpramuka_type.h"
 
 #define Nil NULL
 
 /* Definisi Type */
-typedef int infotypeRek;
+typedef Kata infotypeRek;
 typedef struct tElmtlistrek *addressRek;
 typedef struct tElmtlistrek {
 	infotypeRek info;

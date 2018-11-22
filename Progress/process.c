@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "process.h"
-
+#include "../ADT/Header/mesinkata.h"
 
 boolean IsNearTable (Player P, Table T){
     boolean check;
@@ -18,7 +18,8 @@ boolean IsNearTable (Player P, Table T){
             i++;
         }
     }
-    return check;
+
+    return(check);
 }
 
 boolean IsNearTray(Player P, LocTray T){
@@ -93,8 +94,8 @@ boolean IsAblePlace(Player P, Customer C, Table T){
 //yaitu jika player berada di samping meja dan sesuai dengan kapasitas
 
 
-Stack ClearStack(Stack *S){
-    CreateEmpty(S);
+void ClearStack(Stack *S){
+    CreateEmptyStack(S);
 }
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
@@ -103,7 +104,7 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 
     if (IsAbleOrder(*P,*C,T)) {
         OrderList(*P,i) = OrderC(*C);
-        StatOrder(OrderC(*C)) = '!'
+        StatOrder(OrderC(*C)) = '!';
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
     }
@@ -116,7 +117,7 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 
 void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
 
-    Customer CustTemp;
+    Customer CustTemp, LastCustomer;
 
     if (!IsQueueEmpty (*Q)) {
         LastCustomer = InfoTail(*Q);
@@ -141,7 +142,7 @@ void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
 void PutToTray(Player *P, BinTree *Adr, LocTray T){
     boolean check;
     Stack checkStack,Temp;
-    Kata food
+    Kata food;
     BinTree C_Food;
 
     if(IsNearTray(*P,T)) {
@@ -157,7 +158,7 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
         }
 
         while((!check) || (!IsTreeEmpty(C_Food)) || (!IsEmpty(checkStack))) {
-                if(IsKataSama(InfoTop(checkStack),IngTree(Akar(C_Food))) {
+                if(IsKataSama(InfoTop(checkStack),IngTree(Akar(C_Food)))) {
                     Pop(&checkStack,&food);
                     if(IngTree(Akar(Left(C_Food))) == food) {
                         C_Food = Left(C_Food);
@@ -201,12 +202,14 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer *C, Table *T, Game *G){
+void GiveFood(Player *P, Customer *C, Table *T, Game *G,BinTree P){
     Order or;
+    int Koef;
 
     if (isAbleGive(P,C,T)){
         Pop(&OnTray(*P),&or);
-        money(*G) += OrderPrice(or);
+        Koef = Tinggi(Level(P,OrderName(or)))
+        money(*G) += NormalPrice * double(Koef);
         IsOccupied(*T) = false;
     } else {
         printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");

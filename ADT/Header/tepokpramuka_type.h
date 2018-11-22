@@ -99,14 +99,13 @@ typedef struct {
   char Status; //#: pesanan belom diambil, !: pesanan sudah diambil, $: pesanan sudah dikasi
   Kata Name; //nama makanan
   int Nomor; //nomor meja
-  double Price; // Harga Makanan yang diorder
 } Order;
 
 /* SELEKTOR UNTUK TIPE DATA ORDER */
 #define StatOrder(O) (O).Status
 #define OrderName(O) (O).Name
 #define NoTableOrder(O) (O).Nomor
-#define OrderPrice(O) (O).Price
+#define NormalPrice
 
 
 typedef struct {
@@ -169,15 +168,6 @@ typedef struct{
 /* SELEKTOR UNTUK TIPE DATA INGREDIENTS */
 #define IngName(I) (I).Name
 #define PosIngredients(I) (I).Position
-
-typedef struct{
-    Kata Bahan;
-    double TreePrice;
-} Recipe;
-
-/* SELEKTOR UNTUK TIPE DATA RECIPE */
-#define IngTree(I) (I).Bahan
-#define RecipePrice(I) (I).TreePrice
 
 typedef struct{
     POINT Point;
