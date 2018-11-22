@@ -117,10 +117,9 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 
 void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
 
-    Customer CustTemp, LastCustomer;
+    Customer CustTemp;
 
     if (!IsQueueEmpty (*Q)) {
-        LastCustomer = InfoTail(*Q);
         do {
             DelQueue(Q,&CustTemp);
             if(!IsAblePlace(P,InfoHead(*Q),*T)) {
@@ -129,9 +128,9 @@ void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
                 CustomerSeat(*T) = CustTemp;
                 IsOccupied(*T) = true;
             }
-        } while (CustTemp != LastCustomer);
+        } while (CustTemp != InfoTail(*Q));
 
-        if(IsAblePlace(P,&LastCustomer,*T)) {
+        if(IsAblePlace(P,InfoTail(*Q),*T)) {
             DelQueue(Q,&CustTemp);
             CustomerSeat(*T) = CustTemp;
             IsOccupied(*T) = true;
@@ -202,13 +201,13 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer *C, Table *T, Game *G,BinTree P){
+void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree P){
     Order or;
     int Koef;
 
-    if (isAbleGive(P,C,T)){
+    if (isAbleGive(*P,C,T)){
         Pop(&OnTray(*P),&or);
-        Koef = Tinggi(Level(P,OrderName(or)))
+        Koef = Tinggi(Level(P,OrderName(or)));
         money(*G) += NormalPrice * double(Koef);
         IsOccupied(*T) = false;
     } else {
