@@ -6,9 +6,10 @@
 #define _LISTREK_H_
 
 #include "boolean.h"
+#include "tepokpramuka_type.h"
+#include "mesinkata.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "tepokpramuka_type.h"
 
 #define Nil NULL
 
@@ -95,48 +96,48 @@ boolean SearchRek (ListRek L, infotypeRek X);
 
 
 /*** Pencarian nilai ekstrim ***/
-/* Prekondisi untuk Max/Min/Sum/Average : ListRek tidak kosong */
+/* Prekondisi untuk Max/Min/Sum/Average : ListRek tidak kosong
 infotypeRek MaxList (ListRek L);
-/* Mengirimkan nilai info(P) yang maksimum */
+ Mengirimkan nilai info(P) yang maksimum
 
 infotypeRek MinList (ListRek L);
-/* Mengirimkan nilai info(P) yang minimum */
+ Mengirimkan nilai info(P) yang minimum
 
 infotypeRek SumList (ListRek L);
-/* Mengirimkan total jumlah elemen ListRek L */
+ Mengirimkan total jumlah elemen ListRek L
 
 float AverageList (ListRek L);
-/* Mengirimkan nilai rata-rata elemen list L */
+ Mengirimkan nilai rata-rata elemen list L */
 
 /*** Operasi-Operasi Lain ***/
 ListRek InverseList (ListRek L);
 /* Mengirimkan list baru, hasil invers dari L dengan menyalin semua elemen list.
 Semua elemen list baru harus dialokasi */
 /* Jika alokasi gagal, hasilnya list kosong */
-
+/*
 void SplitPosNeg (ListRek L, ListRek *L1, ListRek *L2);
-/* I.S. L mungkin kosong */
-/* F.S. Berdasarkan L, dibentuk dua buah list L1 dan L2 */
-/* L1 berisi semua elemen L yang positif atau 0, sedangkan L2 berisi
-semua elemen L yang negatif; semua dengan urutan yang sama seperti di L */
-/* L tidak berubah: Semua elemen L1 dan L2 harus dialokasi */
-/* Jika L kosong, maka L1 dan L2 kosong */
+I.S. L mungkin kosong
+F.S. Berdasarkan L, dibentuk dua buah list L1 dan L2
+L1 berisi semua elemen L yang positif atau 0, sedangkan L2 berisi
+semua elemen L yang negatif; semua dengan urutan yang sama seperti di L
+L tidak berubah: Semua elemen L1 dan L2 harus dialokasi
+Jika L kosong, maka L1 dan L2 kosong
 
 void SplitOnX (ListRek L, infotypeRek X, ListRek *L1, ListRek *L2);
-/* I.S. L dan X terdefinisi, L1 dan L2 sembarang. */
-/* F.S. L1 berisi semua elemen L yang lebih kecil dari X, dengan urutan
+I.S. L dan X terdefinisi, L1 dan L2 sembarang.
+F.S. L1 berisi semua elemen L yang lebih kecil dari X, dengan urutan
 kemunculan yang sama, L2 berisi semua elemen L yang tidak masuk ke
-L1, dengan urutan kemunculan yang sama. */
+L1, dengan urutan kemunculan yang sama.
 
 int ListCompare (ListRek L1, ListRek L2);
-/* Menghasilkan: -1 jika L1 < L2, 0 jika L1 = L2, dan 1 jika L1 > L2 */
-/* Jika L[i] adalah elemen L pada urutan ke-i dan |L| adalah panjang L: */
-/* L1 = L2: |L1| = |L2| dan untuk semua i, L1[i] = L2[i] */
-/* L1 < L2: Jika i adalah urutan elemen yang berbeda yang terkecil
+Menghasilkan: -1 jika L1 < L2, 0 jika L1 = L2, dan 1 jika L1 > L2
+Jika L[i] adalah elemen L pada urutan ke-i dan |L| adalah panjang L:
+L1 = L2: |L1| = |L2| dan untuk semua i, L1[i] = L2[i]
+L1 < L2: Jika i adalah urutan elemen yang berbeda yang terkecil
 dari L1 dan L2, L1[i]<L2[i] atau: Jika pada semua elemen pada
-urutan i yang sama, L1[i]=L2[i], namun |L1|<|L2| */
-/* Contoh: [3,5,6,7] < [4,4,5,6]; [1,2,3]<[1,2,3,4] */
-/* L1>L2: kebalikan dari L1<L2 */
+urutan i yang sama, L1[i]=L2[i], namun |L1|<|L2|
+Contoh: [3,5,6,7] < [4,4,5,6]; [1,2,3]<[1,2,3,4]
+L1>L2: kebalikan dari L1<L2 */
 
 boolean IsAllExist (ListRek L1, ListRek L2);
 /* Menghasilkan true jika semua elemen dalam L1 terdapat dalam L2 (tanpa

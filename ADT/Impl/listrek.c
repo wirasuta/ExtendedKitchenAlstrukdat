@@ -229,7 +229,7 @@ void PrintList (ListRek L)
         // Algoritma
         if ( !IsEmptyRek(L) )
             {
-                printf("%d", FirstElmt(L) );
+                printf("%s", (FirstElmt(L)).TabKata);
                 PrintList(Tail(L));
             };
     };
@@ -262,7 +262,7 @@ boolean SearchRek (ListRek L, infotypeRek X)
             }
         else
             {
-                if ( FirstElmt(L) == X)
+                if (IsKataSama(FirstElmt(L), X))
                     {
                         return true;
                     }
@@ -275,9 +275,9 @@ boolean SearchRek (ListRek L, infotypeRek X)
     };
 
 /*** Pencarian nilai ekstrim ***/
-/* Prekondisi untuk Max/Min/Sum/Average : ListRek tidak kosong */
+/* Prekondisi untuk Max/Min/Sum/Average : ListRek tidak kosong
 infotypeRek MaxList (ListRek L)
-/* Mengirimkan nilai info(P) yang maksimum */
+ Mengirimkan nilai info(P) yang maksimum
     {
         // Kamus Lokal
         infotypeRek max;
@@ -302,7 +302,7 @@ infotypeRek MaxList (ListRek L)
     };
 
 infotypeRek MinList (ListRek L)
-/* Mengirimkan nilai info(P) yang minimum */
+ Mengirimkan nilai info(P) yang minimum
     {
         // Kamus Lokal
         infotypeRek min;
@@ -327,7 +327,7 @@ infotypeRek MinList (ListRek L)
     };
 
 infotypeRek SumList (ListRek L)
-/* Mengirimkan total jumlah elemen ListRek L */
+ Mengirimkan total jumlah elemen ListRek L
 	{
 		// Kamus Lokal
 		infotypeRek sum;
@@ -345,7 +345,7 @@ infotypeRek SumList (ListRek L)
 	};
 
 float AverageList (ListRek L)
-/* Mengirimkan nilai rata-rata elemen list L */
+ Mengirimkan nilai rata-rata elemen list L
     {
         // Kamus Lokal
         float ratarata;
@@ -355,6 +355,7 @@ float AverageList (ListRek L)
         return ratarata;
 
     };
+*/
 
 /*** Operasi-Operasi Lain ***/
 ListRek InverseList (ListRek L)
@@ -374,14 +375,14 @@ Semua elemen list baru harus dialokasi */
                 return KonsB(InverseList(Tail(L)),FirstElmt(L));
             };
     };
-
+/*
 void SplitPosNeg (ListRek L, ListRek *L1, ListRek *L2)
-/* I.S. L mungkin kosong */
-/* F.S. Berdasarkan L, dibentuk dua buah list L1 dan L2 */
+/* I.S. L mungkin kosong
+/* F.S. Berdasarkan L, dibentuk dua buah list L1 dan L2
 /* L1 berisi semua elemen L yang positif atau 0, sedangkan L2 berisi
-semua elemen L yang negatif; semua dengan urutan yang sama seperti di L */
-/* L tidak berubah: Semua elemen L1 dan L2 harus dialokasi */
-/* Jika L kosong, maka L1 dan L2 kosong */
+semua elemen L yang negatif; semua dengan urutan yang sama seperti di L
+/* L tidak berubah: Semua elemen L1 dan L2 harus dialokasi
+/* Jika L kosong, maka L1 dan L2 kosong
     {
         // Kamus Lokal
         ListRek newlist1, newlist2;
@@ -409,10 +410,10 @@ semua elemen L yang negatif; semua dengan urutan yang sama seperti di L */
     };
 
 void SplitOnX (ListRek L, infotypeRek X, ListRek *L1, ListRek *L2)
-/* I.S. L dan X terdefinisi, L1 dan L2 sembarang. */
+/* I.S. L dan X terdefinisi, L1 dan L2 sembarang.
 /* F.S. L1 berisi semua elemen L yang lebih kecil dari X, dengan urutan
 kemunculan yang sama, L2 berisi semua elemen L yang tidak masuk ke
-L1, dengan urutan kemunculan yang sama. */
+L1, dengan urutan kemunculan yang sama.
     {
         // Kamus Lokal
         ListRek newlist1,newlist2;
@@ -442,14 +443,14 @@ L1, dengan urutan kemunculan yang sama. */
     };
 
 int ListCompare (ListRek L1, ListRek L2)
-/* Menghasilkan: -1 jika L1 < L2, 0 jika L1 = L2, dan 1 jika L1 > L2 */
-/* Jika L[i] adalah elemen L pada urutan ke-i dan |L| adalah panjang L: */
-/* L1 = L2: |L1| = |L2| dan untuk semua i, L1[i] = L2[i] */
+/* Menghasilkan: -1 jika L1 < L2, 0 jika L1 = L2, dan 1 jika L1 > L2
+/* Jika L[i] adalah elemen L pada urutan ke-i dan |L| adalah panjang L:
+/* L1 = L2: |L1| = |L2| dan untuk semua i, L1[i] = L2[i]
 /* L1 < L2: Jika i adalah urutan elemen yang berbeda yang terkecil
 dari L1 dan L2, L1[i]<L2[i] atau: Jika pada semua elemen pada
-urutan i yang sama, L1[i]=L2[i], namun |L1|<|L2| */
-/* Contoh: [3,5,6,7] < [4,4,5,6]; [1,2,3]<[1,2,3,4] */
-/* L1>L2: kebalikan dari L1<L2 */
+urutan i yang sama, L1[i]=L2[i], namun |L1|<|L2|
+/* Contoh: [3,5,6,7] < [4,4,5,6]; [1,2,3]<[1,2,3,4]
+/* L1>L2: kebalikan dari L1<L2
     {
         // Kamus Lokal
 
@@ -485,7 +486,7 @@ urutan i yang sama, L1[i]=L2[i], namun |L1|<|L2| */
                     };
             };
     };
-
+*/
 boolean IsAllExist (ListRek L1, ListRek L2)
 /* Menghasilkan true jika semua elemen dalam L1 terdapat dalam L2 (tanpa
 memperhatikan urutan ataupun banyaknya elemen).

@@ -1,4 +1,3 @@
-
 #include "initialize.h"
 
 void InitGame(Game *G){

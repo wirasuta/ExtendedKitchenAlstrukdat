@@ -1,12 +1,12 @@
 /* MODUL TABEL INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan tabel integer */
 /* Penempatan elemen selalu rapat kiri */
-/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit, 
+/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit,
    memori tabel statik */
 
-#include "boolean.h"
-#include "arrayOrder.h"
-#include "stdio.h"
+#include "../Header/arrayOrder.h"
+#include "../Header/mesinkata.h"
+#include <stdio.h>
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
@@ -67,17 +67,17 @@ boolean IsOFull (TabOrder T) {
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 void TulisIsiTab (TabOrder T) {
 	int i;
-	
+
 	printf("[");
 	for (i=1; i<=Neff(T); i++) {
-		printf("%s, %d", ElmtName(T,i), ElmtNomor(T,i));
+		printf("%s, %d", ElmtOrderName(T,i).TabKata, ElmtNomor(T,i));
 		if ((i != Neff(T)) && (i != 1)) {
 			printf("|");
 		}
 	}
 	printf("]");
 }
-/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku; 
+/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
    antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
    di tengah, atau di belakang, termasuk spasi dan enter */
 /* I.S. T boleh kosong */
@@ -88,7 +88,7 @@ void TulisIsiTab (TabOrder T) {
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-//membandingkan yang 
+//membandingkan yang
 boolean SearchBoolean(TabOrder T, int Meja, Kata Makanan){
 	IdxType i;
     boolean checkMeja, checkMakanan;
@@ -96,7 +96,7 @@ boolean SearchBoolean(TabOrder T, int Meja, Kata Makanan){
     checkMeja = false;
 	checkMakanan = false;
 
-	if (!IsOEmpty){
+	if (!IsOEmpty(T)){
 		i = IdxMin;
 		while (!checkMeja && (i <= Neff(T))){
 			if (ElmtNomor(T,i) == Meja)
@@ -105,7 +105,7 @@ boolean SearchBoolean(TabOrder T, int Meja, Kata Makanan){
 				i += 1;
 		}
 		if (checkMeja){
-			if (IsKataSama(ElmtNomor(T,i), Makanan))
+			if (IsKataSama(ElmtOrderName(T,i), Makanan))
 				checkMakanan = true;
 		}
 	}
@@ -121,7 +121,7 @@ IdxType SearchIndex (TabOrder T, int Meja, Kata Makanan) {
 	checkMeja = false;
 	checkMakanan = false;
 
-	if (!IsOEmpty){
+	if (!IsOEmpty(T)){
 		i = IdxMin;
 
 		while (!checkMeja && i <= Neff(T)){
@@ -132,7 +132,7 @@ IdxType SearchIndex (TabOrder T, int Meja, Kata Makanan) {
 		}
 
 		if (checkMeja){
-			if (IsKataSama(ElmtName(T,i), Makanan))
+			if (IsKataSama(ElmtOrderName(T,i), Makanan))
 				checkMakanan = true;
 		}
 	}
@@ -152,13 +152,13 @@ IdxType SearchIndex (TabOrder T, int Meja, Kata Makanan) {
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* dengan metoda sequential search dengan sentinel */
-/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C 
+/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C
    yang tidak dipakai dalam definisi tabel */
 
 
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl (TabOrder * T, ElType X) {
+void AddAsLastEl (TabOrder * T, ElTypeInfoOrder X) {
 	if (IsOEmpty(*T)){
 		int i;
 		i = 1;
@@ -175,7 +175,7 @@ void AddAsLastEl (TabOrder * T, ElType X) {
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
 
-/* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas 
+/* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas
    terhadap elemen yang sudah ada */
 /* I.S. Tabel tidak kosong dan tidak penuh */
 /*      i adalah indeks yang valid. */
@@ -184,9 +184,9 @@ void AddAsLastEl (TabOrder * T, ElType X) {
 /*          Isi elemen ke-i dengan X */
 
 /* ********** MENGHAPUS ELEMEN ********** */
-void DelEli (TabOrder * T, IdxType i, ElType *X) {
+void DelEli (TabOrder * T, IdxType i, ElTypeInfoOrder *X) {
 	int j;
-	
+
 	*X = Elmt(*T,i);
 	for (j=i; j<Neff(*T); j++) {
 		Elmt(*T,j) = Elmt(*T,j+1);

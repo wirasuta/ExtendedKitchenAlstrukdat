@@ -1,7 +1,6 @@
+#include "process.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "process.h"
-#include "../ADT/Header/mesinkata.h"
 
 boolean IsNearTable (Player P, Table T){
     boolean check;
@@ -66,7 +65,6 @@ boolean IsAbleTake(Player P, Ingredients Bahan){
         (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) - 1)){
                check = true;
         }
-    }
 
     return(check);
 
@@ -201,14 +199,14 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree P){
+void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree){
     Order or;
     int Koef;
 
-    if (isAbleGive(*P,C,T)){
+    if (IsAbleGive(*P,C,T)){
         Pop(&OnTray(*P),&or);
-        Koef = Tinggi(Level(P,OrderName(or)));
-        money(*G) += NormalPrice * double(Koef);
+        Koef = Tinggi(Level(RTree,OrderName(or)));
+        Money(*G) += NormalPrice*Koef;
         IsOccupied(*T) = false;
     } else {
         printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");

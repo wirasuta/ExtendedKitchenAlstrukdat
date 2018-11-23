@@ -1,11 +1,12 @@
 #ifndef process_H
 #define process_H
 
+#include "../ADT/Header/tepokpramuka_type.h"
 #include "../ADT/Header/stackt.h"
 #include "../ADT/Header/point.h"
 #include "../ADT/Header/bintree.h"
 #include "../ADT/Header/queue.h"
-#include "../ADT/Header/tepokpramuka_type.h"
+#include "../ADT/Header/mesinkata.h"
 /*
 e. ORDER | Array
 Command ini digunakan untuk mengambil order dari meja yang bersebelahan
@@ -60,7 +61,7 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i);
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
 
-void PutToTray(Player *P, BinTree *Adr, LocTray T;
+void PutToTray(Player *P, BinTree *Adr, LocTray T);
 //I.S sembarang
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
 //    berhasil dibuat, makanan dimasukkan ke stack Tray
@@ -70,7 +71,7 @@ void TakeIngredient(Player *P, Ingredients Bahan);
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer *C);
+void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree);
 //I.S sembarang
 //F.S jika tumpukan paling atas sesuai dengan order customer yang bersebelahan
 //    dengan player, maka makanan akan diberikan

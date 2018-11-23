@@ -1,53 +1,54 @@
 /* MODUL TABEL INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan tabel integer */
 /* Penempatan elemen selalu rapat kiri */
-/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit, 
+/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit,
    memori tabel statik */
 
 #ifndef ARRAYORDER_H
 #define ARRAYORDER_H
 
 #include "boolean.h"
+#include "tepokpramuka_type.h"
 
 /*  Kamus Umum */
 #define IdxMax 100
 /* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
 #define IdxMin 1
 /* Indeks minimum array */
-#define IdxUndef -999 
+#define IdxUndef -999
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
 typedef struct {
     Kata Name; //nama makanan
     int Nomor; //nomor meja
-} InfoOrder; 
+} InfoOrder;
 
-typedef InfoOrder ElType; 
+typedef InfoOrder ElTypeInfoOrder;
 
 typedef int IdxType;  /* type indeks */
-// typedef int ElType;   /* type elemen tabel */
-typedef struct { 
-	ElType TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
+// typedef int ElTypeInfoOrder;   /* type elemen tabel */
+typedef struct {
+	ElTypeInfoOrder TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
 	int Neff; /* >=0, banyaknya elemen efektif */
 } TabOrder;
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabOrder, cara deklarasi dan akses: */
 /* Deklarasi : T : TabOrder */
-/* Maka cara akses: 
-   T.Neff  untuk mengetahui banyaknya elemen 
-   T.TI    untuk mengakses seluruh nilai elemen tabel 
+/* Maka cara akses:
+   T.Neff  untuk mengetahui banyaknya elemen
+   T.TI    untuk mengakses seluruh nilai elemen tabel
    T.TI[i] untuk mengakses elemen ke-i */
-/* Definisi : 
+/* Definisi :
   Tabel kosong: T.Neff = 0
-  Definisi elemen pertama : T.TI[i] dengan i=1 
+  Definisi elemen pertama : T.TI[i] dengan i=1
   Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
-  
+
 /* ********** SELEKTOR ********** */
 #define Neff(T)         (T).Neff
 #define TI(T)           (T).TI
 #define Elmt(T,i)       (T).TI[(i)]
-#define ElmtName(T,i)   (T).TI[(i)].Name
+#define ElmtOrderName(T,i)   (T).TI[(i)].Name
 #define ElmtNomor(T,i)  (T).TI[(i)].Nomor
 
 /* ********** KONSTRUKTOR ********** */
@@ -90,7 +91,7 @@ boolean IsOFull (TabOrder T);
 
 
 void TulisIsiTab (TabOrder T);
-/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku; 
+/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
    antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
    di tengah, atau di belakang, termasuk spasi dan enter */
 /* I.S. T boleh kosong */
@@ -107,18 +108,18 @@ IdxType SearchIndex(TabOrder T, int Meja, Kata Makanan);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* dengan metoda sequential search dengan sentinel */
-/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C 
+/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C
    yang tidak dipakai dalam definisi tabel */
 
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl (TabOrder * T, ElType X);
+void AddAsLastEl (TabOrder * T, ElTypeInfoOrder X);
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
 
 
-void DelEli (TabOrder * T, IdxType i, ElType * X);
+void DelEli (TabOrder * T, IdxType i, ElTypeInfoOrder * X);
 /* Menghapus elemen ke-i tabel tanpa mengganggu kontiguitas */
 /* I.S. Tabel tidak kosong, i adalah indeks efektif yang valid */
 /* F.S. X adalah nilai elemen ke-i T sebelum penghapusan */
