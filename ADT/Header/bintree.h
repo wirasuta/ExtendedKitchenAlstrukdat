@@ -128,7 +128,7 @@ boolean IsSkewLeft (BinTree P);
 boolean IsSkewRight (BinTree P);
 /* Mengirimkan true jika P adalah pohon condong kanan */
 /* Pohon kosong adalah pohon condong kanan */
-int Level (BinTree P, infotypeRek X);
+double Level (BinTree P, infotypeRek X);
 /* Mengirimkan level dari node X yang merupakan salah satu simpul dari pohon biner P.
    Akar(P) level-nya adalah 1. Pohon P tidak kosong. */
 int Tinggi (BinTree P);

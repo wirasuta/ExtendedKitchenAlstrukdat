@@ -249,7 +249,7 @@ boolean IsSkewRight(BinTree P){
 }
 /* Mengirimkan true jika P adalah pohon condong kanan */
 /* Pohon kosong adalah pohon condong kanan */
-int Level(BinTree P, infotypeRek X){
+double Level(BinTree P, infotypeRek X){
   if (Akar(P)==X) {
     return 1;
   } else {

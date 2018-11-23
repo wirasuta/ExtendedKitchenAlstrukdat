@@ -105,7 +105,7 @@ typedef struct {
 #define StatOrder(O) (O).Status
 #define OrderName(O) (O).Name
 #define NoTableOrder(O) (O).Nomor
-#define NormalPrice
+#define NormalPrice 100
 
 
 typedef struct {

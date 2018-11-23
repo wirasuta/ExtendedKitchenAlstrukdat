@@ -126,7 +126,7 @@ void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
                 CustomerSeat(*T) = CustTemp;
                 IsOccupied(*T) = true;
             }
-        } while (CustTemp != InfoTail(*Q));
+        } while (Customers(CustTemp) != Customers(InfoTail(*Q)));
 
         if(IsAblePlace(P,InfoTail(*Q),*T)) {
             DelQueue(Q,&CustTemp);
@@ -144,20 +144,20 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
 
     if(IsNearTray(*P,T)) {
         check = true;
-        C_Food = Adr;
+        C_Food = *Adr;
 
-        CreateEmpty(&checkStack);
-        CreateEmpty(&Temp);
-        while(!IsEmpty(OnHand(*P))) {
-            Pop(&InfoTop(OnHand(*P)),&food);
+        CreateEmptyStack(&checkStack);
+        CreateEmptyStack(&Temp);
+        while(!IsStackEmpty(OnHand(*P))) {
+            Pop(&OnHand(*P),&food);
             Push(&checkStack,food);
             Push(&Temp,food);
         }
 
-        while((!check) || (!IsTreeEmpty(C_Food)) || (!IsEmpty(checkStack))) {
-                if(IsKataSama(InfoTop(checkStack),IngTree(Akar(C_Food)))) {
+        while((!check) || (!IsTreeEmpty(C_Food)) || (!IsStackEmpty(checkStack))) {
+                if(IsKataSama(InfoTop(checkStack),Akar(C_Food))) {
                     Pop(&checkStack,&food);
-                    if(IngTree(Akar(Left(C_Food))) == food) {
+                    if(IsKataSama(Akar(Left(C_Food)), food)) {
                         C_Food = Left(C_Food);
                     } else {
                         C_Food = Right(C_Food);
@@ -169,8 +169,8 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
     }
 
     if(check = false) {
-        while(!IsEmpty(Temp)) {
-            Pop(&InfoTop(Temp),&food);
+        while(!IsStackEmpty(Temp)) {
+            Pop(&Temp,&food);
             Push(&OnHand(*P),food);
         }
         printf("GAGAL MEMBUAT MAKANAN!!!\n");
@@ -200,13 +200,13 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //    dan menaruhnya dalam stack Hand
 
 void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree){
-    Order or;
-    int Koef;
+    Kata or;
+    double Koef;
 
-    if (IsAbleGive(*P,C,T)){
+    if (IsAbleGive(*P,C,*T)){
         Pop(&OnTray(*P),&or);
-        Koef = Tinggi(Level(RTree,OrderName(or)));
-        Money(*G) += NormalPrice*Koef;
+        Koef = Level(RTree,or);
+        Money(*G) += (NormalPrice * Koef);
         IsOccupied(*T) = false;
     } else {
         printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");
