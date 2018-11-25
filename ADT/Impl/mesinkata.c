@@ -150,3 +150,14 @@ contoh:
     return sama;
 
 }
+
+void SetKataLength(Kata *K){
+  int length;
+
+  length = 0;
+  while ((*K).TabKata[length] != '\x00')
+  {
+      length++;
+  }
+  K->Length = length;
+}

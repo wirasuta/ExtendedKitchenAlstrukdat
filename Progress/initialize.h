@@ -12,6 +12,7 @@
 
 void InitGame(Game *G);
 void InitPlayer(Player *P);
-void InitMap(MATRIKS *M, POINT PlPoint);
+void InitRoom(Room *R);
+void InitMap(Room *R, POINT PlPoint);
 
 #endif

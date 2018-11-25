@@ -5,7 +5,7 @@
 
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
-    return ((MatElmt(M, X, Y) == 'X') || (MatElmt(M, X, Y) == 'M') || (MatElmt(M, X, Y) == 'C'));
+    return ((MatElmt(M, X, Y) == 'X') || (MatElmt(M, X, Y) == 'M') || (MatElmt(M, X, Y) == 'C') || (MatElmt(M, X, Y) == '1') || (MatElmt(M, X, Y) == '2') || (MatElmt(M, X, Y) == '3') || (MatElmt(M, X, Y) == '4'));
     // tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
 }
 
@@ -59,11 +59,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
 
 void move(MATRIKS *M, int *X, int *Y,Kata command)
 {
-
-        MatElmt(*M, *X, *Y) = '.';
-        newCoordinate(*M, X, Y, command);
-        MatElmt(*M, *X, *Y) = 'P';
-
+        newCoordinate(*M, Y, X, command);
 }
 
 

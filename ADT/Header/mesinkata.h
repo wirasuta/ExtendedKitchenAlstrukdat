@@ -43,4 +43,7 @@ void SalinKata();
 boolean IsKataSama(Kata K1,Kata K2);
 // Menghasilkan true jika K1 sama dengan K2
 
+void SetKataLength(Kata *K);
+// Mengubah K.Length menjadi ukuran yang sesuai ketika input dari scanf
+
 #endif

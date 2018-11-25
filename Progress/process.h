@@ -2,10 +2,10 @@
 #define process_H
 
 #include "../ADT/Header/tepokpramuka_type.h"
+#include "../ADT/Header/queue.h"
 #include "../ADT/Header/stackt.h"
 #include "../ADT/Header/point.h"
 #include "../ADT/Header/bintree.h"
-#include "../ADT/Header/queue.h"
 #include "../ADT/Header/mesinkata.h"
 /*
 e. ORDER | Array
@@ -60,6 +60,8 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i);
 //Proses: mengambil order customer, cek terlebih dahulu apakah player
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
+
+void PlaceCustomer (Player P, CustQueue *Q, Table *T);
 
 void PutToTray(Player *P, BinTree *Adr, LocTray T);
 //I.S sembarang

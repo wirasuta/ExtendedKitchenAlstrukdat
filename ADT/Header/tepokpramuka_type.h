@@ -132,14 +132,19 @@ typedef struct{
 
 /* SELEKTOR UNTUK TIPE DATA CUSTOMER */
 #define IsStar(C) (C).Star
-#define timeQueue(C) (C).TimeQueue
-#define timeWaiting(C) (C).TimeWaiting
-#define Customers(C) (C).SumOfCustomer
+#define TimeQueue(C) (C).TimeQueue
+#define TimeWaiting(C) (C).TimeWaiting
+#define CustomerCount(C) (C).SumOfCustomer
 #define PosCustomer(C) (C).Position
 #define OrderC(C) (C).Food
 
 typedef struct {
     POINT Point[IdxMax]; //posisi table dan kursi dalam (X,Y)
+		//Point[0] : Posisi Meja
+		//Point[1] : Posisi Kursi kiri
+		//Point[2] : Posisi Kursi kanan
+		//Point[3] : Posisi Kursi atas
+		//Point[4] : Posisi Kursi bawah
     int Kapasitas; //kapasitas table
     boolean Occupied;
     Customer Filled;
@@ -158,7 +163,7 @@ typedef struct {
 
 /* SELEKTOR UNTUK TIPE DATA ROOM */
 #define Layout(R) (R).Grid
-#define TableLoc(R,i) (R).Arr[(i)]
+#define TableNo(R,i) (R).Arr[(i)]
 
 typedef struct{
     Kata Name;

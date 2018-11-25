@@ -133,7 +133,7 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 	CreateEmptyQueue(&temp, 20);
 
 	while((!IsQueueEmpty(*Q)) && (!found)){
-		if(N == Customers(InfoHead(*Q))){
+		if(N == CustomerCount(InfoHead(*Q))){
 			DelQueue(Q, X);
 			found = true;
 		}

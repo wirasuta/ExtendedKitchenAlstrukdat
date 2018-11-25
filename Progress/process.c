@@ -79,7 +79,7 @@ boolean IsAblePlace(Player P, Customer C, Table T){
 
     if(IsNearTable(P,T)){
         if(IsOccupied(T) == false) {
-            if(Customers(C) <= Capacity(T)) {
+            if(CustomerCount(C) <= Capacity(T)) {
                 check = true;
             }
         }
@@ -114,10 +114,12 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 //        ke array order
 
 void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
-
     Customer CustTemp;
 
-    if (!IsQueueEmpty (*Q)) {
+    printf("PlaceCustomer called");
+
+    if (!IsQueueEmpty(*Q)) {
+        printf("Queue not empty");
         do {
             DelQueue(Q,&CustTemp);
             if(!IsAblePlace(P,InfoHead(*Q),*T)) {
@@ -126,8 +128,9 @@ void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
                 CustomerSeat(*T) = CustTemp;
                 IsOccupied(*T) = true;
             }
-        } while (Customers(CustTemp) != Customers(InfoTail(*Q)));
-
+            printf("Inside Loop\n");
+        } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
+        printf("Made it here\n");
         if(IsAblePlace(P,InfoTail(*Q),*T)) {
             DelQueue(Q,&CustTemp);
             CustomerSeat(*T) = CustTemp;
@@ -168,7 +171,7 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
         }
     }
 
-    if(check = false) {
+    if(check == false) {
         while(!IsStackEmpty(Temp)) {
             Pop(&Temp,&food);
             Push(&OnHand(*P),food);
@@ -200,12 +203,12 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //    dan menaruhnya dalam stack Hand
 
 void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree){
-    Kata or;
+    Kata orinput;
     double Koef;
 
     if (IsAbleGive(*P,C,*T)){
-        Pop(&OnTray(*P),&or);
-        Koef = Level(RTree,or);
+        Pop(&OnTray(*P),&orinput);
+        Koef = Level(RTree,orinput);
         Money(*G) += (NormalPrice * Koef);
         IsOccupied(*T) = false;
     } else {
