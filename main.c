@@ -1,6 +1,6 @@
 #include "ADT/Header/array.h"
 #include "ADT/Header/jam.h"
-#include "ADT/Header/listdp.h"
+#include "ADT/Header/listlinier.h"
 #include "ADT/Header/matriks.h"
 #include "ADT/Header/mesinkar.h"
 #include "ADT/Header/mesinkata.h"
@@ -115,6 +115,10 @@ int main(int argc, char const *argv[]) {
                     printf("player tick: %d\n", PlayerTick(player));
                     printf("\n");
                     printf("N Queue: %d\n", NBElmtQueue(waitingList));
+                    
+                    PlayerTick(player)++;
+                    
+                    printf("%d\n", IsOccupied(TableNo(Room1, 1)));
                 }
                 else if (IsKataSama(command, KataORDER)){
 
@@ -122,33 +126,39 @@ int main(int argc, char const *argv[]) {
                     //TODO: Update fungsi dan cari indeks kosong
                     TakeOrder(&player, &ujiCustomer, Room1, &(OrderList(player)));
                     TulisIsiTab(OrderList(player));
+                    
+                    PlayerTick(player)++;
                 }
                 else if (IsKataSama(command, KataPUT)){
-
                     //fungsi PUT
                     PutToTray(&player, &recipeTree, locationTray);
+                    
+                    PlayerTick(player)++;
                 }
                 else if (IsKataSama(command, KataTAKE)){
-
                     //fungsi TAKE
                     TakeIngredient(&player, ujiIngredient);
+                    
+                    PlayerTick(player)++;
                 }
                 else if (IsKataSama(command, KataCH)){
-
                     ClearStack(&(OnHand(player)));
+                    PlayerTick(player)++;
                 }
                 else if (IsKataSama(command, KataCT)){
-
                     ClearStack(&(OnTray(player)));
+                    PlayerTick(player)++;
                 }
                 else if (IsKataSama(command, KataPLACE)){
-
                     PlaceCustomer(player, &waitingList, &Room1);
+                    PlayerTick(player)++;
+                    
+                    printf("%d\n", IsOccupied(TableNo(Room1, 1)));
                 }
                 else if (IsKataSama(command, KataGIVE)){
-
                     //fungsi GIVE
                     GiveFood(&player, ujiCustomer, &Room1, &gameData, recipeTree);
+                    PlayerTick(player)++;                    
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE

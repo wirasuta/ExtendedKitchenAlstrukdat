@@ -7,12 +7,13 @@
 #define listlinier_H
 
 #include "boolean.h"
+#include "tepokpramuka_type.h"
 
 #define Nil NULL
 
 typedef int infotype;
 typedef struct tElmtlist *address;
-typedef struct tElmtlist { 
+typedef struct tElmtlist {
 	infotype info;
 	address next;
 } ElmtList;
@@ -121,7 +122,7 @@ void PrintInfo (List L);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NbElmt (List L);
+int NbElmtListLinier (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 /*** Prekondisi untuk Max/Min/rata-rata : List tidak kosong ***/

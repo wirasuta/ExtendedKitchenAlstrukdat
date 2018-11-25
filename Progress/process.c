@@ -15,15 +15,15 @@ boolean IsNearTable (Player P, Room R){
         j = 1;
         while((j<=4) && (check != true)){
             // Cek deket kursi atau tidak
-            if(EQ(PosTable(T,i),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),1,0))
-               || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,1))){
+            if(EQ(PosTable(T,j),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),1,0))
+               || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,1))){
                 check = true;
             } else {
                 j++;
             }
         }
+        i++;
     }
-
     return(check);
 }
 
@@ -31,20 +31,18 @@ int GetTableNumber(Player P, Room R){
     int i;
     Table T;
     boolean check = false;
-
     if(IsNearTable(P,R)){
         i = 1;
         while((i<=4) && (check != true)){
             T = TableNo(R,i);
-            if(EQ(PosTable(T,i),PlusDelta(PosPlayer(P),-2,0)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),2,0))
-               || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,-2)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,2))){
+            if(EQ(PosTable(T,0),PlusDelta(PosPlayer(P),-2,0)) || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),2,0))
+               || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),0,-2)) || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),0,2))){
                 check = true;
             }else{
                 i++;
             }
         }
     }
-
     return i;
 }
 
@@ -113,7 +111,7 @@ boolean IsAblePlace(Player P, Customer C, Room R){
             }
         }
     }
-
+    printf("%d\n", check);
     return(check);
 
 }

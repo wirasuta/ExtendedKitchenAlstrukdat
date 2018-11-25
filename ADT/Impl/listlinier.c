@@ -3,8 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "listlinier.h"
-#include "boolean.h"
+#include "../Header/listlinier.h"
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
@@ -12,7 +11,7 @@ boolean IsEmpty (List L)
 /* Mengirim true jika list kosong */
 	{
 		// Kamus Lokal
-		
+
 		// Algoritma
 		return ( First(L) == Nil);
 	};
@@ -23,11 +22,11 @@ void CreateEmpty (List *L)
 /* F.S. Terbentuk list kosong */
 	{
 		// Kamus Lokal
-		
+
 		// Algoritrma
 		First(*L) = Nil;
 	};
-	
+
 /****************** Manajemen Memori ******************/
 address Alokasi (infotype X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
@@ -36,10 +35,10 @@ address Alokasi (infotype X)
 /* Jika alokasi gagal, mengirimkan Nil */
 	{
 		// Kamus Lokal
-		
+
 		// Algoritma
 		ElmtList *P = (ElmtList *)malloc(sizeof(ElmtList));
-		
+
 		if ( P != Nil)
 			{
 				Info(P) = X;
@@ -51,18 +50,18 @@ address Alokasi (infotype X)
 				return(Nil);
 			};
 	};
-	
+
 void Dealokasi (address *P)
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
  	{
  		// Kamus Lokal
-		 
+
 		 // Algoritma
-		 free(*P);	
+		 free(*P);
 	};
- 
+
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
 address Search (List L, infotype X)
@@ -74,7 +73,7 @@ address Search (List L, infotype X)
 		boolean sama;
 		address P;
 		address cari;
-		
+
 		// Algoritma
 		sama = false;
 		P = First(L);
@@ -89,9 +88,9 @@ address Search (List L, infotype X)
 					};
 				P = Next(P);
 			};
-		
+
 		return(cari);
-		
+
 	};
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
@@ -103,7 +102,7 @@ void InsVFirst (List *L, infotype X)
 	{
 		// Kamus Lokal
 		address P;
-		
+
 		// Algoritma
 		P = Alokasi(X);
 
@@ -112,9 +111,9 @@ void InsVFirst (List *L, infotype X)
 				Next(P) = First(*L);
 				First(*L) = P;
 			}
-		
+
 	};
-	
+
 void InsVLast (List *L, infotype X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
@@ -142,7 +141,7 @@ void InsVLast (List *L, infotype X)
 					{
 						Next(P) = First(*L);
 						First(*L) = P;
-					};		
+					};
 			};
 	};
 
@@ -154,7 +153,7 @@ void DelVFirst (List *L, infotype *X)
 	{
 		// Kamus Lokal
 		address P;
-	
+
 		// Algoritma
 		P = First(*L);
 		*X = Info(P);
@@ -162,7 +161,7 @@ void DelVFirst (List *L, infotype *X)
 		Dealokasi(&P);
 
 	};
-	
+
 void DelVLast (List *L, infotype *X)
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
@@ -181,7 +180,7 @@ void DelVLast (List *L, infotype *X)
 				P1 = P;
 				P = Next(P);
 			};
-		
+
 		*X = Info(P);
 
 		if (P1 == Nil)
@@ -194,9 +193,9 @@ void DelVLast (List *L, infotype *X)
 			}
 
 		Dealokasi(&P);
-		
+
 	};
-	
+
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
 void InsertFirst (List *L, address P)
@@ -204,7 +203,7 @@ void InsertFirst (List *L, address P)
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
 	{
 		// Kamus Lokal
-		
+
 		// Algoritma
 		Next(P) = First(*L);
 		First(*L) = P;
@@ -216,7 +215,7 @@ void InsertAfter (List *L, address P, address Prec)
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
 	{
 		// Kamus Lokal
-		
+
 		// Algoritma
 		Next(P) = Next(Prec);
 		Next(Prec) = P;
@@ -245,7 +244,7 @@ void InsertLast (List *L, address P)
 					};
 				Next(P1) = P;
 			}
-		
+
 
 	};
 
@@ -289,15 +288,15 @@ void DelP (List *L, infotype X)
 						prec = P;
 						P = Next(P);
 					};
-				
+
 				if ( P != Nil )
 					{
 						Next(prec) = Next(Next(prec));
 						Dealokasi(&P);
 					};
 			}
-		
-			
+
+
 
 	};
 
@@ -309,13 +308,13 @@ void DelLast (List *L, address *P)
 /* jika ada */
 	{
 		// Kamus Lokal
-		address prec;	
+		address prec;
 		address P1;
 
 		// Algoritma
 		P1 = First(*L);
 		prec = Nil;
-		
+
 		if ( Next(P1) == Nil )
 			{
 				*P = First(*L);
@@ -330,15 +329,15 @@ void DelLast (List *L, address *P)
 						P1 = Next(P1);
 					};
 				*P = P1;
-				
+
 				if ( prec != Nil )
 					{
 						Next(prec) = Nil;
 					};
-				
-				
+
+
 			};
-		
+
 
 	};
 
@@ -368,12 +367,12 @@ void PrintInfo (List L)
 {
 	// Kamus Lokal
 	address P1;
-	
+
 
 	// Algoritma
 	P1 = First(L);
 	printf("[");
-	while (P1!=Nil) 
+	while (P1!=Nil)
 		{
 			printf("%d",Info(P1));
 			if ( Next(P1) != Nil )
@@ -386,7 +385,7 @@ void PrintInfo (List L)
 };
 
 
-int NbElmt (List L)
+int NbElmtListLinier (List L)
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 	{
 		// Kamus Lokal
@@ -400,7 +399,7 @@ int NbElmt (List L)
 					nb = nb + 1;
 					first = Next(first);
 				};
-		
+
 		return nb;
 	};
 
@@ -415,18 +414,18 @@ infotype Max (List L)
 		// Algoritma
 		pmax = First(L);
 		max = Info(pmax);
-		
+
 		while ( pmax != Nil)
 			{
-				if ( max < Info(pmax) ) 
+				if ( max < Info(pmax) )
 					{
 						max = Info(pmax);
 					};
 				pmax = Next(pmax);
 			};
-		
+
 		return max;
-	
+
 	}
 
 /****************** PROSES TERHADAP LIST ******************/
@@ -462,4 +461,3 @@ void Konkat1 (List *L1, List *L2, List *L3)
 
 
 	};
-

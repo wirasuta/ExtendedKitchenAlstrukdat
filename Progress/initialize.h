@@ -5,6 +5,7 @@
 
 #include "../ADT/Header/boolean.h"
 #include "../ADT/Header/matriks.h"
+#include "../ADT/Header/queue.h"
 #include "../ADT/Header/tepokpramuka_type.h"
 #include "../ADT/Header/mesinkata.h"
 #include "../ADT/Header/stackt.h"

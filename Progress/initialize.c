@@ -1,5 +1,6 @@
 #include "initialize.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void InitGame(Game *G){
   //TODO: Load dari file external
@@ -297,7 +298,7 @@ boolean checkPlayerTick(Player P){
     int random;
 
     random = randomInteger();
-    
+
     printf("\n");
     printf("player %d, tick %d\n", PlayerTick(P) % 15, random);
 
