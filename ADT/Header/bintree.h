@@ -8,6 +8,7 @@
 
 /* Modul lain yang digunakan : */
 #include "listrek.h"
+//#include "mesinkata.h"
 #include "boolean.h"
 
 /* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
@@ -65,7 +66,7 @@ boolean IsBiner (BinTree P);
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
 
 /* *** Traversal *** */
-//void PrintPreorder (BinTree P);
+void PrintPreorder (BinTree P);
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara preorder: akar, pohon kiri, dan pohon kanan.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -74,8 +75,7 @@ boolean IsBiner (BinTree P);
 /* Contoh:
    (A()()) adalah pohon dengan 1 elemen dengan akar A
    (A(B()())(C()())) adalah pohon dengan akar A dan subpohon kiri (B()()) dan subpohon kanan (C()()) */
-
-//void PrintInorder (BinTree P);
+void PrintInorder (BinTree P);
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara inorder: pohon kiri, akar, dan pohon kanan.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -84,7 +84,7 @@ boolean IsBiner (BinTree P);
 /* Contoh:
    (()A()) adalah pohon dengan 1 elemen dengan akar A
    ((()B())A(()C())) adalah pohon dengan akar A dan subpohon kiri (()B()) dan subpohon kanan (()C()) */
-//void PrintPostorder (BinTree P);
+void PrintPostorder (BinTree P);
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara postorder: pohon kiri, pohon kanan, dan akar.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -93,8 +93,9 @@ boolean IsBiner (BinTree P);
 /* Contoh:
    (()()A) adalah pohon dengan 1 elemen dengan akar A
    ((()()B)(()()C)A) adalah pohon dengan akar A dan subpohon kiri (()()B) dan subpohon kanan (()()C) */
-
 void PrintTreeRek(BinTree P, int h, int curr_level);
+
+void PrintTree (BinTree P, int h);
 /* I.S. P terdefinisi, h adalah jarak indentasi (spasi) */
 /* F.S. Semua simpul P sudah ditulis dengan indentasi (spasi) */
 /* Penulisan akar selalu pada baris baru (diakhiri newline) */
@@ -113,7 +114,6 @@ A
     E
 */
 
-void PrintTree(BinTree P, int h);
 /* *** Searching *** */
 boolean SearchTree (BinTree P, infotypeRek X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
@@ -139,6 +139,8 @@ int Tinggi (BinTree P);
 
 /* *** Operasi lain *** */
 void AddDaunTerkiri (BinTree *P, infotypeRek X);
+
+void AddDaunTerkanan(BinTree *P, infotypeRek X);
 /* I.S. P boleh kosong */
 /* F.S. P bertambah simpulnya, dengan X sebagai simpul daun terkiri */
 void AddDaun (BinTree *P, infotypeRek X, infotypeRek Y, boolean Kiri);
@@ -173,5 +175,7 @@ void DelDaun (BinTree *P, infotypeRek X);
    yang levelnya=N, jika semua alokasi berhasil.
    Elemen terkiri menjadi elemen pertama dari list, diikuti elemen kanannya, dst.
    Menghasilkan list kosong jika ada alokasi yang gagal. */
+
+void buildRecipe(BinTree *P);
 
 #endif
