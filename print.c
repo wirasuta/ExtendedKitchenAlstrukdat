@@ -50,7 +50,4 @@ printf("\n");
 printf("%s                Raihan Asyraf\n",KRED);
 
 }
-int main()
-{
-  print_credits();
-}
+
