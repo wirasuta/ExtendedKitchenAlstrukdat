@@ -69,5 +69,7 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N);
 
 void addTick(CustQueue *Q);
 
+void del0Tick(CustQueue *Q);
+
 
 #endif
