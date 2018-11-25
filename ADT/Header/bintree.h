@@ -13,28 +13,6 @@
 #include "mesinkar.h"
 #include "listrek.h"
 
-/* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
-
-/* *** Definisi Type Pohon Biner *** */
-/* typedef int infotypeRek; */ /* type infotypeRek sesuai pada modul listrek */
-typedef struct tNode *addrNode;
-typedef struct tNode {
-	infotypeRek info;
-	addrNode left;
-	addrNode right;
-} Node;
-
-/* Definisi PohonBiner : */
-/* Pohon Biner kosong : P = Nil */
-typedef addrNode BinTree;
-
-/* *** PROTOTYPE *** */
-
-/* *** Selektor *** */
-#define Akar(P) (P)->info
-#define Left(P) (P)->left
-#define Right(P) (P)->right
-
 /* *** Konstruktor *** */
 BinTree Tree (infotypeRek Akar, BinTree L, BinTree R);
 /* Menghasilkan sebuah pohon biner dari A, L, dan R, jika alokasi berhasil */

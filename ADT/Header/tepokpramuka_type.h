@@ -3,6 +3,8 @@
 
 #include "boolean.h"
 
+#define Nil NULL
+
 /**** Definisi type Kata ****/
 #define NMaxKata 50
 typedef struct {

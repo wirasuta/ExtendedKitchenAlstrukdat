@@ -1,7 +1,7 @@
 // Body untuk listrek.h
 // Pandyaka Aptanagi / 13517003
 
-#include "listrek.h"
+#include "../Header/listrek.h"
 #include <stdio.h>
 #include <stdlib.h>
 

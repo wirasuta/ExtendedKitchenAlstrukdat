@@ -4,6 +4,7 @@
 #include "../ADT/Header/tepokpramuka_type.h"
 #include "../ADT/Header/queue.h"
 #include "../ADT/Header/stackt.h"
+#include "../ADT/Header/array.h"
 #include "../ADT/Header/point.h"
 #include "../ADT/Header/bintree.h"
 #include "../ADT/Header/mesinkata.h"
@@ -32,36 +33,39 @@ l. RECIPE | Graf
 Command ini digunakan untuk menampilkan pohon makanan.
 */
 
-boolean IsNearTable (Player P, Table T);
+boolean IsNearTable (Player P, Room R);
 //mengembalikan true jika posisi pemain berada di dekat meja
 
-boolean IsAbleOrder(Player P, Customer C, Table T);
+int GetTableNumber (Player P, Room R);
+//mendapatkan info table yang berada di sekitar player
+
+boolean IsAbleOrder(Player P, Customer C, Room R);
 //untuk menentukan apakah player bisa megambil orderan dari customer
 
 boolean IsNearTray(Player P, LocTray T);
 //mengembalikan true jika posisi player berada di samping kanan/kiri/atas/bawah tray
 
-boolean IsAbleGive(Player P, Customer C, Table T);
+boolean IsAbleGive(Player P, Customer C, Room R);
 //untuk menentukan apakah player bisa memberikan makanan ke customer
 
 boolean IsAbleTake(Player P, Ingredients Bahan);
 //untuk menentukan apakah player bisa mengambil bahan makanan atau tidak
 
-boolean IsAblePlace(Player P, Customer C, Table T);
+boolean IsAblePlace(Player P, Customer C, Room R);
 //untuk menentukan apakah player bisa menempatkan customer ke meja kosong
 
 void ClearStack(Stack *S);
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Table T,IdxType i);
+void TakeOrder(Player *P, Customer *C, Room R, TabOrder *T);
 //I.S. sembarang
 //F.S mengupdate status Player dan Customer
 //Proses: mengambil order customer, cek terlebih dahulu apakah player
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
 
-void PlaceCustomer (Player P, CustQueue *Q, Table *T);
+void PlaceCustomer (Player P, CustQueue *Q, Room *R);
 
 void PutToTray(Player *P, BinTree *Adr, LocTray T);
 //I.S sembarang
@@ -73,7 +77,7 @@ void TakeIngredient(Player *P, Ingredients Bahan);
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree);
+void GiveFood(Player *P, Customer C, Room *R, Game *G,BinTree RTree);
 //I.S sembarang
 //F.S jika tumpukan paling atas sesuai dengan order customer yang bersebelahan
 //    dengan player, maka makanan akan diberikan
@@ -81,7 +85,7 @@ void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree);
 void PrintRecipe(BinTree P,int H);
 //Menampilkan Pohon Resep
 
-void TickOrder (Room R,Table T,Customer *C);
+void TickOrder (Room R, Customer *C);
 //Menguragi time waiting customer pada table sebanyak 1 tick apabila ordeeran belum diambil
 
 #endif

@@ -102,7 +102,7 @@ int main(int argc, char const *argv[]) {
                     ClearStack(&(OnTray(player)));
                 }
                 else if (IsKataSama(command, KataPLACE)){
-                    PlaceCustomer(player, &waitingList, &(TableNo(Room1, 2)));
+                    PlaceCustomer(player, &waitingList, &Room1);
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE

@@ -8,29 +8,6 @@
 #include "boolean.h"
 #include "tepokpramuka_type.h"
 
-#define queueNil 0
-/* Konstanta untuk mendefinisikan queueAddress tak terdefinisi */
-
-/* Definisi elemen dan queueAddress */
-typedef int queueAddress;   /* indeks tabel */
-/* Contoh deklarasi variabel bertype Queue : */
-/* Versi I : tabel dinamik, Head dan QueueTail eksplisit, ukuran disimpan */
-typedef struct { Customer *T;   /* tabel penyimpan elemen */
-                 queueAddress HEAD;  /* alamat penghapusan */
-                 queueAddress TAIL;  /* alamat penambahan */
-                 int QueueMaxEl;     /* Max elemen queue */
-               } CustQueue;
-/* Definisi Queue kosong: HEAD=queueNil;  TAIL=Nil. */
-/* Catatan implementasi: T[0] tidak pernah dipakai */
-
-/* ********* AKSES (Selektor) ********* */
-/* Jika Q adalah Queue, maka akses elemen : */
-#define Head(Q) (Q).HEAD
-#define QueueTail(Q) (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
-#define QueueMaxEl(Q) (Q).QueueMaxEl
-
 /* ********* Prototype ********* */
 boolean IsQueueEmpty (CustQueue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */

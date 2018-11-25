@@ -10,14 +10,14 @@
 	<stdlib.h>
 	<stdio.h>
 
-1543167692 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\bintree.h
+1543177175 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\bintree.h
 	"listrek.h"
 	"boolean.h"
 	"mesinkata.h"
 	"mesinkar.h"
 	"listrek.h"
 
-1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\listrek.h
+1543177155 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\listrek.h
 	"boolean.h"
 	"tepokpramuka_type.h"
 	"mesinkata.h"
@@ -26,7 +26,7 @@
 
 1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\boolean.h
 
-1543169061 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\tepokpramuka_type.h
+1543177207 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\tepokpramuka_type.h
 	"boolean.h"
 
 1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\mesinkata.h
@@ -63,7 +63,7 @@
 	<stdlib.h>
 	<stdio.h>
 
-1543166314 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\queue.h
+1543177227 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\queue.h
 	"boolean.h"
 	"tepokpramuka_type.h"
 
@@ -116,7 +116,7 @@
 	"boolean.h"
 	<stdlib.h>
 
-1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\listrek.c
+1543177129 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\listrek.c
 	"../Header/listrek.h"
 	<stdio.h>
 	<stdlib.h>
@@ -145,7 +145,7 @@
 	"../Header/mesinkata.h"
 	<stdio.h>
 
-1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\point.c
+1543174770 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\point.c
 	<stdio.h>
 	<math.h>
 	"../Header/point.h"
@@ -167,7 +167,7 @@
 	<stdio.h>
 	"../Header/stackt.h"
 
-1543168161 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\main.c
+1543177349 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\main.c
 	"ADT/Header/array.h"
 	"ADT/Header/jam.h"
 	"ADT/Header/listdp.h"
@@ -191,10 +191,11 @@
 	"../ADT/Header/matriks.h"
 	"../ADT/Header/mesinkata.h"
 
-1543168230 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.h
+1543177879 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.h
 	"../ADT/Header/tepokpramuka_type.h"
 	"../ADT/Header/queue.h"
 	"../ADT/Header/stackt.h"
+	"../ADT/Header/array.h"
 	"../ADT/Header/point.h"
 	"../ADT/Header/bintree.h"
 	"../ADT/Header/mesinkata.h"
@@ -231,7 +232,7 @@
 	"../Header/point.h"
 	<stdio.h>
 
-1543168161 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.c
+1543177818 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.c
 	"process.h"
 	<stdio.h>
 	<stdlib.h>
@@ -250,7 +251,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1543168872 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\load.c
+1543177242 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\load.c
 	<stdio.h>
 	<stdlib.h>
 	"ADT/Header/mesinkata.h"

@@ -11,30 +11,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define Nil NULL
-
-/* Definisi Type */
-typedef Kata infotypeRek;
-typedef struct tElmtlistrek *addressRek;
-typedef struct tElmtlistrek {
-	infotypeRek info;
-	addressRek next;
-} ElmtListRek;
-
-/* Definisi list : */
-/* ListRek kosong : L = Nil */
-typedef addressRek ListRek;
-
-/* Deklarasi  nama untuk variabel kerja */
-/*  	L : ListRek */
-/*  	P : addressRek 	*/
-/* Maka penulisan First(L) menjadi L */
-/*                P.info menjadi Info(P); P.next menjadi Next(P) */
-
-/* Selektor */
-#define Info(P) (P)->info
-#define Next(P) (P)->next
-
 /* *** Manajemen Memori *** */
 addressRek AlokasiRek(infotypeRek X);
 /* Mengirimkan addressRek hasil alokasi sebuah elemen */

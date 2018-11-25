@@ -50,11 +50,11 @@ void load()
     }*/
 }
 
-
+/*
 int main()
 {
 
 pita = fopen("player_one.txt","r");
 load();
 
-}
+}*/

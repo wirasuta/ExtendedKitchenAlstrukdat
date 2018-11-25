@@ -2,23 +2,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-boolean IsNearTable (Player P, Table T){
+boolean IsNearTable (Player P, Room R){
     boolean check;
-    int i;
+    int i,j;
+    Table T;
 
     check = false;
 
-    i = 0;
-    while ((i<IdxMax) && (check != true)){
-        if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
-           (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
-            check = true;
-        } else {
-            i++;
+    i = 1;
+    while ((i<=4) && (check != true)){
+        T = TableNo(R,i);
+        j = 1;
+        while((j<=4) && (check != true)){
+            // Cek deket kursi atau tidak
+            if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
+            (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
+                check = true;
+            } else {
+                j++;
+            }
         }
     }
 
     return(check);
+}
+
+int GetTableNumber(Player P, Room R){
+    int i;
+    Table T;
+    boolean check = false;
+
+    if(IsNearTable(P,R)){
+        i = 1;
+        while((i<=4) && (check != true)){
+            T = TableNo(R,i);
+            if(EQ(PosTable(T,i),PlusDelta(PosPlayer(P),-2,0)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),2,0))
+               || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,-2)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,2))){
+                check = true;
+            }else{
+                i++;
+            }
+        }
+    }
+
+    return i;
 }
 
 boolean IsNearTray(Player P, LocTray T){
@@ -26,11 +53,11 @@ boolean IsNearTray(Player P, LocTray T){
            (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) - 1));
 }
 
-boolean IsAbleOrder(Player P, Customer C, Table T){
+boolean IsAbleOrder(Player P, Customer C, Room R){
     boolean check;
 
     check = false;
-    if (IsNearTable(P,T)){
+    if (IsNearTable(P,R)){
         if(StatOrder(OrderC(C)) == '#'){
             check = true;
         }
@@ -41,11 +68,11 @@ boolean IsAbleOrder(Player P, Customer C, Table T){
 //mengembalikas true jika player bisa megambil orderan dari customer,
 //yaitu jika player berada di samping customer
 
-boolean IsAbleGive(Player P, Customer C, Table T){
+boolean IsAbleGive(Player P, Customer C, Room R){
     boolean check;
 
     check = false;
-    if (IsNearTable(P,T)) {
+    if (IsNearTable(P,R)) {
         if(StatOrder(OrderC(C)) == '!' && IsKataSama(InfoTop(OnTray(P)),OrderName(OrderC(C)))) {
             check = true;
         }
@@ -72,14 +99,16 @@ boolean IsAbleTake(Player P, Ingredients Bahan){
 //mengembalikas true jika player bisa mengambil bahan makanan atau tidak
 //yaitu jika player berada di samping customer
 
-boolean IsAblePlace(Player P, Customer C, Table T){
+boolean IsAblePlace(Player P, Customer C, Room R){
     boolean check;
+    int NoTable;
 
     check = false;
 
-    if(IsNearTable(P,T)){
-        if(IsOccupied(T) == false) {
-            if(CustomerCount(C) <= Capacity(T)) {
+    if(IsNearTable(P,R)){
+        NoTable = GetTableNumber(P,R);
+        if(IsOccupied(TableNo(R,NoTable)) == false) {
+            if(CustomerCount(C) <= Capacity(TableNo(R,NoTable))) {
                 check = true;
             }
         }
@@ -98,10 +127,10 @@ void ClearStack(Stack *S){
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
+void TakeOrder(Player *P, Customer *C, Room R, TabOrder *T){
 
-    if (IsAbleOrder(*P,*C,T)) {
-        OrderList(*P,i) = OrderC(*C);
+    if (IsAbleOrder(*P,*C,R)) {
+        AddAsLastEl(T,OrderC(*C));
         StatOrder(OrderC(*C)) = '!';
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
@@ -113,23 +142,25 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 //        bersebelahan denga customer, cek status order, jika valid masukkan
 //        ke array order
 
-void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
+void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
     Customer CustTemp;
+    int NoTable;
 
     if (!IsQueueEmpty(*Q)) {
         do {
             DelQueue(Q,&CustTemp);
-            if(!IsAblePlace(P,InfoHead(*Q),*T)) {
+            if(!IsAblePlace(P,InfoHead(*Q),*R)) {
                 AddQueue(Q,CustTemp);
             } else {
-                CustomerSeat(*T) = CustTemp;
-                IsOccupied(*T) = true;
+                NoTable = GetTableNumber(P,*R);
+                CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
+                IsOccupied(TableNo(*R,NoTable)) = true;
             }
         } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
-        if(IsAblePlace(P,InfoTail(*Q),*T)) {
+        if(IsAblePlace(P,InfoTail(*Q),*R)) {
             DelQueue(Q,&CustTemp);
-            CustomerSeat(*T) = CustTemp;
-            IsOccupied(*T) = true;
+            CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
+            IsOccupied(TableNo(*R,NoTable)) = true;
         }
     }
 }
@@ -197,15 +228,17 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree){
+void GiveFood(Player *P, Customer C, Room *R, Game *G,BinTree RTree){
     Kata orinput;
     double Koef;
+    int NoTable;
 
-    if (IsAbleGive(*P,C,*T)){
+    if (IsAbleGive(*P,C,*R)){
         Pop(&OnTray(*P),&orinput);
         Koef = Level(RTree,orinput);
         Money(*G) += (NormalPrice * Koef);
-        IsOccupied(*T) = false;
+        NoTable = GetTableNumber(*P,*R);
+        IsOccupied(TableNo(*R,NoTable)) = false;
     } else {
         printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");
     }
@@ -218,8 +251,9 @@ void PrintRecipe(BinTree P,int H){
     PrintTree(P,H);
 }
 
-void TickOrder (Room R,Table T,Customer *C){
+void TickOrder (Room R,Customer *C){
     int i;
+    Table T;
 
     for(i=1;i<=NTable;i++){
         T = TableNo(R,i);
