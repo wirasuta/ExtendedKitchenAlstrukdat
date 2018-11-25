@@ -127,6 +127,7 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 // I.S Q tidak kosong
 //F.S
 	CustQueue temp;
+	Customer C;
 	boolean found;
 	//int i;
 
@@ -145,8 +146,8 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 			//printf("found: %d\n", found);
 		}
 		else{
-			AddQueue(&temp, InfoHead(*Q));
-			DelQueue(Q, &InfoHead(*Q));
+			DelQueue(Q, &C);
+			AddQueue(&temp, C);
 			//printf("i: %d\n", i);
 			i++;
 		}
@@ -154,13 +155,32 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 	//printf("cek\n");
 
 	while(!IsQueueEmpty(*Q)){
-		AddQueue(&temp, InfoHead(*Q));
-		DelQueue(Q, &InfoHead(*Q));
+		DelQueue(Q, &C);
+		AddQueue(&temp, C);
 	}
 
 	while(!IsQueueEmpty(temp)){
-		AddQueue(Q,InfoHead(temp));
-		DelQueue(&temp, &InfoHead(temp));
+		DelQueue(&temp, &C);
+		AddQueue(Q,C);
+		
 	}
 
+}
+
+void addTick(CustQueue *Q){
+	CustQueue temp;
+	Customer C;
+
+	CreateEmptyQueue(&temp, 20);
+
+	while(!IsQueueEmpty(*Q)){
+		InfoHead(*Q).TimeQueue -= 1;
+		DelQueue(Q, &C);
+		AddQueue(&temp, C);
+	}
+
+	while(!IsQueueEmpty(temp)){
+		DelQueue(&temp, &C);
+		AddQueue(Q, C);
+	}
 }
