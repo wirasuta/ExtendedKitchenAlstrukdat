@@ -118,7 +118,7 @@ int main(int argc, char const *argv[]) {
                     
                     PlayerTick(player)++;
                     
-                    printf("%d\n", IsOccupied(TableNo(Room1, 1)));
+                    TulisIsiTab(OrderList(player));
                 }
                 else if (IsKataSama(command, KataORDER)){
 
