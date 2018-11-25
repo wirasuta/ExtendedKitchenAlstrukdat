@@ -8,8 +8,10 @@
 
 /* Modul lain yang digunakan : */
 #include "listrek.h"
-//#include "mesinkata.h"
 #include "boolean.h"
+#include "mesinkata.h"
+#include "mesinkar.h"
+#include "listrek.h"
 
 /* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
 

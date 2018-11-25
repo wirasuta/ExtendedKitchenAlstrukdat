@@ -4,9 +4,6 @@
    karena melibatkan modul ListRek rekursif. */
 
 #include "../Header/bintree.h"
-#include "../Impl/mesinkata.c"
-#include "../Impl/mesinkar.c"
-#include "../Impl/listrek.c"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -341,7 +338,7 @@ void DelDaun(BinTree *P, infotypeRek X){
       DelDaun(&(Right(*P)), X);
     }
   }
-} 
+}
 /* I.S. P tidak kosong, minimum ada 1 daun bernilai X. */
 /* F.S. Semua daun bernilai X dihapus dari P. */
 
@@ -729,11 +726,11 @@ void buildRecipe(BinTree *P){
   AddDaunTerkanan(&Right(Resep), T[6]);
 
   AddDaunTerkiri(&Left(Left(Resep)), T[7]);
-  AddDaunTerkanan(&Left(Left(Resep)), T[8]);  
+  AddDaunTerkanan(&Left(Left(Resep)), T[8]);
 
   AddDaunTerkiri(&Right(Left(Resep)), T[9]);
-  AddDaunTerkanan(&Right(Left(Resep)), T[10]);  
-  
+  AddDaunTerkanan(&Right(Left(Resep)), T[10]);
+
   AddDaunTerkiri(&Left(Right(Resep)), T[11]);
   AddDaunTerkanan(&Left(Right(Resep)), T[12]);
 

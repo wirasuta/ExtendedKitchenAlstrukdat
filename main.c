@@ -16,13 +16,16 @@
 
 Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
-MATRIKS map;
+Room Room1;
 Game gameData;
 Player player;
+CustQueue waitingList;
+
+//Variabel untuk coba2
+Customer UjiCustomer;
 
 int main(int argc, char const *argv[]) {
   int input;
-  char username;
   Kata command;
 
   printf("(1)New Game\n");
@@ -37,65 +40,98 @@ int main(int argc, char const *argv[]) {
   }
   InitKataCommand();
   InitGame(&gameData);
+  InitRoom(&Room1);
   InitPlayer(&player);
-  InitMap(&map, PosPlayer(player));
+  InitMap(&Room1, PosPlayer(player));
+
+  //Inisialisasi Ujicoba
+  IsStar(UjiCustomer) = false;
+  TimeQueue(UjiCustomer) = 30;
+  TimeWaiting(UjiCustomer) = 30;
+  CustomerCount(UjiCustomer) = 2;
+
+  CreateEmptyQueue(&waitingList, 20);
+  AddQueue(&waitingList, UjiCustomer);
+
   while (input!=4){
       switch (input){
-          case 1:
-              scanf("%s",&username);
-              break;
-          case 2:
-              //boolean CekUsername(char username[30],*gatau mau nyimpen nama2 user dimana*)
-              printf("Masukkan command\n");
-              scanf("%s", command.TabKata);
-              while (!IsKataSama(command,KataEXIT)){
-                  if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
-                      //fungsi GU/GL/GD/GR
-                      move(&map, &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
-                      TulisMATRIKS(map);
-                      printf("\n");
-                  }
-                  else if (IsKataSama(command, KataORDER)){
-                      //fungsi ORDER
-                  }
-                  else if (IsKataSama(command, KataPUT)){
-                      //fungsi PUT
-                  }
-                  else if (IsKataSama(command, KataTAKE)){
-                      //fungsi TAKE
-                  }
-                  else if (IsKataSama(command, KataCH)){
-                      //fungsi CH
-                  }
-                  else if (IsKataSama(command, KataCT)){
-                      //fungsi CT
-                  }
-                  else if (IsKataSama(command, KataPLACE)){
-                      //fungsi PLACE
-                  }
-                  else if (IsKataSama(command, KataGIVE)){
-                      //fungsi GIVE
-                  }
-                  else if (IsKataSama(command, KataRECIPE)){
-                      //fungsi RECIPE
-                  }
-                  else if (IsKataSama(command, KataSAVE)){
-                      //fungsi SAVE
-                  }
-                  else if (IsKataSama(command, KataLOAD)){
-                      //fungsi LOAD
-                  }
-                  else {
-                      printf("Command tidak valid. Silahkan input command lagi.\n");
-                  }
-                  scanf("%s", command.TabKata);
-              }
-              if (IsKataSama(command,KataEXIT)){
-                  input=4;
-              }
-              break;
-          case 3:
-              break;
+        case 3:
+            //TODO : Load file
+            input = 2;
+            break;
+        case 1:
+            printf("Masukkan username : ");
+            scanf("%s",ElmtName(gameData).TabKata);
+            SetKataLength(&(ElmtName(gameData)));
+            input = 2;
+            break;
+        case 2:
+            if (ElmtName(gameData).Length == 0) {
+              printf("Anda belum memasukkan username! Masukkan username : ");
+              scanf("%s",ElmtName(gameData).TabKata);
+              SetKataLength(&(ElmtName(gameData)));
+            }
+
+            //Kondisi Awal, TODO: Bikin fungsi draw yang dipanggil setiap setelah pemanggilan fungsi
+            TulisMATRIKS(Layout(Room1)); printf("\n");
+            printf("Masukkan command: ");
+
+            //Loop utama game
+            scanf("%s", command.TabKata);
+            while (!IsKataSama(command,KataEXIT)){
+                if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
+                    //fungsi GU/GL/GD/GR
+                    move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
+                }
+                else if (IsKataSama(command, KataORDER)){
+                    //fungsi ORDER
+                }
+                else if (IsKataSama(command, KataPUT)){
+                    //fungsi PUT
+                }
+                else if (IsKataSama(command, KataTAKE)){
+                    //fungsi TAKE
+                }
+                else if (IsKataSama(command, KataCH)){
+                    ClearStack(&(OnHand(player)));
+                }
+                else if (IsKataSama(command, KataCT)){
+                    ClearStack(&(OnTray(player)));
+                }
+                else if (IsKataSama(command, KataPLACE)){
+                    printf("%d\n", CustomerCount(InfoHead(waitingList)));
+                    printf("%d\n", TimeQueue(InfoHead(waitingList)));
+                    printf("Placing customer\n");
+                    PlaceCustomer(player, &waitingList, &(TableNo(Room1, 2)));
+                    printf("Done\n");
+                }
+                else if (IsKataSama(command, KataGIVE)){
+                    //fungsi GIVE
+                }
+                else if (IsKataSama(command, KataRECIPE)){
+                    //fungsi RECIPE
+                }
+                else if (IsKataSama(command, KataSAVE)){
+                    //fungsi SAVE
+                }
+                else if (IsKataSama(command, KataLOAD)){
+                    //fungsi LOAD
+                }
+                else if (IsKataSama(command, KataEXIT)){
+                    //Ngapain ni pas exit
+                }
+                else {
+                    printf("Command tidak valid. Silahkan input command lagi.\n");
+                }
+                InitMap(&Room1, PosPlayer(player));
+                TulisMATRIKS(Layout(Room1));
+                printf("\n");
+
+                printf("Masukkan command: ");
+                scanf("%s", command.TabKata);
+            }
+            input = 4;
+            break;
       }
   }
 
