@@ -184,3 +184,25 @@ void addTick(CustQueue *Q){
 		AddQueue(Q, C);
 	}
 }
+
+void del0Tick(CustQueue *Q){
+	CustQueue temp;
+	Customer C;
+
+	CreateEmptyQueue(&temp, 20);
+
+	while(!IsQueueEmpty(*Q)){
+		if (InfoHead(*Q).TimeQueue == 0){
+			DelQueue(Q, &C);
+		}
+		else{
+			DelQueue(Q, &C);
+			AddQueue(&temp, C);
+		}
+	}
+
+	while(!IsQueueEmpty(temp)){
+		DelQueue(&temp, &C);
+		AddQueue(Q, C);
+	}
+}
