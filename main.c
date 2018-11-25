@@ -22,7 +22,8 @@ Player player;
 CustQueue waitingList;
 
 //Variabel untuk coba2
-Customer UjiCustomer;
+Customer ujiCustomer;
+BinTree recipeTree;
 
 int main(int argc, char const *argv[]) {
   int input;
@@ -45,13 +46,15 @@ int main(int argc, char const *argv[]) {
   InitMap(&Room1, PosPlayer(player));
 
   //Inisialisasi Ujicoba
-  IsStar(UjiCustomer) = false;
-  TimeQueue(UjiCustomer) = 30;
-  TimeWaiting(UjiCustomer) = 30;
-  CustomerCount(UjiCustomer) = 2;
+  IsStar(ujiCustomer) = false;
+  TimeQueue(ujiCustomer) = 30;
+  TimeWaiting(ujiCustomer) = 30;
+  CustomerCount(ujiCustomer) = 2;
 
   CreateEmptyQueue(&waitingList, 20);
-  AddQueue(&waitingList, UjiCustomer);
+  AddQueue(&waitingList, ujiCustomer);
+
+  buildRecipe(&recipeTree);
 
   while (input!=4){
       switch (input){
@@ -99,17 +102,14 @@ int main(int argc, char const *argv[]) {
                     ClearStack(&(OnTray(player)));
                 }
                 else if (IsKataSama(command, KataPLACE)){
-                    printf("%d\n", CustomerCount(InfoHead(waitingList)));
-                    printf("%d\n", TimeQueue(InfoHead(waitingList)));
-                    printf("Placing customer\n");
                     PlaceCustomer(player, &waitingList, &(TableNo(Room1, 2)));
-                    printf("Done\n");
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE
+                    PrintRecipe(recipeTree, 2);
                 }
                 else if (IsKataSama(command, KataSAVE)){
                     //fungsi SAVE

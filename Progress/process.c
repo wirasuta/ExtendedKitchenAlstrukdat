@@ -9,7 +9,7 @@ boolean IsNearTable (Player P, Table T){
     check = false;
 
     i = 0;
-    while ((i<IdxMax) || (check == true)){
+    while ((i<IdxMax) && (check != true)){
         if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
            (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
             check = true;
@@ -116,10 +116,7 @@ void TakeOrder(Player *P, Customer *C, Table T,IdxType i){
 void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
     Customer CustTemp;
 
-    printf("PlaceCustomer called");
-
     if (!IsQueueEmpty(*Q)) {
-        printf("Queue not empty");
         do {
             DelQueue(Q,&CustTemp);
             if(!IsAblePlace(P,InfoHead(*Q),*T)) {
@@ -128,9 +125,7 @@ void PlaceCustomer (Player P, CustQueue *Q, Table *T) {
                 CustomerSeat(*T) = CustTemp;
                 IsOccupied(*T) = true;
             }
-            printf("Inside Loop\n");
         } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
-        printf("Made it here\n");
         if(IsAblePlace(P,InfoTail(*Q),*T)) {
             DelQueue(Q,&CustTemp);
             CustomerSeat(*T) = CustTemp;
