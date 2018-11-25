@@ -4,6 +4,8 @@
    karena melibatkan modul ListRek rekursif. */
 
 #include "../Header/bintree.h"
+#include "../Impl/mesinkata.c"
+#include "../Impl/mesinkar.c"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -85,7 +87,7 @@ boolean IsBiner(BinTree P){
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
 
 /* *** Traversal *** */
-void PrintPreorder(BinTree P){
+/*void PrintPreorder(BinTree P){
   printf("(");
   if (!IsTreeEmpty(P)) {
     printf("%s", Akar(P).TabKata);
@@ -93,7 +95,7 @@ void PrintPreorder(BinTree P){
     PrintPreorder(Right(P));
   }
   printf(")");
-}
+}*/
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara preorder: akar, pohon kiri, dan pohon kanan.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -102,7 +104,7 @@ void PrintPreorder(BinTree P){
 /* Contoh:
    (A()()) adalah pohon dengan 1 elemen dengan akar A
    (A(B()())(C()())) adalah pohon dengan akar A dan subpohon kiri (B()()) dan subpohon kanan (C()()) */
-void PrintInorder(BinTree P){
+/*void PrintInorder(BinTree P){
   printf("(");
   if (!IsTreeEmpty(P)) {
     PrintInorder(Left(P));
@@ -110,7 +112,7 @@ void PrintInorder(BinTree P){
     PrintInorder(Right(P));
   }
   printf(")");
-}
+}*/
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara inorder: pohon kiri, akar, dan pohon kanan.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -119,7 +121,7 @@ void PrintInorder(BinTree P){
 /* Contoh:
    (()A()) adalah pohon dengan 1 elemen dengan akar A
    ((()B())A(()C())) adalah pohon dengan akar A dan subpohon kiri (()B()) dan subpohon kanan (()C()) */
-void PrintPostorder(BinTree P){
+/*void PrintPostorder(BinTree P){
   printf("(");
   if (!IsTreeEmpty(P)) {
     PrintPostorder(Left(P));
@@ -127,7 +129,7 @@ void PrintPostorder(BinTree P){
     printf("%s", Akar(P).TabKata);
   }
   printf(")");
-}
+}*/
 /* I.S. P terdefinisi */
 /* F.S. Semua simpul P sudah dicetak secara postorder: pohon kiri, pohon kanan, dan akar.
    Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
@@ -169,6 +171,13 @@ A
     D
   C
     E
+
+A
+|
+|-B
+|-C
+   |-D
+   |-D
 */
 
 /* *** Searching *** */
@@ -276,8 +285,10 @@ void AddDaunTerkiri(BinTree *P, infotypeRek X){
 /* F.S. P bertambah simpulnya, dengan X sebagai simpul daun terkiri */
 void AddDaun(BinTree *P, infotypeRek X, infotypeRek Y, boolean Kiri){
   if (IsTreeOneElmt(*P) && IsKataSama(Akar(*P), X)) {
+    //printf("sama kok %d\n", IsKataSama(Akar(*P), X));
     if (Kiri){
       Left(*P) = AlokNode(Y);
+      //printf("cek masuk: %s", Left(*P));
     }else{
       Right(*P) = AlokNode(Y);
     }
@@ -326,7 +337,7 @@ void DelDaun(BinTree *P, infotypeRek X){
 }
 /* I.S. P tidak kosong, minimum ada 1 daun bernilai X. */
 /* F.S. Semua daun bernilai X dihapus dari P. */
-ListRek MakeListDaun(BinTree P){
+/*ListRek MakeListDaun(BinTree P){
   if (IsTreeEmpty(P)) {
     return Nil;
   }else if (IsTreeOneElmt(P)) {
@@ -334,13 +345,13 @@ ListRek MakeListDaun(BinTree P){
   } else {
     return Concat(MakeListDaun(Left(P)), MakeListDaun(Right(P)));
   }
-}
+}*/
 /* Jika P adalah pohon kosong, maka menghasilkan ListRek kosong. */
 /* Jika P bukan pohon kosong: menghasilkan ListRek yang elemennya adalah semua daun pohon P,
    jika semua AlokasiRek ListRek berhasil.
    Daun terkiri menjadi elemen pertama dari ListRek  diikuti elemen kanannya, dst.
    Menghasilkan ListRek kosong jika ada AlokasiRek yang gagal. */
-ListRek MakeListPreorder(BinTree P){
+/*ListRek MakeListPreorder(BinTree P){
   if (IsTreeEmpty(P)) {
     return Nil;
   }else if (IsTreeOneElmt(P)) {
@@ -348,12 +359,12 @@ ListRek MakeListPreorder(BinTree P){
   } else {
     return Concat(Konso(Akar(P),MakeListPreorder(Left(P))), MakeListPreorder(Right(P)));
   }
-}
+}*/
 /* Jika P adalah pohon kosong, maka menghasilkan ListRek kosong. */
 /* Jika P bukan pohon kosong: menghasilkan ListRek yang elemennya adalah semua elemen pohon P
    dengan urutan preorder, jika semua AlokasiRek berhasil.
    Menghasilkan ListRek kosong jika ada AlokasiRek yang gagal. */
-ListRek MakeListLevel(BinTree P, int N){
+/*ListRek MakeListLevel(BinTree P, int N){
   if (IsTreeEmpty(P)){
     return Nil;
   } else {
@@ -363,7 +374,7 @@ ListRek MakeListLevel(BinTree P, int N){
       return Concat(MakeListLevel(Left(P), N-1), MakeListLevel(Right(P), N-1));
     }
   }
-}
+}*/
 /* Jika P adalah pohon kosong, maka menghasilkan ListRek kosong. */
 /* Jika P bukan pohon kosong: menghasilkan ListRek yang elemennya adalah semua elemen pohon P
    yang levelnya=N, jika semua AlokasiRek berhasil.
