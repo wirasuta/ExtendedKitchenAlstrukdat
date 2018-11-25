@@ -58,7 +58,7 @@ void ClearStack(Stack *S);
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Room R, TabOrder *T);
+void TakeOrder(Player *P, Customer *C, Room R);
 //I.S. sembarang
 //F.S mengupdate status Player dan Customer
 //Proses: mengambil order customer, cek terlebih dahulu apakah player

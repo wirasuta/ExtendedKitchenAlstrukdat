@@ -117,14 +117,12 @@ int main(int argc, char const *argv[]) {
                     printf("N Queue: %d\n", NBElmtQueue(waitingList));
                     
                     PlayerTick(player)++;
-                    
-                    TulisIsiTab(OrderList(player));
                 }
                 else if (IsKataSama(command, KataORDER)){
 
                     //fungsi ORDER
                     //TODO: Update fungsi dan cari indeks kosong
-                    TakeOrder(&player, &ujiCustomer, Room1, &(OrderList(player)));
+                    TakeOrder(&player, &ujiCustomer, Room1);
                     TulisIsiTab(OrderList(player));
                     
                     PlayerTick(player)++;

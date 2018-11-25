@@ -125,10 +125,10 @@ void ClearStack(Stack *S){
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Room R, TabOrder *T){
+void TakeOrder(Player *P, Customer *C, Room R){
 
     if (IsAbleOrder(*P,*C,R)) {
-        AddAsLastEl(T,OrderC(*C));
+        AddAsLastEl(&(OrderList(*P)),OrderC(*C));
         StatOrder(OrderC(*C)) = '!';
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
