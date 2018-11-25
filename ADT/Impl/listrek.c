@@ -1,7 +1,7 @@
 // Body untuk listrek.h
 // Pandyaka Aptanagi / 13517003
 
-#include "../Header/listrek.h"
+#include "listrek.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -106,7 +106,14 @@ e dialokasi terlebih dahulu. Jika alokasi gagal, mengirimkan L. */
         P = AlokasiRek(e);
         if ( P != Nil )
             {
+
+                //printf("1\n");
+                //printf("%s", Info(P).TabKata);
                 Next(P) = L;
+                //printf("%s tab\n", Info(L).TabKata);
+                //FirstElmt(L) = P;
+                //printf("a\n");
+                //PrintList(P);
                 return P;
             }
         else
@@ -229,7 +236,9 @@ void PrintList (ListRek L)
         // Algoritma
         if ( !IsEmptyRek(L) )
             {
-                printf("%s", (FirstElmt(L)).TabKata);
+                //printf("a\n");
+                printf("%s", Info(L).TabKata);
+                //printf("a\n");
                 PrintList(Tail(L));
             };
     };
