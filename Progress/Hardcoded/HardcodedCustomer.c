@@ -2,16 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
-    Customer arrC[20];
-    //int r1,r2,r2,r4;
-
-    /*printf("random 1: %d", (rand() % (25 + 1 -15)) + 15);
-    printf("random 2: %d", (rand() % (25 + 1 -15)) + 15);
-    printf("random 3: %d", (rand() % (25 + 1 -15)) + 15);
-    printf("random 4: %d", (rand() % (25 + 1 -15)) + 15);*/
-
-    //printf("%d\n", random);
 
     arrC[0].Star = false;
     arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15;
@@ -202,4 +192,4 @@ int main(){
     arrC[7].Food.Name.Length=7;
     arrC[7].Food.Nomor = -999;
 
-}
+
