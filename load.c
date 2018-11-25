@@ -27,15 +27,17 @@ void load()
         }
 
 //Ngeliat bentuk datanya kaya gimana
- /*    for (a=1; a<=3; a++)
+     for (a=1; a<=3; a++)
      {
-         for (b=1;b<=5; b++)
+         b = 1;
+         while(data[a][b].TabKata[1]!='\x00')
          {
              for (c=1; c<=data[a][b].Length;c++)
              {
                  printf("%c",data[a][b].TabKata[c]);
              }
              printf("|");
+             b++;
          }
          printf("\n");
      }
@@ -48,35 +50,11 @@ void load()
     }*/
 }
 
-/*
+
 int main()
 {
 
 pita = fopen("player_one.txt","r");
 load();
 
-
-
-
-    int i,k;
-    int j =1;
-    STARTKATA();
-    while (!EndKata) {
-        m[j] = CKata;
-        /*for (i=1;i<=CKata.Length;i++) {
-        printf("%c",CKata.TabKata[i]);
-        }
-        printf("\n");
-        ADVKATA();
-        j++;
-        }
-    for(k=1; k<=4; k++)
-    {
-            for (i=1;i<=m[k].Length;i++) {
-                printf("%c", m[k].TabKata[i]);
-                }
-            printf("|");
-    }
-
- return 0;
-} */
+}
