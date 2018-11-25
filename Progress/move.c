@@ -17,6 +17,10 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         {
          printf("Path is Filled! \n");
         }
+        else if ( (*X-1) < 1 )
+        {
+            printf("You can't move through a wall, duh")
+        }
         else
         {
         *X = *X - 1;
@@ -27,6 +31,10 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         if (pathFilled(M, *X+1, *Y))
         {
          printf("Path is Filled! \n");
+        }
+        else if ( (*X+1) > 8 )
+        {
+            printf("You can't move through a wall, duh")
         }
         else
         {
@@ -39,6 +47,10 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         {
          printf("Path is Filled! \n");
         }
+        else if ( (*Y+1) < 1 )
+        {
+            printf("You can't move through a wall, duh")
+        }
         else
         {
         *Y = *Y - 1;
@@ -49,6 +61,10 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         if (pathFilled(M, *X, *Y+1))
         {
          printf("Path is Filled! \n");
+        }
+        else if ( (*Y+1) > 8 )
+        {
+            printf("You can't move through a wall, duh")
         }
         else
         {
