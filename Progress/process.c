@@ -15,8 +15,8 @@ boolean IsNearTable (Player P, Room R){
         j = 1;
         while((j<=4) && (check != true)){
             // Cek deket kursi atau tidak
-            if((Absis(PosPlayer(P)) == Absis(PosTable(T,i)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTable(T,i)) - 1) ||
-            (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTable(T,i)) - 1)){
+            if(EQ(PosTable(T,i),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),1,0))
+               || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosTable(T,i),PlusDelta(PosPlayer(P),0,1))){
                 check = true;
             } else {
                 j++;
@@ -49,8 +49,8 @@ int GetTableNumber(Player P, Room R){
 }
 
 boolean IsNearTray(Player P, LocTray T){
-    return ((Absis(PosPlayer(P)) == Absis(PosTray(T)) + 1) || (Absis(PosPlayer(P)) == Absis(PosTray(T)) - 1) ||
-           (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosTray(T)) - 1));
+    return (EQ(PosPlayer(P),PlusDelta(PosTray(T),-1,0)) || EQ(PosPlayer(P),PlusDelta(PosTray(T),1,0))
+               || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,-1)) || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,1)));
 }
 
 boolean IsAbleOrder(Player P, Customer C, Room R){
@@ -88,8 +88,8 @@ boolean IsAbleTake(Player P, Ingredients Bahan){
 
     check = false;
 
-    if ((Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) + 1) || (Absis(PosPlayer(P)) == Absis(PosIngredients(Bahan)) - 1) ||
-        (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) + 1) || (Ordinat(PosPlayer(P)) == Ordinat(PosIngredients(Bahan)) - 1)){
+    if (EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),-1,0)) || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),1,0))
+               || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),0,-1)) || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),0,1))){
                check = true;
         }
 

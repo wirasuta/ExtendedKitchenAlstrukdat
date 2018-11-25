@@ -115,43 +115,43 @@ int main(int argc, char const *argv[]) {
             scanf("%s", command.TabKata);
             while (!IsKataSama(command,KataEXIT)){
                 if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
-                    PlayerTick(player) += 1;
+
                     //fungsi GU/GL/GD/GR
                     move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
                 }
                 else if (IsKataSama(command, KataORDER)){
-                    PlayerTick(player) += 1;
+
                     //fungsi ORDER
                     //TODO: Update fungsi dan cari indeks kosong
-                    TakeOrder(&player, &ujiCustomer, TableNo(Room1, 2), GetFirstIdx(OrderList(player)));
+                    TakeOrder(&player, &ujiCustomer, Room1, &(OrderList(player)));
                     TulisIsiTab(OrderList(player));
                 }
                 else if (IsKataSama(command, KataPUT)){
-                    PlayerTick(player) += 1;
+
                     //fungsi PUT
                     PutToTray(&player, &recipeTree, locationTray);
                 }
                 else if (IsKataSama(command, KataTAKE)){
-                    PlayerTick(player) += 1;
+
                     //fungsi TAKE
                     TakeIngredient(&player, ujiIngredient);
                 }
                 else if (IsKataSama(command, KataCH)){
-                    PlayerTick(player) += 1;
+
                     ClearStack(&(OnHand(player)));
                 }
                 else if (IsKataSama(command, KataCT)){
-                    PlayerTick(player) += 1;
+
                     ClearStack(&(OnTray(player)));
                 }
                 else if (IsKataSama(command, KataPLACE)){
-                    PlayerTick(player) += 1;
-                    PlaceCustomer(player, &waitingList, &(TableNo(Room1, 2)));
+
+                    PlaceCustomer(player, &waitingList, &Room1);
                 }
                 else if (IsKataSama(command, KataGIVE)){
-                    PlayerTick(player) += 1;
+
                     //fungsi GIVE
-                    GiveFood(&player, ujiCustomer, &(TableNo(Room1, 2)), &gameData, recipeTree);
+                    GiveFood(&player, ujiCustomer, &Room1, &gameData, recipeTree);
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE
@@ -390,7 +390,7 @@ void returnCustomer(Customer *C, int N){
 }
 
 void randomCustomer(Player P, CustQueue *Q){
-    long int random;
+    int random;
     Customer C;
     //boolean tickCount;
 
@@ -401,17 +401,17 @@ void randomCustomer(Player P, CustQueue *Q){
     }
 }
 
-long int randomInteger(){
-    long int random;
+int randomInteger(){
+    int random;
 
     random = (rand() % (15 + 1 - 8)) + 8;
     return random;
 }
 
 boolean checkPlayerTick(Player P){
-    long int random;
+    int random;
 
     random = randomInteger();
 
-    return((P.tick % 15) == random);
+    return((PlayerTick(P) % 15) == random);
 }

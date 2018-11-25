@@ -26,7 +26,7 @@
 
 1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\boolean.h
 
-1543178350 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\tepokpramuka_type.h
+1543179460 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\tepokpramuka_type.h
 	"boolean.h"
 
 1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\mesinkata.h
@@ -167,7 +167,7 @@
 	<stdio.h>
 	"../Header/stackt.h"
 
-1543177349 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\main.c
+1543179566 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\main.c
 	"ADT/Header/array.h"
 	"ADT/Header/jam.h"
 	"ADT/Header/listdp.h"
@@ -220,7 +220,7 @@
 	<stdio.h>
 	"../Header/jam.h"
 
-1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\initialize.c
+1543178035 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\initialize.c
 	"initialize.h"
 	<stdio.h>
 

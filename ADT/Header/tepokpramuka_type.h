@@ -216,7 +216,7 @@ typedef struct {
 /* SELEKTOR UNTUK TIPE DATA PLAYER */
 #define OnHand(P) (P).Hand
 #define OnTray(P) (P).Tray
-#define PlayerTick(P) (P).Tick;
+#define PlayerTick(P) (P).Tick
 #define PosPlayer(P) (P).Position
 #define OrderList(P) (P).PArr
 
@@ -238,7 +238,7 @@ typedef struct {
 #define IsOccupied(T) (T).Occupied
 #define CustomerSeat(T) (T).Filled
 
-#define NTable 12
+#define NTable 4
 
 typedef struct {
     MATRIKS Grid;
