@@ -3,6 +3,7 @@
 
 #include "../Header/queue.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /* ********* Prototype ********* */
 boolean IsQueueEmpty (CustQueue Q)
@@ -122,32 +123,44 @@ void DelQueue (CustQueue * Q, Customer * X)
 				}
 		};
 
-void SearchFitQueue(CustQueue *Q, Customer *X, int N){
+void SearchFitQueue(CustQueue *Q, Customer *X, int N){ 
 // I.S Q tidak kosong
-//F.
+//F.S 
 	CustQueue temp;
 	boolean found;
+	//int i;
 
 	found = false;
 
+	//printf("cek\n");
 	CreateEmptyQueue(&temp, 20);
+	//printf("cek %d\n", QueueMaxEl(temp));
+	
+	//i = 1;
 
 	while((!IsQueueEmpty(*Q)) && (!found)){
 		if(N == Customers(InfoHead(*Q))){
 			DelQueue(Q, X);
 			found = true;
+			//printf("found: %d\n", found);
 		}
 		else{
 			AddQueue(&temp, InfoHead(*Q));
+			DelQueue(Q, &InfoHead(*Q));
+			//printf("i: %d\n", i);
+			i++;
 		}
 	}
+	//printf("cek\n");
 
 	while(!IsQueueEmpty(*Q)){
 		AddQueue(&temp, InfoHead(*Q));
+		DelQueue(Q, &InfoHead(*Q));
 	}
 
 	while(!IsQueueEmpty(temp)){
 		AddQueue(Q,InfoHead(temp));
+		DelQueue(&temp, &InfoHead(temp));
 	}
 
 }
