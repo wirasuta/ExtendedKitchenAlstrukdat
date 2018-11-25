@@ -5,7 +5,7 @@
 
 int main(){
     CustQueue Q, Q1;
-    Customer C1, C2,C3,C4;
+    Customer C1, C2,C3,C4; 
 
     //INISIALISASI MASIH ANTRI
     //POSISI = UNDEFINED (-999,-999)
@@ -94,6 +94,11 @@ int main(){
     printf("cek nomor meja C3: %d\n", InfoTail(Q).Food.Nomor);
     printf("\n");
 
+    addTick(&Q);
+    printf("cek time queue head: %d\n", InfoHead(Q).TimeQueue);
+    printf("cek time queue tail: %d\n", InfoTail(Q).TimeQueue);
+    printf("\n");
+
     SearchFitQueue(&Q, &C4, 2);
     printf("cek star C4: %d\n", C4.Star);
     printf("cek time queue C4: %d\n", C4.TimeQueue);
@@ -103,4 +108,7 @@ int main(){
     printf("cek status order C4: %c\n", C4.Food.Status);
     printf("cek nama makanan C4: %s\n", C4.Food.Name);
     printf("cek nomor meja C4: %d\n", C4.Food.Nomor);
+
+    
+
 }
