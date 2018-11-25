@@ -66,4 +66,8 @@ void DelQueue (CustQueue * Q, Customer * X);
         Q mungkin kosong */
 
 void SearchFitQueue(CustQueue *Q, Customer *X, int N);
+
+void addTick(CustQueue *Q);
+
+
 #endif
