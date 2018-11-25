@@ -11,6 +11,7 @@ void InitGame(Game *G){
 void InitPlayer(Player *P){
   CreateEmptyStack(&(OnHand(*P)));
   CreateEmptyStack(&(OnTray(*P)));
+  PlayerTick(*P) = (rand() % (50 + 1 - 10)) + 10;
   PosPlayer(*P) =  MakePOINT(3, 4);
 }
 

@@ -208,6 +208,7 @@ typedef struct {
 typedef struct {
     Stack Hand;
     Stack Tray;
+    int Tick;
     POINT Position; //posisi dalam koordinat
     TabOrder PArr;
 } Player;
@@ -215,6 +216,7 @@ typedef struct {
 /* SELEKTOR UNTUK TIPE DATA PLAYER */
 #define OnHand(P) (P).Hand
 #define OnTray(P) (P).Tray
+#define PlayerTick(P) (P).Tick;
 #define PosPlayer(P) (P).Position
 #define OrderList(P) (P).PArr
 

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "queue.h": "c",
+        "stackt.h": "c"
+    }
+}
