@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 int main(){
-    BinTree Resep, Pohon;
+    BinTree Resep, Pohon, Recipe;
     addrNode P, PL, PR;
     BinTree L, R;
     infotypeRek K, K1, K2, K3, KL, KR, KDel;
@@ -66,6 +66,8 @@ int main(){
     printf("cek Left(Resep):%s\n", Left(Resep));
     printf("cek Right(Resep):%s\n", Right(Resep));
 
+    PrintTree(Resep,2);
+
     printf("Tinggi pohon biner: %d\n", Tinggi(Resep));
 
     printf("Level tahu: %.2f\n", Level(Resep, Akar(Left(Resep))));
@@ -100,4 +102,6 @@ int main(){
     printf("IsSKewLeft: %d\n", IsSkewLeft(Pohon));
     printf("IsSkewRight: %d\n", IsSkewRight(Pohon));
 
+    buildRecipe(&Recipe);
+    PrintTree(Recipe,2);
 }
