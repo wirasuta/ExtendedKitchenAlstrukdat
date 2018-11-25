@@ -36,13 +36,45 @@ typedef struct {
 #define IdxMax 100
 #define IdxMin 1
 #define IdxUndef -999
-/* Definisi elemen dan koleksi objek */
+
 typedef struct {
+  char Status; //#: pesanan belom diambil, !: pesanan sudah diambil, $: pesanan sudah dikasi
+  Kata Name; //nama makanan
+  int Nomor; //nomor meja
+} Order;
+
+/* SELEKTOR UNTUK TIPE DATA ORDER */
+#define StatOrder(O) (O).Status
+#define OrderName(O) (O).Name
+#define NoTableOrder(O) (O).Nomor
+#define NormalPrice 100
+
+typedef struct{
+    boolean Star; //priority customer
+    int TimeQueue; //count waktu ketika mengantri
+    int TimeWaiting; //count waktu ketika menunggu makanan
+    int SumOfCustomer; //jumlah orang
+    POINT Position; //posisi saat duduk
+    Order Food; //customer mau pesan apa
+} Customer;
+
+/* SELEKTOR UNTUK TIPE DATA CUSTOMER */
+#define IsStar(C) (C).Star
+#define TimeQueue(C) (C).TimeQueue
+#define TimeWaiting(C) (C).TimeWaiting
+#define CustomerCount(C) (C).SumOfCustomer
+#define PosCustomer(C) (C).Position
+#define OrderC(C) (C).Food
+#define OrderCName(C) (C).Food.Name
+#define OrderCNomor(C) (C).Food.Nomor
+
+/* Definisi elemen dan koleksi objek */
+/*typedef struct {
     Kata Name; //nama makanan
     int Nomor; //nomor meja
-} InfoOrder;
+} InfoOrder;*/
 
-typedef InfoOrder ElTypeInfoOrder;
+typedef Order ElTypeInfoOrder;
 
 typedef int IdxType;  /* type indeks */
 // typedef int ElTypeInfoOrder;   /* type elemen tabel */
@@ -76,6 +108,30 @@ typedef struct {
 #define NKolEff(M) (M).NKolEff
 #define MatElmt(M,i,j) (M).Mem[(i)][(j)]
 
+/**** Definisi type Queue ****/
+#define queueNil 0
+/* Konstanta untuk mendefinisikan queueAddress tak terdefinisi */
+
+/* Definisi elemen dan queueAddress */
+typedef int queueAddress;   /* indeks tabel */
+/* Contoh deklarasi variabel bertype Queue : */
+/* Versi I : tabel dinamik, Head dan QueueTail eksplisit, ukuran disimpan */
+typedef struct { Customer *T;   /* tabel penyimpan elemen */
+                 queueAddress HEAD;  /* alamat penghapusan */
+                 queueAddress TAIL;  /* alamat penambahan */
+                 int QueueMaxEl;     /* Max elemen queue */
+               } CustQueue;
+/* Definisi Queue kosong: HEAD=queueNil;  TAIL=Nil. */
+/* Catatan implementasi: T[0] tidak pernah dipakai */
+
+/* ********* AKSES (Selektor) ********* */
+/* Jika Q adalah Queue, maka akses elemen : */
+#define Head(Q) (Q).HEAD
+#define QueueTail(Q) (Q).TAIL
+#define InfoHead(Q) (Q).T[(Q).HEAD]
+#define InfoTail(Q) (Q).T[(Q).TAIL]
+#define QueueMaxEl(Q) (Q).QueueMaxEl
+
 /*TODO: Ganti infotype Stack menjadi Bahan/Makanan*/
 /**** Definisi type Stack ****/
 /* Kamus Umum Stack */
@@ -89,6 +145,48 @@ typedef struct {
 /**** Selektor type Stack ****/
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
+
+/**** Definisi type ListRek ****/
+typedef Kata infotypeRek;
+typedef struct tElmtlistrek *addressRek;
+typedef struct tElmtlistrek {
+	infotypeRek info;
+	addressRek next;
+} ElmtListRek;
+
+/* Definisi list : */
+/* ListRek kosong : L = Nil */
+typedef addressRek ListRek;
+
+/* Deklarasi  nama untuk variabel kerja */
+/*  	L : ListRek */
+/*  	P : addressRek 	*/
+/* Maka penulisan First(L) menjadi L */
+/*                P.info menjadi Info(P); P.next menjadi Next(P) */
+
+/* Selektor */
+#define Info(P) (P)->info
+#define Next(P) (P)->next
+
+/**** Definisi type Pohon Biner ****/
+/* typedef int infotypeRek; */ /* type infotypeRek sesuai pada modul listrek */
+typedef struct tNode *addrNode;
+typedef struct tNode {
+	infotypeRek info;
+	addrNode left;
+	addrNode right;
+} Node;
+
+/* Definisi PohonBiner : */
+/* Pohon Biner kosong : P = Nil */
+typedef addrNode BinTree;
+
+/* *** PROTOTYPE *** */
+
+/* *** Selektor *** */
+#define Akar(P) (P)->info
+#define Left(P) (P)->left
+#define Right(P) (P)->right
 
 /**** ADT Non-Olympia ****/
 
@@ -106,47 +204,17 @@ typedef struct {
 #define ElmtName(G) (G).Name
 
 typedef struct {
-  char Status; //#: pesanan belom diambil, !: pesanan sudah diambil, $: pesanan sudah dikasi
-  Kata Name; //nama makanan
-  int Nomor; //nomor meja
-} Order;
-
-/* SELEKTOR UNTUK TIPE DATA ORDER */
-#define StatOrder(O) (O).Status
-#define OrderName(O) (O).Name
-#define NoTableOrder(O) (O).Nomor
-#define NormalPrice 100
-
-
-typedef struct {
     Stack Hand;
     Stack Tray;
     POINT Position; //posisi dalam koordinat
-    Order PArr[IdxMax];
+    TabOrder PArr;
 } Player;
 
 /* SELEKTOR UNTUK TIPE DATA PLAYER */
 #define OnHand(P) (P).Hand
 #define OnTray(P) (P).Tray
 #define PosPlayer(P) (P).Position
-#define OrderList(P,i) (P).PArr[(i)]
-
-typedef struct{
-    boolean Star; //priority customer
-    int TimeQueue; //count waktu ketika mengantri
-    int TimeWaiting; //count waktu ketika menunggu makanan
-    int SumOfCustomer; //jumlah orang
-    POINT Position; //posisi saat duduk
-    Order Food; //customer mau pesan apa
-} Customer;
-
-/* SELEKTOR UNTUK TIPE DATA CUSTOMER */
-#define IsStar(C) (C).Star
-#define TimeQueue(C) (C).TimeQueue
-#define TimeWaiting(C) (C).TimeWaiting
-#define CustomerCount(C) (C).SumOfCustomer
-#define PosCustomer(C) (C).Position
-#define OrderC(C) (C).Food
+#define OrderList(P) (P).PArr
 
 typedef struct {
     POINT Point[IdxMax]; //posisi table dan kursi dalam (X,Y)
@@ -166,15 +234,16 @@ typedef struct {
 #define IsOccupied(T) (T).Occupied
 #define CustomerSeat(T) (T).Filled
 
+#define NTable 12
+
 typedef struct {
     MATRIKS Grid;
-    Table Arr[IdxMax]; //array of meja di restoran. nyimpen lokasi lokasi meja
+    Table Arr[NTable]; //array of meja di restoran. nyimpen lokasi lokasi meja
 } Room;
 
 /* SELEKTOR UNTUK TIPE DATA ROOM */
 #define Layout(R) (R).Grid
 #define TableNo(R,i) (R).Arr[(i)]
-#define NTable 12
 
 typedef struct{
     Kata Name;
@@ -191,5 +260,15 @@ typedef struct{
 
 /* SELEKTOR UNTUK TIPE DATA LOCTRAY */
 #define PosTray(L) (L).Point
+
+/**** Variabel Global ****/
+extern Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
+extern Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
+extern Room Room1;
+extern Game gameData;
+extern Player player;
+extern CustQueue waitingList;
+extern BinTree recipeTree;
+extern LocTray locationTray;
 
 #endif
