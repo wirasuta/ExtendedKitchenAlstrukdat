@@ -16,12 +16,15 @@
 
 Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
-Room Room1;
+Room room1;
 Game gameData;
 Player player;
 CustQueue waitingList;
+BinTree recipeTree;
 
 //Variabel untuk coba2
+LocTray trayLocation;
+Ingredients ujiIngd;
 Customer UjiCustomer;
 
 int main(int argc, char const *argv[]) {
@@ -43,9 +46,9 @@ int main(int argc, char const *argv[]) {
   //Inisialisasi
   InitKataCommand();
   InitGame(&gameData);
-  InitRoom(&Room1);
+  InitRoom(&room1);
   InitPlayer(&player);
-  InitMap(&Room1, PosPlayer(player));
+  InitMap(&room1, PosPlayer(player));
 
   //Inisialisasi Ujicoba
   IsStar(UjiCustomer) = false;
@@ -76,7 +79,7 @@ int main(int argc, char const *argv[]) {
             }
 
             //Kondisi Awal, TODO: Bikin fungsi draw yang dipanggil setiap setelah pemanggilan fungsi
-            TulisMATRIKS(Layout(Room1)); printf("\n");
+            TulisMATRIKS(Layout(room1)); printf("\n");
             printf("Masukkan command: ");
 
             //Loop utama game
@@ -84,16 +87,22 @@ int main(int argc, char const *argv[]) {
             while (!IsKataSama(command,KataEXIT)){
                 if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
                     //fungsi GU/GL/GD/GR
-                    move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
+                    move(&(Layout(room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
                 }
                 else if (IsKataSama(command, KataORDER)){
                     //fungsi ORDER
+                    //TODO: Get table dan customer di posisinya. Cari index kosong di array order
+                    TakeOrder(&player, &UjiCustomer, TableNo(room1, 2), 1);
                 }
                 else if (IsKataSama(command, KataPUT)){
                     //fungsi PUT
+                    //TODO: Initialize trayLocation
+                    PutToTray(&player, &recipeTree, trayLocation);
                 }
                 else if (IsKataSama(command, KataTAKE)){
                     //fungsi TAKE
+                    //TODO: Taro bahan di map
+                    TakeIngredient(&player, ujiIngd);
                 }
                 else if (IsKataSama(command, KataCH)){
                     ClearStack(&(OnHand(player)));
@@ -102,17 +111,17 @@ int main(int argc, char const *argv[]) {
                     ClearStack(&(OnTray(player)));
                 }
                 else if (IsKataSama(command, KataPLACE)){
-                    printf("%d\n", CustomerCount(InfoHead(waitingList)));
-                    printf("%d\n", TimeQueue(InfoHead(waitingList)));
-                    printf("Placing customer\n");
-                    PlaceCustomer(player, &waitingList, &(TableNo(Room1, 2)));
-                    printf("Done\n");
+                    //TODO: Cari table terdekat dengan player
+                    PlaceCustomer(player, &waitingList, &(TableNo(room1, 2)));
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE
+                    //TODO: Get table dan customer di posisinya
+                    GiveFood(&player, UjiCustomer, &(TableNo(room1, 2)), &gameData, recipeTree);
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE
+                    PrintRecipe(recipeTree, 2);
                 }
                 else if (IsKataSama(command, KataSAVE)){
                     //fungsi SAVE
@@ -126,8 +135,8 @@ int main(int argc, char const *argv[]) {
                 else {
                     printf("Command tidak valid. Silahkan input command lagi.\n");
                 }
-                InitMap(&Room1, PosPlayer(player));
-                TulisMATRIKS(Layout(Room1));
+                InitMap(&room1, PosPlayer(player));
+                TulisMATRIKS(Layout(room1));
                 printf("\n");
 
                 printf("Masukkan command: ");
