@@ -217,3 +217,17 @@ void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree){
 void PrintRecipe(BinTree P,int H){
     PrintTree(P,H);
 }
+
+void TickOrder (Room R,Table T,Customer *C){
+    int i;
+
+    for(i=1;i<=NTable;i++){
+        T = TableNo(R,i);
+        if(IsOccupied(T) == true){
+            *C = CustomerSeat(T);
+            if(StatOrder(OrderC(*C)) == '#'){
+               TimeWaiting(*C) -= 1;
+            }
+        }
+    }
+}

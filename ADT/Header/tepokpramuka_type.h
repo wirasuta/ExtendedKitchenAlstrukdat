@@ -164,6 +164,7 @@ typedef struct {
 /* SELEKTOR UNTUK TIPE DATA ROOM */
 #define Layout(R) (R).Grid
 #define TableNo(R,i) (R).Arr[(i)]
+#define NTable 12
 
 typedef struct{
     Kata Name;

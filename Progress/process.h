@@ -81,4 +81,7 @@ void GiveFood(Player *P, Customer C, Table *T, Game *G,BinTree RTree);
 void PrintRecipe(BinTree P,int H);
 //Menampilkan Pohon Resep
 
+void TickOrder (Room R,Table T,Customer *C);
+//Menguragi time waiting customer pada table sebanyak 1 tick apabila ordeeran belum diambil
+
 #endif
