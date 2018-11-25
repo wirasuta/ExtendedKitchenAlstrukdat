@@ -1,0 +1,257 @@
+# depslib dependency file v1.0
+1543166314 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mbintree.c
+	"../Impl/bintree.c"
+	"../Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543167692 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\bintree.c
+	"../Header/bintree.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543167692 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\bintree.h
+	"listrek.h"
+	"boolean.h"
+	"mesinkata.h"
+	"mesinkar.h"
+	"listrek.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\listrek.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+	"mesinkata.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\boolean.h
+
+1543169061 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\tepokpramuka_type.h
+	"boolean.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\mesinkata.h
+	"boolean.h"
+	"mesinkar.h"
+	"tepokpramuka_type.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\mesinkar.h
+	"boolean.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mmatriks.c
+	"../Impl/matriks.c"
+	"../Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\matriks.c
+	<stdio.h>
+	<stdlib.h>
+	"../Header/matriks.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\matriks.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+
+1543166314 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mqueue.c
+	"../Impl/queue.c"
+	"../Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543166314 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\queue.c
+	"../Header/queue.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543166314 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\queue.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mstack.c
+	"../Impl/stackt.c"
+	"../Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\stackt.c
+	<stdio.h>
+	"../Header/stackt.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\stackt.h
+	"boolean.h"
+	"mesinkata.h"
+	"tepokpramuka_type.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\array.c
+	"../Header/array.h"
+	"../Header/mesinkata.h"
+	<stdio.h>
+
+1543168990 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\array.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+
+1543167692 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\bintree.c
+	"../Header/bintree.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543168619 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mesinkatadriver.c
+	"../Header/mesinkata.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\jam.c
+	"../Header/jam.h"
+	<stdio.h>
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\jam.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\listdp.c
+	"../Header/listdp.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\listdp.h
+	"boolean.h"
+	<stdlib.h>
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\listrek.c
+	"../Header/listrek.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543168688 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\driverarrayorder.c
+	<stdio.h>
+	"../Header/boolean.h"
+	"../Header/array.h"
+	"../Header/mesinkata.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\matriks.c
+	<stdio.h>
+	<stdlib.h>
+	"../Header/matriks.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\mesinkar.c
+	"../Header/mesinkar.h"
+	<stdio.h>
+
+1543168694 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\customer.c
+	"../Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\mesinkata.c
+	"../Header/mesinkata.h"
+	<stdio.h>
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\point.c
+	<stdio.h>
+	<math.h>
+	"../Header/point.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\header\point.h
+	"boolean.h"
+	"tepokpramuka_type.h"
+
+1543166314 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\queue.c
+	"../Header/queue.h"
+	<stdlib.h>
+	<stdio.h>
+
+1543168723 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mlistdp.c
+	<stdio.h>
+	"../Header/listdp.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\impl\stackt.c
+	<stdio.h>
+	"../Header/stackt.h"
+
+1543168161 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\main.c
+	"ADT/Header/array.h"
+	"ADT/Header/jam.h"
+	"ADT/Header/listdp.h"
+	"ADT/Header/matriks.h"
+	"ADT/Header/mesinkar.h"
+	"ADT/Header/mesinkata.h"
+	"ADT/Header/point.h"
+	"ADT/Header/queue.h"
+	"ADT/Header/stackt.h"
+	"ADT/Header/bintree.h"
+	"ADT/Header/tepokpramuka_type.h"
+	"Progress/move.h"
+	"Progress/process.h"
+	"Progress/command.h"
+	"Progress/initialize.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\move.h
+	<stdio.h>
+	<string.h>
+	"../ADT/Header/boolean.h"
+	"../ADT/Header/matriks.h"
+	"../ADT/Header/mesinkata.h"
+
+1543168230 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.h
+	"../ADT/Header/tepokpramuka_type.h"
+	"../ADT/Header/queue.h"
+	"../ADT/Header/stackt.h"
+	"../ADT/Header/point.h"
+	"../ADT/Header/bintree.h"
+	"../ADT/Header/mesinkata.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\command.h
+	"../ADT/Header/mesinkata.h"
+
+1543151137 c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\initialize.h
+	"../ADT/Header/boolean.h"
+	"../ADT/Header/matriks.h"
+	"../ADT/Header/tepokpramuka_type.h"
+	"../ADT/Header/mesinkata.h"
+	"../ADT/Header/stackt.h"
+	"../ADT/Header/point.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\command.c
+	<stdio.h>
+	"command.h"
+	"../ADT/Header/mesinkata.h"
+
+1543168743 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mjam.c
+	<stdio.h>
+	"../Header/jam.h"
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\initialize.c
+	"initialize.h"
+	<stdio.h>
+
+1543151137 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\move.c
+	"move.h"
+	"command.h"
+
+1543168757 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\adt\driver\mpoint.c
+	"../Header/point.h"
+	<stdio.h>
+
+1543168161 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\process.c
+	"process.h"
+	<stdio.h>
+	<stdlib.h>
+
+1514140574 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\tubesalstrukdat\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1543168805 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\hardcoded\hardcodedtreeresep.c
+	<stdio.h>
+	<stdlib.h>
+	"../../ADT/Header/tepokpramuka_type.h"
+
+1543168850 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\progress\hardcoded\hardcodedcustomer.c
+	"../../ADT/Header/tepokpramuka_type.h"
+	<stdio.h>
+	<stdlib.h>
+
+1543168872 source:c:\users\user\documents\itb\if\semester 3\tubesalstrukdat\load.c
+	<stdio.h>
+	<stdlib.h>
+	"ADT/Header/mesinkata.h"
+

@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "boolean.h"
-#include "array.c"
+#include "../Header/boolean.h"
+#include "../Header/array.h"
 
 int main(){
-    TabInt T1,T2,T3;
+    TabOrder T1,T2,T3;
     int input;
     int temp;
 

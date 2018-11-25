@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include "boolean.h"
-#include "arrayOrder.c"
-#include "mesinkata.c"
-#include "mesinkar.c"
+#include "../Header/boolean.h"
+#include "../Header/array.h"
+#include "../Header/mesinkata.h"
 
 int main(){
     IdxType idx;

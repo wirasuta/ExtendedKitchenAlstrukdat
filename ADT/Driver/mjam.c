@@ -2,7 +2,7 @@
 // Pandyaka Aptanagi / 13517003
 
 #include <stdio.h>
-#include "Jam.c"
+#include "../Header/jam.h"
 
 int main ()
     {
@@ -35,7 +35,7 @@ int main ()
         (JNEQ(J1,J2)) ? printf("JNEQ bernilai true\n"):printf("JNEQ bernilai false\n");
         (JLT(J1,J2)) ? printf("JLT bernilai true\n"):printf("JLT bernilai false\n");
         (JGT(J1,J2)) ? printf("JGT bernilai true\n"):printf("JGT bernilai false\n");
-        
+
         int n;
         printf("satu detik setelah "); TulisJAM(J1); printf(" adalah "); TulisJAM(NextDetik(J1));
         printf("\n");

@@ -1,4 +1,4 @@
-#include "mesinkata.c"
+#include "../Header/mesinkata.h"
 
 int main (){
     Kata K1,K2;

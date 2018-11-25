@@ -1,4 +1,4 @@
-#include "../Header/tepokpramuka_type.h"
+#include "../../ADT/Header/tepokpramuka_type.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +14,7 @@ int main(){
     //printf("%d\n", random);
 
     arrC[0].Star = false;
-    arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[0].TimeWaiting = -999;
     arrC[0].SumOfCustomer = 2;
     arrC[0].Position.X = -999;
@@ -37,7 +37,7 @@ int main(){
     arrC[0].Food.Nomor = -999;
 
     arrC[1].Star = true;
-    arrC[1].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[1].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[1].TimeWaiting = -999;
     arrC[1].SumOfCustomer = 4;
     arrC[1].Position.X = -999;
@@ -55,7 +55,7 @@ int main(){
     arrC[1].Food.Nomor = -999;
 
     arrC[2].Star = true;
-    arrC[2].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[2].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[2].TimeWaiting = -999;
     arrC[2].SumOfCustomer = 4;
     arrC[2].Position.X = -999;
@@ -73,7 +73,7 @@ int main(){
     arrC[2].Food.Nomor = -999;
 
     arrC[3].Star = true;
-    arrC[3].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[3].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[3].TimeWaiting = -999;
     arrC[3].SumOfCustomer = 3;
     arrC[3].Position.X = -999;
@@ -99,7 +99,7 @@ int main(){
     arrC[3].Food.Nomor = -999;
 
     arrC[4].Star = true;
-    arrC[4].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[4].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[4].TimeWaiting = -999;
     arrC[4].SumOfCustomer = 1;
     arrC[4].Position.X = -999;
@@ -129,7 +129,7 @@ int main(){
     arrC[4].Food.Nomor = -999;
 
     arrC[5].Star = true;
-    arrC[5].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[5].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[5].TimeWaiting = -999;
     arrC[5].SumOfCustomer = 1;
     arrC[5].Position.X = -999;
@@ -159,7 +159,7 @@ int main(){
     arrC[5].Food.Nomor = -999;
 
     arrC[6].Star = true;
-    arrC[6].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[6].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[6].TimeWaiting = -999;
     arrC[6].SumOfCustomer = 4;
     arrC[6].Position.X = -999;
@@ -185,7 +185,7 @@ int main(){
     arrC[6].Food.Nomor = -999;
 
     arrC[7].Star = true;
-    arrC[7].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[7].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[7].TimeWaiting = -999;
     arrC[7].SumOfCustomer = 4;
     arrC[7].Position.X = -999;

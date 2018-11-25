@@ -14,7 +14,7 @@ int main(){
     //printf("%d\n", random);
 
     arrC[0].Star = false;
-    arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[0].TimeWaiting = -999;
     arrC[0].SumOfCustomer = 2;
     arrC[0].Position.X = -999;
@@ -37,7 +37,7 @@ int main(){
     arrC[0].Food.Nomor = -999;
 
     arrC[1].Star = true;
-    arrC[1].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[1].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[1].TimeWaiting = -999;
     arrC[1].SumOfCustomer = 4;
     arrC[1].Position.X = -999;
@@ -55,7 +55,7 @@ int main(){
     arrC[1].Food.Nomor = -999;
 
     arrC[2].Star = true;
-    arrC[2].TimeQueue = (rand() % (25 + 1 -15)) + 15);
+    arrC[2].TimeQueue = (rand() % (25 + 1 -15)) + 15;
     arrC[2].TimeWaiting = -999;
     arrC[2].SumOfCustomer = 4;
     arrC[2].Position.X = -999;

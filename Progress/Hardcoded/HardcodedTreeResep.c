@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tepokpramuka_type.h"
+#include "../../ADT/Header/tepokpramuka_type.h"
 
 int main(){
     Kata T[100];

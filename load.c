@@ -48,7 +48,7 @@ void load()
     }*/
 }
 
-
+/*
 int main()
 {
 
@@ -58,7 +58,7 @@ load();
 
 
 
-/*    int i,k;
+    int i,k;
     int j =1;
     STARTKATA();
     while (!EndKata) {
@@ -77,6 +77,6 @@ load();
                 }
             printf("|");
     }
-*/
+
  return 0;
-}
+} */

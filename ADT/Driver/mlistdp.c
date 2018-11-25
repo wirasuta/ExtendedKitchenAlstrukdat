@@ -2,7 +2,7 @@
 // Pandyaka A / 13517003
 
 #include <stdio.h>
-#include "listdp.c"
+#include "../Header/listdp.h"
 
 int main()
 	{
@@ -11,10 +11,10 @@ int main()
 		infotype x,y;
 		address pt,pt2;
 		int input;
-		
+
 		// Algoritma
 		CreateEmpty(&L);
-	
+
 		while(1){
 			printf("1. insertfirst\n2. insertlast\n3. delfirst\n4. dellast\n5. delp\n6. search\n7. insertafter\n8. insertbefore\n9. deleteafter\n10. deletebefore\n");
 			scanf("%d",&input);
@@ -74,7 +74,7 @@ int main()
 					DelBefore(&L,&pt2,pt);
 					printf("deleted: %d\n",Info(pt2));
 					break;
-	
+
 			}
 			PrintForward(L);printf("\n");
 			PrintBackward(L);

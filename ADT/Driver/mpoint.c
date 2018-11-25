@@ -1,7 +1,7 @@
 // Driver untuk ADT Point
 // Pandyaka A / 13517003
 
-#include "point.c"
+#include "../Header/point.h"
 #include <stdio.h>
 
 int main ()
@@ -9,7 +9,7 @@ int main ()
         // Kamus Lokal
         POINT driverpoint;
         POINT pembanding;
-        
+
 
         // Algoritma
         printf("point 1 : \n");
@@ -21,7 +21,7 @@ int main ()
 
         printf("Masukkan point untuk pembanding : \n");
         BacaPOINT(&pembanding);
-        
+
         printf("Point pembanding anda ada di : \n");
         TulisPOINT(pembanding);
         printf("\n");
@@ -45,7 +45,7 @@ int main ()
             {
                 printf("Point anda di sumbu y \n");
             }
-        
+
         printf("Next X point anda ada di :");
         driverpoint = NextX(driverpoint);
         TulisPOINT(driverpoint);
@@ -60,5 +60,5 @@ int main ()
         Geser(&driverpoint,2,3);
         TulisPOINT(driverpoint);
         printf("\n");
-        
+
     }

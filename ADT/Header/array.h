@@ -10,28 +10,6 @@
 #include "boolean.h"
 #include "tepokpramuka_type.h"
 
-/*  Kamus Umum */
-#define IdxMax 100
-/* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
-#define IdxMin 1
-/* Indeks minimum array */
-#define IdxUndef -999
-/* Indeks tak terdefinisi*/
-
-/* Definisi elemen dan koleksi objek */
-typedef struct {
-    Kata Name; //nama makanan
-    int Nomor; //nomor meja
-} InfoOrder;
-
-typedef InfoOrder ElTypeInfoOrder;
-
-typedef int IdxType;  /* type indeks */
-// typedef int ElTypeInfoOrder;   /* type elemen tabel */
-typedef struct {
-	ElTypeInfoOrder TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
-	int Neff; /* >=0, banyaknya elemen efektif */
-} TabOrder;
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabOrder, cara deklarasi dan akses: */
 /* Deklarasi : T : TabOrder */
@@ -45,11 +23,7 @@ typedef struct {
   Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
 
 /* ********** SELEKTOR ********** */
-#define Neff(T)         (T).Neff
-#define TI(T)           (T).TI
-#define Elmt(T,i)       (T).TI[(i)]
-#define ElmtOrderName(T,i)   (T).TI[(i)].Name
-#define ElmtNomor(T,i)  (T).TI[(i)].Nomor
+
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */

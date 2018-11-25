@@ -3,6 +3,14 @@
 
 #include "boolean.h"
 
+/**** Definisi type Kata ****/
+#define NMaxKata 50
+typedef struct {
+    char TabKata[NMaxKata+1]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
+    int Length;
+} Kata;
+
+
 /**** Definisi type JAM <HH:MM:SS> ****/
 typedef struct {
 	int HH; /* integer [0..23] */
@@ -29,16 +37,25 @@ typedef struct {
 #define IdxMin 1
 #define IdxUndef -999
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType;  /* type indeks */
-typedef int ElType;   /* type elemen tabel */
 typedef struct {
-	ElType TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
+    Kata Name; //nama makanan
+    int Nomor; //nomor meja
+} InfoOrder;
+
+typedef InfoOrder ElTypeInfoOrder;
+
+typedef int IdxType;  /* type indeks */
+// typedef int ElTypeInfoOrder;   /* type elemen tabel */
+typedef struct {
+	ElTypeInfoOrder TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
 	int Neff; /* >=0, banyaknya elemen efektif */
-} TabInt;
-/**** Selektor type TabInt ****/
-#define Neff(T)   (T).Neff
-#define TI(T)     (T).TI
-#define Elmt(T,i) (T).TI[(i)]
+} TabOrder;
+/**** Selektor type TabOrder ****/
+#define Neff(T)         (T).Neff
+#define TI(T)           (T).TI
+#define Elmt(T,i)       (T).TI[(i)]
+#define ElmtOrderName(T,i)   (T).TI[(i)].Name
+#define ElmtNomor(T,i)  (T).TI[(i)].Nomor
 
 /**** Definisi type MATRIKS ****/
 /* Kamus Umum MATRIKS */
@@ -58,13 +75,6 @@ typedef struct {
 #define NBrsEff(M) (M).NBrsEff
 #define NKolEff(M) (M).NKolEff
 #define MatElmt(M,i,j) (M).Mem[(i)][(j)]
-
-/**** Definisi type Kata ****/
-#define NMaxKata 50
-typedef struct {
-    char TabKata[NMaxKata+1]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
-    int Length;
-} Kata;
 
 /*TODO: Ganti infotype Stack menjadi Bahan/Makanan*/
 /**** Definisi type Stack ****/
