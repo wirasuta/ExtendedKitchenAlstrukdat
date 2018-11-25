@@ -15,4 +15,10 @@ void InitPlayer(Player *P);
 void InitRoom(Room *R);
 void InitMap(Room *R, POINT PlPoint);
 
+// RANDOM CUSTOMER MASUK KE QUEUE
+void returnCustomer(Customer *C, int N);
+void randomCustomer(Player P, CustQueue *Q);
+int randomInteger();
+boolean checkPlayerTick(Player P);
+
 #endif
