@@ -20,10 +20,12 @@ Room Room1;
 Game gameData;
 Player player;
 CustQueue waitingList;
+BinTree recipeTree;
+LocTray locationTray;
 
 //Variabel untuk coba2
 Customer ujiCustomer;
-BinTree recipeTree;
+Ingredients ujiIngredient;
 
 int main(int argc, char const *argv[]) {
   int input;
@@ -50,11 +52,32 @@ int main(int argc, char const *argv[]) {
   TimeQueue(ujiCustomer) = 30;
   TimeWaiting(ujiCustomer) = 30;
   CustomerCount(ujiCustomer) = 2;
+  PosCustomer(ujiCustomer) = MakePOINT(0, 0);
+  StatOrder(OrderC(ujiCustomer)) = '#';
+  OrderName(OrderC(ujiCustomer)).TabKata[0] = 'P';
+  OrderName(OrderC(ujiCustomer)).TabKata[1] = 'I';
+  OrderName(OrderC(ujiCustomer)).TabKata[2] = 'R';
+  OrderName(OrderC(ujiCustomer)).TabKata[3] = 'I';
+  OrderName(OrderC(ujiCustomer)).TabKata[4] = 'N';
+  OrderName(OrderC(ujiCustomer)).TabKata[5] = 'G';
+  NoTableOrder(OrderC(ujiCustomer)) = 0;
 
   CreateEmptyQueue(&waitingList, 20);
   AddQueue(&waitingList, ujiCustomer);
 
   buildRecipe(&recipeTree);
+
+  PosTray(locationTray) = MakePOINT(8, 1);
+
+  IngName(ujiIngredient).TabKata[0] = 'P';
+  IngName(ujiIngredient).TabKata[1] = 'I';
+  IngName(ujiIngredient).TabKata[2] = 'R';
+  IngName(ujiIngredient).TabKata[3] = 'I';
+  IngName(ujiIngredient).TabKata[4] = 'N';
+  IngName(ujiIngredient).TabKata[5] = 'G';
+  IngName(ujiIngredient).Length = 6;
+
+  Push(&(OnHand(player)), ujiCustomer.Food.Name);
 
   while (input!=4){
       switch (input){
@@ -88,12 +111,17 @@ int main(int argc, char const *argv[]) {
                 }
                 else if (IsKataSama(command, KataORDER)){
                     //fungsi ORDER
+                    //TODO: Update fungsi dan cari indeks kosong
+                    TakeOrder(&player, &ujiCustomer, TableNo(Room1, 2), GetFirstIdx(OrderList(player)));
+                    TulisIsiTab(OrderList(player));
                 }
                 else if (IsKataSama(command, KataPUT)){
                     //fungsi PUT
+                    PutToTray(&player, &recipeTree, locationTray);
                 }
                 else if (IsKataSama(command, KataTAKE)){
                     //fungsi TAKE
+                    TakeIngredient(&player, ujiIngredient);
                 }
                 else if (IsKataSama(command, KataCH)){
                     ClearStack(&(OnHand(player)));
@@ -106,6 +134,7 @@ int main(int argc, char const *argv[]) {
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE
+                    GiveFood(&player, ujiCustomer, &(TableNo(Room1, 2)), &gameData, recipeTree);
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE
