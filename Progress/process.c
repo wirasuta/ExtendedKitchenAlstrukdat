@@ -139,6 +139,8 @@ void TakeOrder(Player *P, Room *R){
     if (IsAbleOrder(*P,*R)) {
         NoTable = GetTableNumber(*P,*R);
         C = CustomerSeat(TableNo(*R,NoTable));
+        NoTableOrder(OrderC(C)) = NoTable;
+        OrderName(OrderC(C)) = OrderCName(C);
         AddAsLastEl(&(OrderList(*P)),OrderC(C));
         StatOrder(OrderC(C)) = '!';
     } else {
