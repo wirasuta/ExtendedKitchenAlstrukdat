@@ -39,13 +39,13 @@ boolean IsNearTable (Player P, Room R);
 int GetTableNumber (Player P, Room R);
 //mendapatkan info table yang berada di sekitar player
 
-boolean IsAbleOrder(Player P, Customer C, Room R);
+boolean IsAbleOrder(Player P, Room R);
 //untuk menentukan apakah player bisa megambil orderan dari customer
 
 boolean IsNearTray(Player P, LocTray T);
 //mengembalikan true jika posisi player berada di samping kanan/kiri/atas/bawah tray
 
-boolean IsAbleGive(Player P, Customer C, Room R);
+boolean IsAbleGive(Player P, Room R);
 //untuk menentukan apakah player bisa memberikan makanan ke customer
 
 boolean IsAbleTake(Player P, Ingredients Bahan);
@@ -58,7 +58,7 @@ void ClearStack(Stack *S);
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Room R);
+void TakeOrder(Player *P, Room *R);
 //I.S. sembarang
 //F.S mengupdate status Player dan Customer
 //Proses: mengambil order customer, cek terlebih dahulu apakah player
@@ -77,7 +77,7 @@ void TakeIngredient(Player *P, Ingredients Bahan);
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer C, Room *R, Game *G,BinTree RTree);
+void GiveFood(Player *P, Room *R, Game *G,BinTree RTree);
 //I.S sembarang
 //F.S jika tumpukan paling atas sesuai dengan order customer yang bersebelahan
 //    dengan player, maka makanan akan diberikan
