@@ -123,9 +123,9 @@ void DelQueue (CustQueue * Q, Customer * X)
 				}
 		};
 
-void SearchFitQueue(CustQueue *Q, Customer *X, int N){ 
+void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 // I.S Q tidak kosong
-//F.S 
+//F.S
 	CustQueue temp;
 	boolean found;
 	//int i;
@@ -135,8 +135,8 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 	//printf("cek\n");
 	CreateEmptyQueue(&temp, 20);
 	//printf("cek %d\n", QueueMaxEl(temp));
-	
-	//i = 1;
+
+	int i = 1;
 
 	while((!IsQueueEmpty(*Q)) && (!found)){
 		if(N == CustomerCount(InfoHead(*Q))){
