@@ -24,22 +24,6 @@ void MakeTree(infotypeRek Akar, BinTree L, BinTree R, BinTree *P){
 /* I.S. Akar, L, R terdefinisi. P Sembarang */
 /* F.S. Membentuk pohon P dengan Akar(P)=Akar, Left(P)=L, dan Right(P)=R
 		jika AlokasiRek berhasil. P = Nil jika AlokasiRek gagal. */
-BinTree BuildBalanceTree(int n){
-  if (n==0){
-    return Nil;
-  }else{
-    infotypeRek in;
-    scanf("%d", &in);
-    BinTree P = AlokNode(in);
-    n--;
-    int nRight=n/2;
-    int nLeft=n-nRight;
-    Left(P) = BuildBalanceTree(nLeft);
-    Right(P) = BuildBalanceTree(nRight);
-    return P;
-  }
-}
-/* Menghasilkan sebuah balanced tree dengan n node, nilai setiap node dibaca */
 
 /* Manajemen Memory */
 addrNode AlokNode(infotypeRek X){
@@ -104,7 +88,7 @@ boolean IsBiner(BinTree P){
 void PrintPreorder(BinTree P){
   printf("(");
   if (!IsTreeEmpty(P)) {
-    printf("%d", Akar(P));
+    printf("%s", Akar(P).TabKata);
     PrintPreorder(Left(P));
     PrintPreorder(Right(P));
   }
@@ -122,7 +106,7 @@ void PrintInorder(BinTree P){
   printf("(");
   if (!IsTreeEmpty(P)) {
     PrintInorder(Left(P));
-    printf("%d", Akar(P));
+    printf("%s", Akar(P).TabKata);
     PrintInorder(Right(P));
   }
   printf(")");
@@ -140,7 +124,7 @@ void PrintPostorder(BinTree P){
   if (!IsTreeEmpty(P)) {
     PrintPostorder(Left(P));
     PrintPostorder(Right(P));
-    printf("%d", Akar(P));
+    printf("%s", Akar(P).TabKata);
   }
   printf(")");
 }
@@ -160,7 +144,7 @@ void PrintTreeRek(BinTree P, int h, int curr_level){
         printf(" ");
       }
     }
-    printf("%d\n", Akar(P));
+    printf("%s\n", Akar(P).TabKata);
     PrintTreeRek(Left(P), h, curr_level+1);
     PrintTreeRek(Right(P), h, curr_level+1);
   }
@@ -191,7 +175,7 @@ A
 boolean SearchTree(BinTree P, infotypeRek X){
   if (IsTreeEmpty(P)){
     return false;
-  }else if (Akar(P)==X){
+  }else if (IsKataSama(Akar(P), X)){
     return true;
   }else{
     return (SearchTree(Right(P), X) || SearchTree(Left(P), X));
@@ -250,7 +234,7 @@ boolean IsSkewRight(BinTree P){
 /* Mengirimkan true jika P adalah pohon condong kanan */
 /* Pohon kosong adalah pohon condong kanan */
 double Level(BinTree P, infotypeRek X){
-  if (Akar(P)==X) {
+  if (IsKataSama(Akar(P), X)) {
     return 1;
   } else {
     if (SearchTree(Left(P), X)) {
@@ -291,7 +275,7 @@ void AddDaunTerkiri(BinTree *P, infotypeRek X){
 /* I.S. P boleh kosong */
 /* F.S. P bertambah simpulnya, dengan X sebagai simpul daun terkiri */
 void AddDaun(BinTree *P, infotypeRek X, infotypeRek Y, boolean Kiri){
-  if (IsTreeOneElmt(*P) && Akar(*P)==X) {
+  if (IsTreeOneElmt(*P) && IsKataSama(Akar(*P), X)) {
     if (Kiri){
       Left(*P) = AlokNode(Y);
     }else{
@@ -327,7 +311,7 @@ void DelDaunTerkiri(BinTree *P, infotypeRek *X){
 /* F.S. P dihapus daun terkirinya, dan dideAlokasiRek, dengan X adalah info yang semula
         disimpan pada daun terkiri yang dihapus */
 void DelDaun(BinTree *P, infotypeRek X){
-  if (IsTreeOneElmt(*P) && Akar(*P)==X) {
+  if (IsTreeOneElmt(*P) && IsKataSama(Akar(*P), X)) {
     BinTree Temp = *P;
     *P = Nil;
     DealokNode(Temp);
@@ -385,63 +369,3 @@ ListRek MakeListLevel(BinTree P, int N){
    yang levelnya=N, jika semua AlokasiRek berhasil.
    Elemen terkiri menjadi elemen pertama dari ListRek  diikuti elemen kanannya, dst.
    Menghasilkan ListRek kosong jika ada AlokasiRek yang gagal. */
-
-/* *** Binary  Search  Tree  *** */
-boolean BSearch(BinTree P, infotypeRek X){
-  if (IsTreeEmpty(P)){
-    return false;
-  }else if (Akar(P)==X){
-    return true;
-  }else if (X<Akar(P)){
-    return BSearch(Left(P), X);
-  }else{
-    return BSearch(Right(P), X);
-  }
-}
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-
-void InsSearch(BinTree *P, infotypeRek X){
-  if (IsTreeEmpty(*P)){
-    MakeTree(X, Nil, Nil, P);
-  } else {
-    if (X<Akar(*P)) {
-      InsSearch(&(Left(*P)), X);
-    } else {
-      InsSearch(&(Right(*P)), X);
-    }
-  }
-}
-/* Menghasilkan sebuah pohon Binary Search Tree P dengan tambahan simpul X. Belum ada simpul P yang bernilai X. */
-
-void DelNode(BinTree *P, BinTree *Q){
-  if (Right(*P)!=Nil){
-    DelNode(&(Right(*P)),Q);
-  }else{
-    Akar(*Q) = Akar(*P);
-    *Q = *P;
-    *P = Left(*P);
-  }
-}
-
-void DelBtree(BinTree *P, infotypeRek X){
-  if (X<Akar(*P)) {
-    DelBtree(&(Left(*P)), X);
-  } else if (X>Akar(*P)){
-    DelBtree(&(Right(*P)), X);
-  } else {
-    BinTree Temp = *P;
-    if (IsTreeOneElmt(*P)) {
-      *P = Nil;
-    } else if (IsUnerLeft(*P)) {
-      *P = Left(*P);
-    } else if (IsUnerRight(*P)) {
-      *P = Right(*P);
-    } else {
-      DelNode(&(Left(*P)),&Temp);
-    }
-    DealokNode(Temp);
-  }
-}
-/* I.S. Pohon P tidak  kosong */
-/* F.S. Nilai X yang dihapus pasti ada */
-/* Sebuah node dengan nilai X dihapus */

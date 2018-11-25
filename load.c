@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mesinkata.c"
+#include "ADT/Header/mesinkata.h"
 
 void load()
 {
