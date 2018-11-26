@@ -52,6 +52,15 @@ int main(int argc, char const *argv[]) {
       InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
     }
   }
+  
+  printf("%p\n", SearchNode(RoomGraph(gameData), 1));
+  printf("%p\n", SearchNode(RoomGraph(gameData), 2));
+  printf("%p\n", SearchNode(RoomGraph(gameData), 3));
+  printf("%p\n", SearchNode(RoomGraph(gameData), 4));
+  printf("%p\n", SearchNode(RoomGraph(gameData), 5));
+  
+  printf("%p\n", SearchEdgeNode(RoomGraph(gameData), MakePOINT(5, 8), 1, 1));
+
 
   //Inisialisasi Ujicoba
   IsStar(ujiCustomer) = false;
