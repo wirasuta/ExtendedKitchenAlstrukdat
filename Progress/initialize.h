@@ -15,6 +15,7 @@
 void InitGame(Game *G);
 void InitPlayer(Player *P);
 void InitRoom(Room *R);
+void InitDapur(Room *R);
 void InitMap(Room *R, POINT PlPoint);
 void InitGraph(GRAPH *Gr);
 

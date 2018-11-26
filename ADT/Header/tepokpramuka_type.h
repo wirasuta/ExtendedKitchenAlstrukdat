@@ -278,6 +278,7 @@ typedef struct{
 
 typedef struct{
     POINT Point;
+    Kata Bahan;
 } LocTray;
 
 /* SELEKTOR UNTUK TIPE DATA LOCTRAY */
@@ -307,6 +308,6 @@ extern Game gameData;
 extern Player player;
 extern CustQueue waitingList;
 extern BinTree recipeTree;
-extern LocTray locationTray;
+extern LocTray locationTray[16];
 
 #endif
