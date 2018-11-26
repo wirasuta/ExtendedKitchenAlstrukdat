@@ -47,9 +47,9 @@ int main(int argc, char const *argv[]) {
   int roomCount;
   for (roomCount = 1; roomCount <= 4; roomCount++) {
     if (RoomID(player)==roomCount) {
-      InitMap(&(Ruang(gameData, i)), PosPlayer(player));
+      InitMap(&(Ruang(gameData, roomCount)), PosPlayer(player));
     } else {
-      InitMap(&(Ruang(gameData, i)), MakePOINT(0, 0));
+      InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
     }
   }
 
@@ -105,7 +105,7 @@ int main(int argc, char const *argv[]) {
             }
 
             //Kondisi Awal, TODO: Bikin fungsi draw yang dipanggil setiap setelah pemanggilan fungsi
-            TulisMATRIKS(Layout(Room1)); printf("\n");
+            TulisMATRIKS(Layout(Ruang(gameData, RoomID(player)))); printf("\n");
             printf("Masukkan command: ");
 
             //Loop utama game
@@ -114,7 +114,7 @@ int main(int argc, char const *argv[]) {
                 if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
 
                     //fungsi GU/GL/GD/GR
-                    move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command, &(RoomID(player)));
+                    move(&(Layout(Ruang(gameData, RoomID(player)))), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command, &(RoomID(player)));
                     printf("\n");
                     randomCustomer(player, &waitingList);
                     printf("player tick: %d\n", PlayerTick(player));
@@ -127,48 +127,48 @@ int main(int argc, char const *argv[]) {
 
                     //fungsi ORDER
                     //TODO: Update fungsi dan cari indeks kosong
-                    TakeOrder(&player, &Room1);
+                    TakeOrder(&player, &(Ruang(gameData, RoomID(player))));
                     TulisIsiTab(OrderList(player));
 
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataPUT)){
                     //fungsi PUT
                     PutToTray(&player, &recipeTree, locationTray);
 
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataTAKE)){
                     //fungsi TAKE
                     TakeIngredient(&player, ujiIngredient);
 
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataCH)){
                     ClearStack(&(OnHand(player)));
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataCT)){
                     ClearStack(&(OnTray(player)));
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataPLACE)){
-                    PlaceCustomer(player, &waitingList, &Room1);
+                    PlaceCustomer(player, &waitingList, &(Ruang(gameData, RoomID(player))));
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
 
-                    printf("%d\n", IsOccupied(TableNo(Room1, 1)));
+                    printf("%d\n", IsOccupied(TableNo(Ruang(gameData, RoomID(player)), 1)));
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE
-                    GiveFood(&player, &Room1, &gameData, recipeTree);
+                    GiveFood(&player, &(Ruang(gameData, RoomID(player))), &gameData, recipeTree);
                     PlayerTick(player)++;
-                    CheckTickOrder(&Room1);
+                    CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataRECIPE)){
                     //fungsi RECIPE
@@ -186,8 +186,14 @@ int main(int argc, char const *argv[]) {
                 else {
                     printf("Command tidak valid. Silahkan input command lagi.\n");
                 }
-                InitMap(&Room1, PosPlayer(player));
-                TulisMATRIKS(Layout(Room1));
+                for (roomCount = 1; roomCount <= 4; roomCount++) {
+                  if (RoomID(player)==roomCount) {
+                    InitMap(&(Ruang(gameData, roomCount)), PosPlayer(player));
+                  } else {
+                    InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
+                  }
+                }
+                TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
 
                 printf("Masukkan command: ");

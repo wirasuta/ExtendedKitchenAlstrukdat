@@ -88,4 +88,6 @@ void PrintRecipe(BinTree P,int H);
 void TickOrder (Room *R);
 //Menguragi time waiting customer pada table sebanyak 1 tick apabila ordeeran belum diambil
 
+void CheckTickOrder (Room *R);
+
 #endif

@@ -11,7 +11,7 @@ GRAPH CreateGraph (adrNode X){
 	return G;
 }
 
-adrNode AlokNode (int ID){
+adrNode AlokNodeGr (int ID){
 	adrNode P = (adrNode) malloc(sizeof(RoomNode));
 	if (P != NULL) {
 		RoomNumber(P) = ID;
@@ -21,7 +21,7 @@ adrNode AlokNode (int ID){
 	return P;
 }
 
-void DealokNode (adrNode P){
+void DealokNodeGr (adrNode P){
 	free(P);
 }
 
