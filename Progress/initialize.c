@@ -7,6 +7,11 @@ void InitGame(Game *G){
   ElmtName(*G).Length = 0;
   Life(*G) = 5;
   Money(*G) = 0;
+  InitRoom(&(Ruang(*G,1)));
+  InitRoom(&(Ruang(*G,2)));
+  InitRoom(&(Ruang(*G,3)));
+  InitRoom(&(Ruang(*G,4)));
+  InitGraph(&(RoomGraph(*G)));
 }
 
 void InitPlayer(Player *P){
@@ -14,6 +19,7 @@ void InitPlayer(Player *P){
   CreateEmptyStack(&(OnTray(*P)));
   PlayerTick(*P) = (rand() % (50 + 1 - 10)) + 10;
   PosPlayer(*P) =  MakePOINT(3, 4);
+  RoomID(*P) = 1;
 }
 
 void InitMap(Room *R, POINT PlPoint){
@@ -46,6 +52,36 @@ void InitMap(Room *R, POINT PlPoint){
       }
     }
   }
+}
+
+void InitGraph(GRAPH *G){
+  adrNode R1 = AlokNodeGr(1);
+  adrNode R2 = AlokNodeGr(2);
+  adrNode R3 = AlokNodeGr(3);
+  adrNode R4 = AlokNodeGr(4);
+
+  *G = CreateGraph(R1);
+  NextNode(R1) = R2;
+  NextNode(R2) = R3;
+  NextNode(R3) = R4;
+
+  adrEdgeNode E12 = AlokEdgeNode(*G, MakePOINT(5, 8), MakePOINT(2, 1), 2);
+  adrEdgeNode E21 = AlokEdgeNode(*G, MakePOINT(2, 1), MakePOINT(5, 8), 2);
+  adrEdgeNode E23 = AlokEdgeNode(*G, MakePOINT(8, 5), MakePOINT(1, 5), 3);
+  adrEdgeNode E32 = AlokEdgeNode(*G, MakePOINT(1, 5), MakePOINT(8, 5), 2);
+  adrEdgeNode E34 = AlokEdgeNode(*G, MakePOINT(2, 1), MakePOINT(5, 8), 4);
+  adrEdgeNode E43 = AlokEdgeNode(*G, MakePOINT(5, 8), MakePOINT(2, 1), 3);
+  adrEdgeNode E14 = AlokEdgeNode(*G, MakePOINT(8, 5), MakePOINT(1, 5), 4);
+  adrEdgeNode E41 = AlokEdgeNode(*G, MakePOINT(1, 5), MakePOINT(8, 5), 1);
+
+  addEdgeNode(&R1, E12);
+  addEdgeNode(&R1, E14);
+  addEdgeNode(&R2, E21);
+  addEdgeNode(&R2, E23);
+  addEdgeNode(&R3, E32);
+  addEdgeNode(&R3, E34);
+  addEdgeNode(&R4, E41);
+  addEdgeNode(&R4, E43);
 }
 
 void InitRoom(Room *R){

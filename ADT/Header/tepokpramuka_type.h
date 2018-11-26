@@ -190,26 +190,43 @@ typedef addrNode BinTree;
 #define Left(P) (P)->left
 #define Right(P) (P)->right
 
+/**** ADT Graph/Variasi MultiList ****/
+typedef struct tRoomNode *adrNode;
+typedef struct tEdgeNode *adrEdgeNode;
+typedef struct tRoomNode {
+  int Id;
+  adrEdgeNode Trail;
+  adrNode Next;
+} RoomNode;
+
+typedef struct tEdgeNode {
+  POINT TransitTile;
+  POINT DestTile;
+  adrNode NextRoom;
+  adrEdgeNode Next;
+} EdgeNode;
+
+typedef struct{
+  adrNode First;
+}GRAPH;
+
+#define FirstNodeGraph(G) (G).First
+#define RoomNumber(Node) (Node)->Id
+#define Trail(Node) (Node)->Trail
+#define TransitTile(EdgeNode) (EdgeNode)->TransitTile
+#define DestTile(EdgeNode) (EdgeNode)->DestTile
+#define NextNode(Node) (Node)->Next
+#define NextTile(EdgeNode) (EdgeNode)->Next
+#define NextRoom(EdgeNode) (EdgeNode)->NextRoom
+
 /**** ADT Non-Olympia ****/
-
-typedef struct {
-    int Life;
-    double Money;
-    JAM Time;
-    Kata Name; //nama player
-} Game;
-
-/* SELEKTOR UNTUK TIPE DATA GAME */
-#define Life(G) (G).Life
-#define Money(G) (G).Money
-#define Tick(G) (G).Time
-#define ElmtName(G) (G).Name
 
 typedef struct {
     Stack Hand;
     Stack Tray;
     int Tick;
     POINT Position; //posisi dalam koordinat
+    int RoomID;
     TabOrder PArr;
 } Player;
 
@@ -219,6 +236,7 @@ typedef struct {
 #define PlayerTick(P) (P).Tick
 #define PosPlayer(P) (P).Position
 #define OrderList(P) (P).PArr
+#define RoomID(P) (P).RoomID
 
 typedef struct {
     POINT Point[IdxMax]; //posisi table dan kursi dalam (X,Y)
@@ -265,10 +283,26 @@ typedef struct{
 /* SELEKTOR UNTUK TIPE DATA LOCTRAY */
 #define PosTray(L) (L).Point
 
+typedef struct {
+    int Life;
+    double Money;
+    JAM Time;
+    Kata Name; //nama player
+    Room Ruang[5];
+    GRAPH RuangConnection;
+} Game;
+
+/* SELEKTOR UNTUK TIPE DATA GAME */
+#define Life(G) (G).Life
+#define Money(G) (G).Money
+#define Tick(G) (G).Time
+#define ElmtName(G) (G).Name
+#define RoomGraph(G) (G).RuangConnection
+#define Ruang(G,i) (G).Ruang[i]
+
 /**** Variabel Global ****/
 extern Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 extern Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
-extern Room Room1;
 extern Game gameData;
 extern Player player;
 extern CustQueue waitingList;

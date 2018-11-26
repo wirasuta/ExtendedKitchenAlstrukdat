@@ -8,15 +8,16 @@
 #include "../ADT/Header/boolean.h"
 #include "../ADT/Header/matriks.h"
 #include "../ADT/Header/mesinkata.h"
+#include "../ADT/Header/roomgraph.h"
 
 boolean pathFilled(MATRIKS M, int x , int Y);
 // Menghasilkan true jika "kotak" sudah terisi
 
-void newCoordinate(MATRIKS M , int *X, int *Y, Kata command);
+void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID);
 // I.S : Sembarang
 // F.S : Menghasilkan koordinat baru untuk move player
 
-void move(MATRIKS *M, int *X , int *Y, Kata command);
+void move(MATRIKS *M, int *X, int *Y,Kata command, int *roomID);
 // I.S : Sembarang
 // F.S : Memindahkan player menuju koordinat baru sesuai perintah
 

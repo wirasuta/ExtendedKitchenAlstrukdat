@@ -1,7 +1,6 @@
 #include "move.h"
 #include "command.h"
 
-//
 
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
@@ -9,7 +8,7 @@ boolean pathFilled(MATRIKS M ,int X, int Y)
     // tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
 }
 
-void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
+void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
 {
     if (IsKataSama(command, KataGU))
     {
@@ -19,7 +18,19 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         }
         else if ( (*X-1) < 1 )
         {
-            printf("You can't move through a wall, duh");
+            int i=0;
+            adrEdgeNode nextRoom = Nil;
+            while (i<=4 && nextRoom==Nil) {
+              i++;
+              nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+            }
+            if (nextRoom != Nil) {
+              *roomID = i;
+              *X = Absis(DestTile(nextRoom));
+              *Y = Ordinat(DestTile(nextRoom));
+            }else{
+              printf("You can't move through a wall, duh");
+            }
         }
         else
         {
@@ -34,7 +45,19 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         }
         else if ( (*X+1) > 8 )
         {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = i;
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
             printf("You can't move through a wall, duh");
+          }
         }
         else
         {
@@ -47,9 +70,21 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         {
          printf("Path is Filled! \n");
         }
-        else if ( (*Y+1) < 1 )
+        else if ( (*Y-1) < 1 )
         {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = i;
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
             printf("You can't move through a wall, duh");
+          }
         }
         else
         {
@@ -64,7 +99,19 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
         }
         else if ( (*Y+1) > 8 )
         {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = i;
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
             printf("You can't move through a wall, duh");
+          }
         }
         else
         {
@@ -73,9 +120,9 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command)
     }
 }
 
-void move(MATRIKS *M, int *X, int *Y,Kata command)
+void move(MATRIKS *M, int *X, int *Y,Kata command, int *roomID)
 {
-        newCoordinate(*M, Y, X, command);
+        newCoordinate(*M, Y, X, command, roomID);
 }
 
 

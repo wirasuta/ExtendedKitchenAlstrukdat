@@ -1,6 +1,6 @@
 #include "ADT/Header/array.h"
 #include "ADT/Header/jam.h"
-#include "ADT/Header/listlinier.h"
+#include "ADT/Header/roomgraph.h"
 #include "ADT/Header/matriks.h"
 #include "ADT/Header/mesinkar.h"
 #include "ADT/Header/mesinkata.h"
@@ -16,7 +16,6 @@
 
 Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
-Room Room1;
 Game gameData;
 Player player;
 CustQueue waitingList;
@@ -44,9 +43,15 @@ int main(int argc, char const *argv[]) {
   }
   InitKataCommand();
   InitGame(&gameData);
-  InitRoom(&Room1);
   InitPlayer(&player);
-  InitMap(&Room1, PosPlayer(player));
+  int roomCount;
+  for (roomCount = 1; roomCount <= 4; roomCount++) {
+    if (RoomID(player)==roomCount) {
+      InitMap(&(Ruang(gameData, i)), PosPlayer(player));
+    } else {
+      InitMap(&(Ruang(gameData, i)), MakePOINT(0, 0));
+    }
+  }
 
   //Inisialisasi Ujicoba
   IsStar(ujiCustomer) = false;
@@ -109,7 +114,7 @@ int main(int argc, char const *argv[]) {
                 if (IsKataSama(command, KataGU) || IsKataSama(command, KataGL) || IsKataSama(command, KataGD) || IsKataSama(command, KataGR)){
 
                     //fungsi GU/GL/GD/GR
-                    move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command);
+                    move(&(Layout(Room1)), &(Absis(PosPlayer(player))), &(Ordinat(PosPlayer(player))), command, &(RoomID(player)));
                     printf("\n");
                     randomCustomer(player, &waitingList);
                     printf("player tick: %d\n", PlayerTick(player));
