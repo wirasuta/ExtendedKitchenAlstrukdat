@@ -44,7 +44,7 @@ void DealokEdgeNode (adrEdgeNode P){
 adrNode SearchNode (GRAPH G, int X){
 	adrNode Pg;
 	Pg = FirstNodeGraph(G);
-	while(Pg != Nil){
+	while(Pg != Nil && X != RoomNumber(Pg)){
 		Pg = NextNode(Pg);
 	}
 	return Pg;
@@ -54,7 +54,7 @@ adrEdgeNode SearchEdgeNode (GRAPH G, POINT TransitTile, int ID, int IDNext){
 	adrNode P = SearchNode(G, ID);
 	adrEdgeNode PTrail = Trail(P);
 	if (PTrail!=Nil) {
-		while (NextTile(PTrail) != Nil && NEQ(TransitTile(PTrail),TransitTile)) {
+		while (PTrail != Nil && NEQ(TransitTile(PTrail),TransitTile)) {
 			PTrail = NextTile(PTrail);
 		}
 	}
