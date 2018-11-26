@@ -52,13 +52,13 @@ int main(int argc, char const *argv[]) {
       InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
     }
   }
-  
+
   printf("%p\n", SearchNode(RoomGraph(gameData), 1));
   printf("%p\n", SearchNode(RoomGraph(gameData), 2));
   printf("%p\n", SearchNode(RoomGraph(gameData), 3));
   printf("%p\n", SearchNode(RoomGraph(gameData), 4));
   printf("%p\n", SearchNode(RoomGraph(gameData), 5));
-  
+
   printf("%p\n", SearchEdgeNode(RoomGraph(gameData), MakePOINT(5, 8), 1, 1));
 
 
@@ -140,7 +140,6 @@ int main(int argc, char const *argv[]) {
                     //fungsi ORDER
                     //TODO: Update fungsi dan cari indeks kosong
                     TakeOrder(&player, &(Ruang(gameData, RoomID(player))));
-                    TulisIsiTab(OrderList(player));
 
                     PlayerTick(player)++;
                     //counter customer ngantri
@@ -227,6 +226,11 @@ int main(int argc, char const *argv[]) {
                   }
                 }
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
+                printf("\n");
+                printf("ANTRIAN PELANGGAN :\n");
+                PrintQueue(waitingList);
+                printf("ORDERAN PELANGGAN :\n");
+                TulisIsiTab(OrderList(player));
                 printf("\n");
 
                 printf("Masukkan command: ");

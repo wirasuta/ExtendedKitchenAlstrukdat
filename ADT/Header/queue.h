@@ -48,5 +48,8 @@ void addTick(CustQueue *Q);
 
 void del0Tick(CustQueue *Q);
 
+void PrintQueue(CustQueue Q);
+//print antrian customer
+
 
 #endif
