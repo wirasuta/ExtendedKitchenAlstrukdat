@@ -317,7 +317,7 @@ void randomCustomer(Player P, CustQueue *Q){
     //boolean tickCount;
 
     if (checkPlayerTick(P)){
-        random = randomInteger();
+        random = (rand() % 8);
         returnCustomer(&C, random);
         AddQueue(Q, C);
     }
