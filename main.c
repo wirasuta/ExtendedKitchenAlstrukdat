@@ -122,6 +122,9 @@ int main(int argc, char const *argv[]) {
                     printf("N Queue: %d\n", NBElmtQueue(waitingList));
 
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                 }
                 else if (IsKataSama(command, KataORDER)){
 
@@ -131,6 +134,9 @@ int main(int argc, char const *argv[]) {
                     TulisIsiTab(OrderList(player));
 
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataPUT)){
@@ -138,6 +144,9 @@ int main(int argc, char const *argv[]) {
                     PutToTray(&player, &recipeTree, locationTray);
 
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataTAKE)){
@@ -145,21 +154,33 @@ int main(int argc, char const *argv[]) {
                     TakeIngredient(&player, ujiIngredient);
 
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataCH)){
                     ClearStack(&(OnHand(player)));
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataCT)){
                     ClearStack(&(OnTray(player)));
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataPLACE)){
                     PlaceCustomer(player, &waitingList, &(Ruang(gameData, RoomID(player))));
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
 
                     printf("%d\n", IsOccupied(TableNo(Ruang(gameData, RoomID(player)), 1)));
@@ -168,6 +189,9 @@ int main(int argc, char const *argv[]) {
                     //fungsi GIVE
                     GiveFood(&player, &(Ruang(gameData, RoomID(player))), &gameData, recipeTree);
                     PlayerTick(player)++;
+                    //counter customer ngantri
+                    addTick(&waitingList);
+                    del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
                 }
                 else if (IsKataSama(command, KataRECIPE)){
