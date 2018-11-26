@@ -162,7 +162,7 @@ void SearchFitQueue(CustQueue *Q, Customer *X, int N){
 	while(!IsQueueEmpty(temp)){
 		DelQueue(&temp, &C);
 		AddQueue(Q,C);
-		
+
 	}
 
 }
@@ -205,4 +205,13 @@ void del0Tick(CustQueue *Q){
 		DelQueue(&temp, &C);
 		AddQueue(Q, C);
 	}
+}
+
+void PrintQueue(CustQueue Q){
+    Customer C;
+
+    while(Head(Q) != queueNil){
+        printf("%d ",InfoHead(Q).SumOfCustomer);
+        DelQueue(&Q,&C);
+    }
 }
