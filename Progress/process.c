@@ -164,12 +164,14 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
                 AddQueue(Q,CustTemp);
             } else {
                 NoTable = GetTableNumber(P,*R);
+                TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
                 CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
                 IsOccupied(TableNo(*R,NoTable)) = true;
             }
         } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
         if(IsAblePlace(P,InfoTail(*Q),*R)) {
             DelQueue(Q,&CustTemp);
+            TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
             CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
             IsOccupied(TableNo(*R,NoTable)) = true;
         }
@@ -262,16 +264,33 @@ void PrintRecipe(BinTree P,int H){
     PrintTree(P,H);
 }
 
-void TickOrder (Room R,Customer *C){
+void TickOrder (Room *R){
     int i;
+    Customer C;
     Table T;
 
     for(i=1;i<=NTable;i++){
-        T = TableNo(R,i);
+        T = TableNo(*R,i);
         if(IsOccupied(T) == true){
-            *C = CustomerSeat(T);
-            if(StatOrder(OrderC(*C)) == '#'){
-               TimeWaiting(*C) -= 1;
+            C = CustomerSeat(T);
+            if(StatOrder(OrderC(C)) == '#'){
+               TimeWaiting(C) -= 1;
+            }
+        }
+    }
+}
+
+void CheckTickOrder (Room *R){
+    int i;
+    Customer C;
+    Table T;
+
+    for(i=1;i<=NTable;i++){
+        T = TableNo(*R,i);
+        if(IsOccupied(T) == true){
+            C = CustomerSeat(T);
+            if(TimeWaiting(C) == 0 ){
+               IsOccupied(T) = false;
             }
         }
     }
