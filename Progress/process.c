@@ -51,11 +51,15 @@ boolean IsNearTray(Player P, LocTray T){
                || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,-1)) || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,1)));
 }
 
-boolean IsAbleOrder(Player P, Customer C, Room R){
+boolean IsAbleOrder(Player P, Room R){
     boolean check;
+    Customer C;
+    int NoTable;
 
     check = false;
     if (IsNearTable(P,R)){
+        NoTable = GetTableNumber(P,R);
+        C = CustomerSeat(TableNo(R,NoTable));
         if(StatOrder(OrderC(C)) == '#'){
             check = true;
         }
@@ -66,11 +70,15 @@ boolean IsAbleOrder(Player P, Customer C, Room R){
 //mengembalikas true jika player bisa megambil orderan dari customer,
 //yaitu jika player berada di samping customer
 
-boolean IsAbleGive(Player P, Customer C, Room R){
+boolean IsAbleGive(Player P, Room R){
     boolean check;
+    Customer C;
+    int NoTable;
 
     check = false;
     if (IsNearTable(P,R)) {
+        NoTable = GetTableNumber(P,R);
+        C = CustomerSeat(TableNo(R,NoTable));
         if(StatOrder(OrderC(C)) == '!' && IsKataSama(InfoTop(OnTray(P)),OrderName(OrderC(C)))) {
             check = true;
         }
@@ -111,7 +119,6 @@ boolean IsAblePlace(Player P, Customer C, Room R){
             }
         }
     }
-    printf("%d\n", check);
     return(check);
 
 }
@@ -125,11 +132,17 @@ void ClearStack(Stack *S){
 //membuang seluruh bahan makanan yang ada di tangan maupun di tray
 // digunakan untuk CH dan CT
 
-void TakeOrder(Player *P, Customer *C, Room R){
+void TakeOrder(Player *P, Room *R){
+    Customer C;
+    int NoTable;
 
-    if (IsAbleOrder(*P,*C,R)) {
-        AddAsLastEl(&(OrderList(*P)),OrderC(*C));
-        StatOrder(OrderC(*C)) = '!';
+    if (IsAbleOrder(*P,*R)) {
+        NoTable = GetTableNumber(*P,*R);
+        C = CustomerSeat(TableNo(*R,NoTable));
+        NoTableOrder(OrderC(C)) = NoTable;
+        OrderName(OrderC(C)) = OrderCName(C);
+        AddAsLastEl(&(OrderList(*P)),OrderC(C));
+        StatOrder(OrderC(C)) = '!';
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
     }
@@ -151,12 +164,14 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
                 AddQueue(Q,CustTemp);
             } else {
                 NoTable = GetTableNumber(P,*R);
+                TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
                 CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
                 IsOccupied(TableNo(*R,NoTable)) = true;
             }
         } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
         if(IsAblePlace(P,InfoTail(*Q),*R)) {
             DelQueue(Q,&CustTemp);
+            TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
             CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
             IsOccupied(TableNo(*R,NoTable)) = true;
         }
@@ -226,12 +241,12 @@ void TakeIngredient(Player *P, Ingredients Bahan){
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand
 
-void GiveFood(Player *P, Customer C, Room *R, Game *G,BinTree RTree){
+void GiveFood(Player *P, Room *R, Game *G,BinTree RTree){
     Kata orinput;
     double Koef;
     int NoTable;
 
-    if (IsAbleGive(*P,C,*R)){
+    if (IsAbleGive(*P,*R)){
         Pop(&OnTray(*P),&orinput);
         Koef = Level(RTree,orinput);
         Money(*G) += (NormalPrice * Koef);
@@ -249,16 +264,33 @@ void PrintRecipe(BinTree P,int H){
     PrintTree(P,H);
 }
 
-void TickOrder (Room R,Customer *C){
+void TickOrder (Room *R){
     int i;
+    Customer C;
     Table T;
 
     for(i=1;i<=NTable;i++){
-        T = TableNo(R,i);
+        T = TableNo(*R,i);
         if(IsOccupied(T) == true){
-            *C = CustomerSeat(T);
-            if(StatOrder(OrderC(*C)) == '#'){
-               TimeWaiting(*C) -= 1;
+            C = CustomerSeat(T);
+            if(StatOrder(OrderC(C)) == '#'){
+               TimeWaiting(C) -= 1;
+            }
+        }
+    }
+}
+
+void CheckTickOrder (Room *R){
+    int i;
+    Customer C;
+    Table T;
+
+    for(i=1;i<=NTable;i++){
+        T = TableNo(*R,i);
+        if(IsOccupied(T) == true){
+            C = CustomerSeat(T);
+            if(TimeWaiting(C) == 0 ){
+               IsOccupied(T) = false;
             }
         }
     }
