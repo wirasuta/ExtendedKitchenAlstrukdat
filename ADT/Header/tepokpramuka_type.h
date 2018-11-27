@@ -259,6 +259,7 @@ typedef struct {
 #define NTable 4
 
 typedef struct {
+    int ID;
     MATRIKS Grid;
     Table Arr[NTable]; //array of meja di restoran. nyimpen lokasi lokasi meja
 } Room;
@@ -308,6 +309,6 @@ extern Game gameData;
 extern Player player;
 extern CustQueue waitingList;
 extern BinTree recipeTree;
-extern LocTray locationTray[16];
+extern LocTray locationTray;
 
 #endif

@@ -18,12 +18,12 @@ void InitPlayer(Player *P){
   CreateEmptyStack(&(OnHand(*P)));
   CreateEmptyStack(&(OnTray(*P)));
   PlayerTick(*P) = (rand() % (50 + 1 - 10)) + 10;
-  PosPlayer(*P) =  MakePOINT(3, 4);
+  PosPlayer(*P) =  MakePOINT(5, 5);
   RoomID(*P) = 1;
 }
 
 void InitMap(Room *R, POINT PlPoint){
-  MakeMATRIKS(8, 8, &(Layout(*R)));
+  MakeMATRIKS(10, 10, &(Layout(*R)));
   int i,j,x;
   int tableCount = 4;
   for (i = GetFirstIdxBrs(Layout(*R)); i <= GetLastIdxBrs(Layout(*R)); i++) {
@@ -66,7 +66,7 @@ void InitGraph(GRAPH *G){
   NextNode(R3) = R4;
 
   adrEdgeNode E12 = AlokEdgeNode(*G, MakePOINT(5, 8), MakePOINT(2, 1), 2);
-  adrEdgeNode E21 = AlokEdgeNode(*G, MakePOINT(2, 1), MakePOINT(5, 8), 2);
+  adrEdgeNode E21 = AlokEdgeNode(*G, MakePOINT(2, 1), MakePOINT(5, 8), 1);
   adrEdgeNode E23 = AlokEdgeNode(*G, MakePOINT(8, 5), MakePOINT(1, 5), 3);
   adrEdgeNode E32 = AlokEdgeNode(*G, MakePOINT(1, 5), MakePOINT(8, 5), 2);
   adrEdgeNode E34 = AlokEdgeNode(*G, MakePOINT(2, 1), MakePOINT(5, 8), 4);
@@ -85,10 +85,9 @@ void InitGraph(GRAPH *G){
 }
 
 void InitRoom(Room *R){
-  //TODO : Ganti jadi baca dari file external
-  PosTable(TableNo(*R, 1), 0) = MakePOINT(2, 2);
-  PosTable(TableNo(*R, 2), 0) = MakePOINT(7, 2);
-  PosTable(TableNo(*R, 3), 0) = MakePOINT(2, 7);
+  PosTable(TableNo(*R, 1), 0) = MakePOINT(3, 3);
+  PosTable(TableNo(*R, 2), 0) = MakePOINT(7, 4);
+  PosTable(TableNo(*R, 3), 0) = MakePOINT(3, 8);
   PosTable(TableNo(*R, 4), 0) = MakePOINT(7, 7);
   Capacity(TableNo(*R, 1)) = 4;
   Capacity(TableNo(*R, 2)) = 2;
@@ -98,18 +97,18 @@ void InitRoom(Room *R){
   IsOccupied(TableNo(*R, 2)) = false;
   IsOccupied(TableNo(*R, 3)) = false;
   IsOccupied(TableNo(*R, 4)) = false;
-  PosTable(TableNo(*R, 1), 1) = MakePOINT(1, 2);
-  PosTable(TableNo(*R, 1), 2) = MakePOINT(3, 2);
-  PosTable(TableNo(*R, 1), 3) = MakePOINT(2, 1);
-  PosTable(TableNo(*R, 1), 4) = MakePOINT(2, 3);
-  PosTable(TableNo(*R, 2), 1) = MakePOINT(6, 2);
-  PosTable(TableNo(*R, 2), 2) = MakePOINT(8, 2);
-  PosTable(TableNo(*R, 2), 3) = MakePOINT(7, 1);
-  PosTable(TableNo(*R, 2), 4) = MakePOINT(7, 3);
-  PosTable(TableNo(*R, 3), 1) = MakePOINT(1, 7);
-  PosTable(TableNo(*R, 3), 2) = MakePOINT(3, 7);
-  PosTable(TableNo(*R, 3), 3) = MakePOINT(2, 6);
-  PosTable(TableNo(*R, 3), 4) = MakePOINT(2, 8);
+  PosTable(TableNo(*R, 1), 1) = MakePOINT(2, 3);
+  PosTable(TableNo(*R, 1), 2) = MakePOINT(4, 3);
+  PosTable(TableNo(*R, 1), 3) = MakePOINT(3, 2);
+  PosTable(TableNo(*R, 1), 4) = MakePOINT(3, 4);
+  PosTable(TableNo(*R, 2), 1) = MakePOINT(6, 4);
+  PosTable(TableNo(*R, 2), 2) = MakePOINT(8, 4);
+  PosTable(TableNo(*R, 2), 3) = MakePOINT(7, 3);
+  PosTable(TableNo(*R, 2), 4) = MakePOINT(7, 5);
+  PosTable(TableNo(*R, 3), 1) = MakePOINT(2, 8);
+  PosTable(TableNo(*R, 3), 2) = MakePOINT(4, 8);
+  PosTable(TableNo(*R, 3), 3) = MakePOINT(3, 7);
+  PosTable(TableNo(*R, 3), 4) = MakePOINT(3, 9);
   PosTable(TableNo(*R, 4), 1) = MakePOINT(6, 7);
   PosTable(TableNo(*R, 4), 2) = MakePOINT(8, 7);
   PosTable(TableNo(*R, 4), 3) = MakePOINT(7, 6);
@@ -324,6 +323,7 @@ void randomCustomer(Player P, CustQueue *Q){
     if (checkPlayerTick(P)){
         random = (rand() % 8);
         returnCustomer(&C, random);
+        printf("Added customer %d to queue, status order is %c\n", random, StatOrder(OrderC(C)));
         AddQueue(Q, C);
     }
 }
@@ -331,7 +331,9 @@ void randomCustomer(Player P, CustQueue *Q){
 int randomInteger(){
     int random;
 
-    random = (rand() % (15 + 1 - 8)) + 8;
+    //random = (rand() % (15 + 1 - 8)) + 8;
+    //TESTING JANGAN LUPA GANTI
+    random = 5;
     return random;
 }
 

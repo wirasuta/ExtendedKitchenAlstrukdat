@@ -38,6 +38,7 @@ boolean IsNearTable (Player P, Room R);
 
 int GetTableNumber (Player P, Room R);
 //mendapatkan info table yang berada di sekitar player
+//Syarat : Player di dekat table
 
 boolean IsAbleOrder(Player P, Room R);
 //untuk menentukan apakah player bisa megambil orderan dari customer

@@ -12,9 +12,9 @@ boolean IsNearTable (Player P, Room R){
     i = 1;
     while ((i<=4) && (check != true)){
         T = TableNo(R,i);
-        j = 1;
-        while((j<=4) && (check != true)){
-            // Cek deket kursi atau tidak
+        j = 0;
+        while((j<=Capacity(T)) && (check != true)){
+            // Cek deket kursi/meja atau tidak
             if(EQ(PosTable(T,j),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),1,0))
                || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,1))){
                 check = true;
@@ -28,19 +28,23 @@ boolean IsNearTable (Player P, Room R){
 }
 
 int GetTableNumber(Player P, Room R){
-    int i;
+    int i,j;
     Table T;
     boolean check = false;
-    if(IsNearTable(P,R)){
-        i = 1;
-        while((i<=4) && (check != true)){
-            T = TableNo(R,i);
-            if(EQ(PosTable(T,0),PlusDelta(PosPlayer(P),-2,0)) || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),2,0))
-               || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),0,-2)) || EQ(PosTable(T,0),PlusDelta(PosPlayer(P),0,2))){
+    i=0;
+    while ((i<=4) && (check != true)){
+        T = TableNo(R,i);
+        j = 0;
+        while((j<=Capacity(T)) && (check != true)){
+            if(EQ(PosTable(T,j),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),1,0))
+               || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosTable(T,j),PlusDelta(PosPlayer(P),0,1))){
                 check = true;
-            }else{
-                i++;
+            } else {
+                j++;
             }
+        }
+        if (!check){
+          i++;
         }
     }
     return i;
@@ -158,23 +162,25 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
     int NoTable;
 
     if (!IsQueueEmpty(*Q)) {
+        int countermax = NBElmtQueue(*Q);
+        int counter = 0;
+        boolean placed = false;
         do {
             DelQueue(Q,&CustTemp);
-            if(!IsAblePlace(P,InfoHead(*Q),*R)) {
+            if(!IsAblePlace(P,CustTemp,*R) || placed) {
                 AddQueue(Q,CustTemp);
+                counter++;
             } else {
                 NoTable = GetTableNumber(P,*R);
                 TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
                 CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
                 IsOccupied(TableNo(*R,NoTable)) = true;
+                placed = true;
+                countermax--;
             }
-        } while (CustomerCount(CustTemp) != CustomerCount(InfoTail(*Q)));
-        if(IsAblePlace(P,InfoTail(*Q),*R)) {
-            DelQueue(Q,&CustTemp);
-            TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
-            CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
-            IsOccupied(TableNo(*R,NoTable)) = true;
-        }
+        } while (counter != countermax);
+    }else{
+      printf("Tidak ada yang sedang mengantri, Ferguso\n");
     }
 }
 
@@ -234,7 +240,7 @@ void TakeIngredient(Player *P, Ingredients Bahan){
     if (IsAbleTake(*P,Bahan)) {
         Push(&OnHand(*P),IngName(Bahan));
     } else {
-        printf("GAGAL MENGAMBIL BAHAN MAKANAN !!!/n");
+        printf("GAGAL MENGAMBIL BAHAN MAKANAN !!!\n");
     }
 }
 //I.S sembarang
@@ -253,7 +259,7 @@ void GiveFood(Player *P, Room *R, Game *G,BinTree RTree){
         NoTable = GetTableNumber(*P,*R);
         IsOccupied(TableNo(*R,NoTable)) = false;
     } else {
-        printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!/n");
+        printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!\n");
     }
 }
 //I.S sembarang

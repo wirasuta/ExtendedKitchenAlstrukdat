@@ -20,7 +20,7 @@ Game gameData;
 Player player;
 CustQueue waitingList;
 BinTree recipeTree;
-LocTray locationTray[16];
+LocTray locationTray;
 
 //Variabel untuk coba2
 Customer ujiCustomer;
@@ -53,37 +53,11 @@ int main(int argc, char const *argv[]) {
     }
   }
 
-  //Inisialisasi Ujicoba
-  IsStar(ujiCustomer) = false;
-  TimeQueue(ujiCustomer) = 30;
-  TimeWaiting(ujiCustomer) = 30;
-  CustomerCount(ujiCustomer) = 2;
-  PosCustomer(ujiCustomer) = MakePOINT(0, 0);
-  StatOrder(OrderC(ujiCustomer)) = '#';
-  OrderName(OrderC(ujiCustomer)).TabKata[0] = 'P';
-  OrderName(OrderC(ujiCustomer)).TabKata[1] = 'I';
-  OrderName(OrderC(ujiCustomer)).TabKata[2] = 'R';
-  OrderName(OrderC(ujiCustomer)).TabKata[3] = 'I';
-  OrderName(OrderC(ujiCustomer)).TabKata[4] = 'N';
-  OrderName(OrderC(ujiCustomer)).TabKata[5] = 'G';
-  NoTableOrder(OrderC(ujiCustomer)) = 0;
-
   CreateEmptyQueue(&waitingList, 20);
-  //AddQueue(&waitingList, ujiCustomer);
 
   buildRecipe(&recipeTree);
 
   PosTray(locationTray) = MakePOINT(8, 1);
-
-  IngName(ujiIngredient).TabKata[0] = 'P';
-  IngName(ujiIngredient).TabKata[1] = 'I';
-  IngName(ujiIngredient).TabKata[2] = 'R';
-  IngName(ujiIngredient).TabKata[3] = 'I';
-  IngName(ujiIngredient).TabKata[4] = 'N';
-  IngName(ujiIngredient).TabKata[5] = 'G';
-  IngName(ujiIngredient).Length = 6;
-
-  Push(&(OnHand(player)), ujiCustomer.Food.Name);
 
   while (input!=4){
       switch (input){
@@ -129,7 +103,6 @@ int main(int argc, char const *argv[]) {
                 else if (IsKataSama(command, KataORDER)){
 
                     //fungsi ORDER
-                    //TODO: Update fungsi dan cari indeks kosong
                     TakeOrder(&player, &(Ruang(gameData, RoomID(player))));
 
                     PlayerTick(player)++;
@@ -181,8 +154,6 @@ int main(int argc, char const *argv[]) {
                     addTick(&waitingList);
                     del0Tick(&waitingList);
                     CheckTickOrder(&(Ruang(gameData, RoomID(player))));
-
-                    printf("%d\n", IsOccupied(TableNo(Ruang(gameData, RoomID(player)), 1)));
                 }
                 else if (IsKataSama(command, KataGIVE)){
                     //fungsi GIVE
@@ -219,9 +190,9 @@ int main(int argc, char const *argv[]) {
                 printf("Chef Engi berada di ruang %d\n", RoomID(player));
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
-                printf("ANTRIAN PELANGGAN :\n");
-                PrintQueue(waitingList);
-                printf("ORDERAN PELANGGAN :\n");
+                printf("ANTRIAN PELANGGAN : ");
+                PrintQueue(waitingList); printf("\n");
+                printf("ORDERAN PELANGGAN : ");
                 TulisIsiTab(OrderList(player));
                 printf("\n");
 
@@ -245,4 +216,3 @@ int main(int argc, char const *argv[]) {
   }
   return 0;
 }
-

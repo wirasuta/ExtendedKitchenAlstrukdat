@@ -25,7 +25,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
               nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
             }
             if (nextRoom != Nil) {
-              *roomID = i;
+              *roomID = RoomNumber(NextRoom(nextRoom));
               *X = Absis(DestTile(nextRoom));
               *Y = Ordinat(DestTile(nextRoom));
             }else{
@@ -52,7 +52,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
             nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
           }
           if (nextRoom != Nil) {
-            *roomID = i;
+            *roomID = RoomNumber(NextRoom(nextRoom));
             *X = Absis(DestTile(nextRoom));
             *Y = Ordinat(DestTile(nextRoom));
           }else{
@@ -79,7 +79,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
             nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
           }
           if (nextRoom != Nil) {
-            *roomID = i;
+            *roomID = RoomNumber(NextRoom(nextRoom));
             *X = Absis(DestTile(nextRoom));
             *Y = Ordinat(DestTile(nextRoom));
           }else{
@@ -106,7 +106,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
             nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
           }
           if (nextRoom != Nil) {
-            *roomID = i;
+            *roomID = RoomNumber(NextRoom(nextRoom));
             *X = Absis(DestTile(nextRoom));
             *Y = Ordinat(DestTile(nextRoom));
           }else{

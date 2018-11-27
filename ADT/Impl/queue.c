@@ -113,8 +113,8 @@ void DelQueue (CustQueue * Q, Customer * X)
         	if ( NBElmtQueue(*Q) == 1)
         		{
         			*X = InfoHead(*Q);
-        			(*Q).HEAD = 0;
-        			(*Q).TAIL = 0;
+        			(*Q).HEAD = queueNil;
+        			(*Q).TAIL = queueNil;
 				}
 			else
 				{
