@@ -118,22 +118,6 @@ void InitRoom(Room *R){
 
 void InitDapur(Room *R){
   //TODO : Ganti jadi baca dari file external
-  locationTray[0].Point = MakePOINT(6, 2);
-  locationTray[1].Point = MakePOINT(2, 2);
-  locationTray[2].Point = MakePOINT(2, 3);
-  locationTray[3].Point = MakePOINT(2, 4);
-  locationTray[4].Point = MakePOINT(2, 5);
-  locationTray[5].Point = MakePOINT(2, 6);
-  locationTray[6].Point = MakePOINT(2, 7);
-  locationTray[7].Point = MakePOINT(6, 4);
-  locationTray[8].Point = MakePOINT(6, 6);
-  locationTray[9].Point = MakePOINT(4, 2);
-  locationTray[10].Point = MakePOINT(4, 3);
-  locationTray[11].Point = MakePOINT(4, 4);
-  locationTray[12].Point = MakePOINT(4, 5);
-  locationTray[13].Point = MakePOINT(4, 6);
-  locationTray[14].Point = MakePOINT(4, 7);
-  locationTray[15].Point = MakePOINT(6, 7);
 
 }
 
