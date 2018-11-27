@@ -45,4 +45,6 @@ void Pop (Stack * S, Kata* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
+void PrintStack (Stack S);
+
 #endif

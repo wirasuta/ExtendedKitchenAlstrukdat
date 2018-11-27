@@ -77,6 +77,7 @@ void Pop (Stack * S, Kata *X)
 		l = InfoTop(*S).Length;
 		for (i=0; i<l+1; i++)
 			(*X).TabKata[i] = InfoTop(*S).TabKata[i];
+		(*X).Length = l;
 
 		if ( (*S).TOP == 1)
 			{
@@ -87,3 +88,14 @@ void Pop (Stack * S, Kata *X)
 				(*S).TOP = (*S).TOP - 1;
 			};
 	};
+
+void PrintStack (Stack S){
+	Kata CurrTop;
+	while (!IsStackEmpty(S)) {
+		printf("%s", InfoTop(S).TabKata);
+		Pop(&S, &CurrTop);
+		if (!IsStackEmpty(S)) {
+			printf(" -> ");
+		}
+	}
+}

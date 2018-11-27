@@ -43,13 +43,13 @@ int GetTableNumber (Player P, Room R);
 boolean IsAbleOrder(Player P, Room R);
 //untuk menentukan apakah player bisa megambil orderan dari customer
 
-boolean IsNearTray(Player P, LocTray T);
+boolean IsNearTray(Player P, POINT T);
 //mengembalikan true jika posisi player berada di samping kanan/kiri/atas/bawah tray
 
 boolean IsAbleGive(Player P, Room R);
 //untuk menentukan apakah player bisa memberikan makanan ke customer
 
-boolean IsAbleTake(Player P, Ingredients Bahan);
+boolean IsAbleTake(Player P, Room R);
 //untuk menentukan apakah player bisa mengambil bahan makanan atau tidak
 
 boolean IsAblePlace(Player P, Customer C, Room R);
@@ -68,12 +68,12 @@ void TakeOrder(Player *P, Room *R);
 
 void PlaceCustomer (Player P, CustQueue *Q, Room *R);
 
-void PutToTray(Player *P, BinTree *Adr, LocTray T);
+void PutToTray(Player *P, BinTree *Adr, POINT T);
 //I.S sembarang
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
 //    berhasil dibuat, makanan dimasukkan ke stack Tray
 
-void TakeIngredient(Player *P, Ingredients Bahan);
+void TakeIngredient(Player *P, Room R);
 //I.S sembarang
 //F.S jika player bersebelahan dengan posisi bahan, maka mengambil bahan
 //    dan menaruhnya dalam stack Hand

@@ -256,34 +256,35 @@ typedef struct {
 #define IsOccupied(T) (T).Occupied
 #define CustomerSeat(T) (T).Filled
 
-#define NTable 4
-
-typedef struct {
-    int ID;
-    MATRIKS Grid;
-    Table Arr[NTable]; //array of meja di restoran. nyimpen lokasi lokasi meja
-} Room;
-
-/* SELEKTOR UNTUK TIPE DATA ROOM */
-#define Layout(R) (R).Grid
-#define TableNo(R,i) (R).Arr[(i)]
-
 typedef struct{
     Kata Name;
     POINT Position;
 } Ingredients;
 
 /* SELEKTOR UNTUK TIPE DATA INGREDIENTS */
-#define IngName(I) (I).Name
 #define PosIngredients(I) (I).Position
+#define IngName(I) (I).Name
 
 typedef struct{
-    POINT Point;
-    Kata Bahan;
+  POINT Point;
 } LocTray;
 
-/* SELEKTOR UNTUK TIPE DATA LOCTRAY */
-#define PosTray(L) (L).Point
+#define NTable 4
+#define NIngredient 16
+
+typedef struct {
+  int ID;
+  MATRIKS Grid;
+  Table Arr[NTable]; //array of meja di room. nyimpen lokasi lokasi meja
+  LocTray TrayBoi;
+  Ingredients LaciBahan[NIngredient];
+} Room;
+/* SELEKTOR UNTUK TIPE DATA ROOM */
+#define Layout(R) (R).Grid
+#define TableNo(R,i) (R).Arr[(i)]
+#define RoomStructID(R) (R).ID
+#define PosTray(R) (R).TrayBoi.Point
+#define Ingredient(R,i) (R).LaciBahan[(i)]
 
 typedef struct {
     int Life;
@@ -309,6 +310,8 @@ extern Game gameData;
 extern Player player;
 extern CustQueue waitingList;
 extern BinTree recipeTree;
-extern LocTray locationTray;
+
+#define RestoSizeM 10
+#define RestoSizeN 10
 
 #endif

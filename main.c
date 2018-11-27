@@ -20,7 +20,6 @@ Game gameData;
 Player player;
 CustQueue waitingList;
 BinTree recipeTree;
-LocTray locationTray;
 
 //Variabel untuk coba2
 Customer ujiCustomer;
@@ -51,13 +50,12 @@ int main(int argc, char const *argv[]) {
     } else {
       InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
     }
+    RoomStructID(Ruang(gameData, roomCount)) = roomCount;
   }
 
   CreateEmptyQueue(&waitingList, 20);
 
   buildRecipe(&recipeTree);
-
-  PosTray(locationTray) = MakePOINT(8, 1);
 
   while (input!=4){
       switch (input){
@@ -113,7 +111,7 @@ int main(int argc, char const *argv[]) {
                 }
                 else if (IsKataSama(command, KataPUT)){
                     //fungsi PUT
-                    PutToTray(&player, &recipeTree, locationTray);
+                    PutToTray(&player, &recipeTree, PosTray(Ruang(gameData, RoomID(player))));
 
                     PlayerTick(player)++;
                     //counter customer ngantri
@@ -123,7 +121,7 @@ int main(int argc, char const *argv[]) {
                 }
                 else if (IsKataSama(command, KataTAKE)){
                     //fungsi TAKE
-                    TakeIngredient(&player, ujiIngredient);
+                    TakeIngredient(&player, Ruang(gameData, RoomID(player)));
 
                     PlayerTick(player)++;
                     //counter customer ngantri
@@ -190,11 +188,16 @@ int main(int argc, char const *argv[]) {
                 printf("Chef Engi berada di ruang %d\n", RoomID(player));
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
+
                 printf("ANTRIAN PELANGGAN : ");
                 PrintQueue(waitingList); printf("\n");
+
                 printf("ORDERAN PELANGGAN : ");
                 TulisIsiTab(OrderList(player));
                 printf("\n");
+
+                printf("ISI HAND : ");
+                PrintStack(OnHand(player)); printf("\n");
 
                 printf("Masukkan command: ");
                 scanf("%s", command.TabKata);

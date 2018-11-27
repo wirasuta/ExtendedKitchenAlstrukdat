@@ -50,9 +50,9 @@ int GetTableNumber(Player P, Room R){
     return i;
 }
 
-boolean IsNearTray(Player P, LocTray T){
-    return (EQ(PosPlayer(P),PlusDelta(PosTray(T),-1,0)) || EQ(PosPlayer(P),PlusDelta(PosTray(T),1,0))
-               || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,-1)) || EQ(PosPlayer(P),PlusDelta(PosTray(T),0,1)));
+boolean IsNearTray(Player P, POINT T){
+    return (EQ(PosPlayer(P),PlusDelta(T,-1,0)) || EQ(PosPlayer(P),PlusDelta(T,1,0))
+               || EQ(PosPlayer(P),PlusDelta(T,0,-1)) || EQ(PosPlayer(P),PlusDelta(T,0,1)));
 }
 
 boolean IsAbleOrder(Player P, Room R){
@@ -93,21 +93,39 @@ boolean IsAbleGive(Player P, Room R){
 //mengembalikas true jika player bisa memberikan makanan ke customer
 //yaitu jika player berada di samping customer
 
-boolean IsAbleTake(Player P, Ingredients Bahan){
-    boolean check;
+boolean IsAbleTake(Player P, Room R){
+    boolean check=false;
+    int i;
 
-    check = false;
-
-    if (EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),-1,0)) || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),1,0))
-               || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),0,-1)) || EQ(PosPlayer(P),PlusDelta(PosIngredients(Bahan),0,1))){
-               check = true;
-        }
-
+    i = 0;
+    while ((i<NIngredient) && (!check)){
+          if(EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),1,0))
+             || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),0,1))){
+              check = true;
+          } else {
+              i++;
+          }
+    }
     return(check);
-
 }
 //mengembalikas true jika player bisa mengambil bahan makanan atau tidak
 //yaitu jika player berada di samping customer
+
+Ingredients GetIngrendient(Player P, Room R){
+    boolean check=false;
+    int i;
+
+    i = 0;
+    while ((i<NIngredient) && (!check)){
+          if(EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),-1,0)) || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),1,0))
+             || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),0,-1)) || EQ(PosIngredients(Ingredient(R, i)),PlusDelta(PosPlayer(P),0,1))){
+              check = true;
+          } else {
+              i++;
+          }
+    }
+    return(Ingredient(R, i));
+}
 
 boolean IsAblePlace(Player P, Customer C, Room R){
     boolean check;
@@ -184,7 +202,7 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
     }
 }
 
-void PutToTray(Player *P, BinTree *Adr, LocTray T){
+void PutToTray(Player *P, BinTree *Adr, POINT T){
     boolean check;
     Stack checkStack,Temp;
     Kata food;
@@ -194,12 +212,14 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
         check = true;
         C_Food = *Adr;
 
+        //BUG : Infinite Loop, Fungsi IsNearTray sudah benar
         CreateEmptyStack(&checkStack);
         CreateEmptyStack(&Temp);
         while(!IsStackEmpty(OnHand(*P))) {
             Pop(&OnHand(*P),&food);
             Push(&checkStack,food);
             Push(&Temp,food);
+            printf("%s\n", food.TabKata);
         }
 
         while((!check) || (!IsTreeEmpty(C_Food)) || (!IsStackEmpty(checkStack))) {
@@ -235,10 +255,12 @@ void PutToTray(Player *P, BinTree *Adr, LocTray T){
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
 //    berhasil dibuat, makanan dimasukkan ke stack Tray
 
-void TakeIngredient(Player *P, Ingredients Bahan){
+void TakeIngredient(Player *P, Room R){
+    Ingredients Ig;
 
-    if (IsAbleTake(*P,Bahan)) {
-        Push(&OnHand(*P),IngName(Bahan));
+    if (IsAbleTake(*P,R)) {
+        Ig = GetIngrendient(*P, R);
+        Push(&(OnHand(*P)),IngName(Ig));
     } else {
         printf("GAGAL MENGAMBIL BAHAN MAKANAN !!!\n");
     }

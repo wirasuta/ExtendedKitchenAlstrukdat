@@ -43,7 +43,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
         {
          printf("Path is Filled! \n");
         }
-        else if ( (*X+1) > 8 )
+        else if ( (*X+1) > RestoSizeM )
         {
           int i=0;
           adrEdgeNode nextRoom = Nil;
@@ -97,7 +97,7 @@ void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
         {
          printf("Path is Filled! \n");
         }
-        else if ( (*Y+1) > 8 )
+        else if ( (*Y+1) > RestoSizeN )
         {
           int i=0;
           adrEdgeNode nextRoom = Nil;
