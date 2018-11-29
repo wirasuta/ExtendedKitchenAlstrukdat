@@ -1,7 +1,7 @@
 // Driver untuk ADT Point
 // Pandyaka A / 13517003
 
-#include "../Header/point.h"
+#include "../Impl/point.c"
 #include <stdio.h>
 
 int main ()

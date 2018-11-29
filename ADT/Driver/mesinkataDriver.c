@@ -1,4 +1,5 @@
-#include "../Header/mesinkata.h"
+#include "../Impl/mesinkata.c"
+#include "../Impl/mesinkar.c"
 
 int main (){
     Kata K1,K2;
@@ -24,9 +25,9 @@ int main (){
     STARTKATA();
     int i =0;
 
-    printf("length: %d", CKata.Length);
-    while(i < CKata.Length+1){
-        printf("cek isi CKata : %c\n",CKata.TabKata[i]);
+    printf("length K1: %d", K1.Length);
+    while(i < K1.Length+1){
+        printf("cek isi CKata : %c\n",K1.TabKata[i]);
         i++;
     }
     printf("IsKataSama( K1, K2)= %d\n",IsKataSama( K1,  K2));

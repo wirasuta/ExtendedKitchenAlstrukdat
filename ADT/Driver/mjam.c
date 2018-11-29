@@ -2,7 +2,7 @@
 // Pandyaka Aptanagi / 13517003
 
 #include <stdio.h>
-#include "../Header/jam.h"
+#include "../Impl/Jam.c"
 
 int main ()
     {

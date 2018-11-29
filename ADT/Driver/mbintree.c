@@ -1,4 +1,6 @@
 #include "../Impl/bintree.c"
+#include "../Impl/mesinkata.c"
+#include "../Impl/mesinkar.c"
 #include "../Header/tepokpramuka_type.h"
 //#include "../Impl/mesinkata.c"
 //#include "../Impl/mesinkar.c"
@@ -53,18 +55,16 @@ int main(){
 
     //printf("sama gak? %d\n", IsKataSama(K1,K2));
     P = AlokNode(K);
-    printf("cek alokasi Akar:%s\n", Akar(P));
+    printf("cek alokasi Akar: %s [%d]\n ", Akar(P).TabKata, Akar(P).Length);
 
     L = AlokNode(KL);
-    printf("cek alokasi L:%s\n", Akar(L));
+    printf("cek alokasi L: %s [%d]\n ", Akar(L).TabKata, Akar(P).Length);
 
     R = AlokNode(KR);
-    printf("cek alokasi R:%s\n", Akar(R));
+    printf("cek alokasi R: %s [%d]\n", Akar(R).TabKata, Akar(P).Length);
 
     Resep = Tree(K1, L, R);
-    printf("cek Akar(Resep):%s\n", Akar(Resep));
-    printf("cek Left(Resep):%s\n", Left(Resep));
-    printf("cek Right(Resep):%s\n", Right(Resep));
+    printf("cek Akar(Resep): %s [%d]\n ", Akar(Resep).TabKata, Akar(Resep).Length);
 
     PrintTree(Resep,2);
 
@@ -85,16 +85,17 @@ int main(){
     printf("IsTreeOneElmt: %d\n", IsTreeOneElmt(Resep));
 
     DelDaunTerkiri(&Resep, &KDel);
-    printf("cek Delete Akar:%s\n", KDel);
+    printf("cek Delete Akar: %s [%d]\n", KDel.TabKata, KDel.Length);
 
     Pohon = Tree(K1, Nil, Nil);
-    printf("cek Akar(Pohon):%s\n", Akar(Pohon));
-    
+    printf("cek Akar(Pohon): %s [%d]\n", Akar(Pohon).TabKata, Akar(Pohon).Length);
+
     AddDaun(&Pohon , Akar(Pohon), KR, false);
-    printf("cek Right(Pohon):%s\n", Right(Pohon));
+    printf("cek Right(Pohon): %s [%d]\n", Akar(Right(Pohon)).TabKata, Akar(Right(Pohon)).Length);
 
     AddDaunTerkiri(&Pohon, KL);
-    printf("cek Left(Pohon):%s\n", Left(Pohon));
+    printf("cek Left(Pohon): %s [%d]\n", Akar(Left(Pohon)).TabKata, Akar(Left(Pohon)).Length);
+
 
     printf("Apakah ada KL? %d", SearchTree(Pohon, KL));
 

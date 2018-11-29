@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "../Header/boolean.h"
-#include "../Header/array.h"
-#include "../Header/mesinkata.h"
+#include "../Impl/array.c"
+#include "../Impl/mesinkata.c"
+#include "../Impl/mesinkar.c"
 
 int main(){
     IdxType idx;
@@ -77,5 +78,5 @@ int main(){
     printf("Setelah elemen ke-2 didelete: \n");
     DelEli (&T, 2, &X);
     TulisIsiTab(T);
-    printf("Isi X:\n%s\nnomor %d\n",X.Name.TabKata,X.Nomor);
+    printf("Isi X:\n%s\n nomor %d\n",X.Name.TabKata,X.Nomor);
 }

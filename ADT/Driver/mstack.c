@@ -21,27 +21,37 @@ int main(){
     B.TabKata[4] = '\0';
     B.Length = 4;
 
-    printf("%s\n", A);
-    printf("%s\n", B);
+    printf("Isi Kata : \n");
+    printf("%s\n", A.TabKata);
+    printf("%s\n", B.TabKata);
     printf("\n");
 
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
 
-    printf("cek isStackEmpty: %d\n", IsStackEmpty(S1));
-    printf("cek isStackFull: %d\n", IsStackFull(S1));
-
-    Push(&S2, A);
-    printf("InfoTop: %s\n", InfoTop(S2));
-
-    Push(&S2, B);
-    printf("InfoTop: %s\n", InfoTop(S2));
-
-    Pop(&S2, &C);
-    printf("Pop: %s\n", C);
-    printf("InfoTop: %s\n", InfoTop(S2));
-    
-    Pop(&S2, &C);
-    printf("Pop: %s\n", C);
+    printf("===== Cek Fungsi isStackEmpty S2 =====\n ");
     printf("cek isStackEmpty: %d\n", IsStackEmpty(S2));
+    printf("===== Cek Fungsi isStackFull S2 =====\n ");
+    printf("cek isStackFull: %d\n", IsStackFull(S2));
+
+    printf("===== Cek Fungsi Push Kata A ke Stack 2 =====\n ");
+    Push(&S2, A);
+    printf("InfoTop: %s [%d]\n", InfoTop(S2).TabKata,InfoTop(S2).Length);
+
+    printf("===== Cek Fungsi Push Kata B ke Stack 2 =====\n ");
+    Push(&S2, B);
+    printf("InfoTop: %s [%d]\n", InfoTop(S2).TabKata,InfoTop(S2).Length);
+
+    printf("===== Cek Fungsi Pop InfoTop Stack 2 =====\n ");
+    Pop(&S2, &C);
+    printf("Pop: %s [%d]\n", C.TabKata, C.Length);
+    printf("InfoTop: %s [%d]\n", InfoTop(S2).TabKata,InfoTop(S2).Length);
+
+    printf("===== Cek Fungsi Push Infotop S2 ke S1 =====\n ");
+    Push(&S1, C);
+    printf("Push: %s [%d]\n", C.TabKata, C.Length);
+    printf("InfoTop: %s [%d]\n", InfoTop(S2).TabKata,InfoTop(S2).Length);
+
+    printf("===== Cek Fungsi isStackEmpty S1 =====\n ");
+    printf("cek isStackEmpty: %d\n", IsStackEmpty(S1));
 }
