@@ -1,5 +1,6 @@
-#include "listrek.c"
-#include "mesinkata.c"
+#include "../Impl/listrek.c"
+#include "../Impl/mesinkata.c"
+#include "../Impl/mesinkar.c"
 
 int main(){
     ListRek L,M,Lin,Lout,N,InvN,Llain;
