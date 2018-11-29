@@ -663,6 +663,5 @@ void randomCustomer(Player P, CustQueue *Q){
         NextCustomerArr = PlayerTick(P) + (rand() % 10);
         returnCustomer(&C, rand() % 8);
         AddQueue(Q, C);
-        printf("Random Now: %d",NextCustomerArr);
     }
 }
