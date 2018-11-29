@@ -186,7 +186,7 @@ int main(int argc, char const *argv[]) {
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
 
-                printf("DUIT : %.1f",Money(gameData)); printf("\n");
+                printf("UANG : %.1f",Money(gameData)); printf("\n");
 
                 printf("ANTRIAN PELANGGAN : ");
                 PrintQueue(waitingList); printf("\n");

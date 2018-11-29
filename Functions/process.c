@@ -5,7 +5,6 @@
 boolean pathFilled(MATRIKS M ,int X, int Y)
 {
     return ((MatElmt(M, X, Y) == 'X') || (MatElmt(M, X, Y) == 'M') || (MatElmt(M, X, Y) == 'T') || (MatElmt(M, X, Y) == 'C') || (MatElmt(M, X, Y) == '1') || (MatElmt(M, X, Y) == '2') || (MatElmt(M, X, Y) == '3') || (MatElmt(M, X, Y) == '4'));
-    // tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
 }
 
 void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
@@ -364,7 +363,6 @@ void PutToTray(Player *P, BinTree C_Food, POINT T){
         printf("TIDAK SESUAI RESEP. GAGAL MEMBUAT MAKANAN!!!\n");
 
     } else {
-        PrintTree(C_Food, 2);
         if(IsUnerLeft(C_Food)) {
             Push(&(OnTray(*P)),Akar(Left(C_Food)));
             CreateEmptyStack(&(OnHand(*P)));

@@ -587,8 +587,8 @@ void randomCustomer(Player P, CustQueue *Q){
 int randomInteger(){
     int random;
 
-    //random = (rand() % (15 + 1 - 8)) + 8;
-    random = 1;
+    random = (rand() % (15 + 1 - 8)) + 8;
+    //random = 1;
     return random;
 }
 
