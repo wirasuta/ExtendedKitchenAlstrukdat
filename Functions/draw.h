@@ -23,3 +23,13 @@ void print_title();
 void print_credits();
 void print_menu();
 void print_game();
+void TulisMATRIKS (MATRIKS M);
+/* I.S. M terdefinisi */
+/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
+   dipisahkan sebuah spasi */
+/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
+/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
+1 2 3
+4 5 6
+8 9 10
+*/

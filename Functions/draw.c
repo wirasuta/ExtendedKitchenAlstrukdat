@@ -54,20 +54,59 @@ void print_menu()
 
 void print_game(){
   printf("\e[1;1H\e[2J");
-  printf("%s\t UANG: %.1f\t NYAWA: %d\t TIME: %d\n", ElmtName(gameData).TabKata, Money(gameData), Life(gameData), PlayerTick(player));
+  printf("%s+------------------------------------------------------------------------------------------------------+\n%s",KBLU,KNRM);
+  printf("\t%s\t\t\t UANG: %.1f\t\t\t NYAWA: %d\t\t TIME: %d\n", ElmtName(gameData).TabKata, Money(gameData), Life(gameData), PlayerTick(player));
+  printf("%s+---------------------------------+--------------------------------------------------------------------+\n%s",KBLU,KNRM);
   TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
   printf("\n");
+  printf("%s+---------------------------------+--------------------------------------------------------------------+\n%s",KBLU,KNRM);
+}
 
-  printf("ANTRIAN PELANGGAN : ");
-  PrintQueue(waitingList); printf("\n");
+void TulisMATRIKS (MATRIKS M)
+/* I.S. M terdefinisi */
+/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
+   dipisahkan sebuah spasi */
+/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
+/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
+1 2 3
+4 5 6
+8 9 10
+*/
+{
+	// Kamus
+	int i,j;
 
-  printf("ORDERAN PELANGGAN : ");
-  TulisIsiTab(OrderList(player));
-  printf("\n");
+	// Algoritma
+	for ( i = GetFirstIdxBrs(M) ; i <= GetLastIdxBrs(M) ; i++)
+		{
+      printf("%s|\t%s", KBLU,KNRM);
+			for ( j = GetFirstIdxKol(M) ; j <= GetLastIdxKol(M) ; j++)
+				{
+					printf("%c",(M).Mem[i][j]);
+					if ( j != GetLastIdxKol(M))
+						{
+							printf(" ");
+						};
+				};
+      printf("\t  %s|\t%s", KBLU,KNRM);
+      if (i==2) {
+        printf("ANTRIAN PELANGGAN : ");
+        PrintQueue(waitingList);
+      }else if (i==4){
+        printf("ORDERAN PELANGGAN : ");
+        TulisIsiTab(OrderList(player));
+      }else if (i==6){
+        printf("ISI HAND : ");
+        PrintStack(OnHand(player));
+      }else if (i==8){
+        printf("ISI TRAY : ");
+        PrintStack(OnTray(player));
+      }
 
-  printf("ISI HAND : ");
-  PrintStack(OnHand(player)); printf("\n");
+			if ( i != GetLastIdxBrs(M))
+				{
+					printf("\n");
+				};
+		};
 
-  printf("ISI TRAY : ");
-  PrintStack(OnTray(player)); printf("\n");
 }

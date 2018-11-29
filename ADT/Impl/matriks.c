@@ -137,39 +137,6 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK)
 
 	};
 
-void TulisMATRIKS (MATRIKS M)
-/* I.S. M terdefinisi */
-/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
-   dipisahkan sebuah spasi */
-/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
-/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
-1 2 3
-4 5 6
-8 9 10
-*/
-	{
-		// Kamus
-		int i,j;
-
-		// Algoritma
-		for ( i = GetFirstIdxBrs(M) ; i <= GetLastIdxBrs(M) ; i++)
-			{
-				for ( j = GetFirstIdxKol(M) ; j <= GetLastIdxKol(M) ; j++)
-					{
-						printf("%c",(M).Mem[i][j]);
-						if ( j != GetLastIdxKol(M))
-							{
-								printf(" ");
-							};
-					};
-				if ( i != GetLastIdxBrs(M))
-					{
-						printf("\n");
-					};
-			};
-
-	};
-
 /* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */
 MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2)
 /* Prekondisi : M1  berukuran sama dengan M2 */
