@@ -12,6 +12,9 @@
 #include "../ADT/Header/roomgraph.h"
 #include "../ADT/Header/boolean.h"
 
+//Counter for next customer arrival
+int NextCustomerArr;
+
 /*
 e. ORDER | Array
 Command ini digunakan untuk mengambil order dari meja yang bersebelahan
@@ -104,6 +107,12 @@ void PrintRecipe(BinTree P,int H);
 void TickOrder (Room *R);
 //Menguragi time waiting customer pada table sebanyak 1 tick apabila ordeeran belum diambil
 
-void CheckTickOrder (Room *R);
+void CheckTickOrder (Room *R, Game *G);
+
+// RANDOM CUSTOMER MASUK KE QUEUE
+void returnCustomer(Customer *C, int N);
+void randomCustomer(Player P, CustQueue *Q);
+
+void TickGame(Game *G, Player *P, CustQueue *waitingList);
 
 #endif

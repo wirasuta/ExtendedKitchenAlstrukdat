@@ -1,8 +1,8 @@
 #include "draw.h"
 
-
 void print_title()
 {
+    printf("\e[1;1H\e[2J");
     printf("%s                      :::::::::: ::::    :::  :::::::: ::::::::::: ::: ::::::::   \n", KGRN);
     printf("%s                      :+:        :+:+:   :+: :+:    :+:    :+:     :+ :+:    :+:  \n", KGRN);
     printf("%s                      +:+        :+:+:+  +:+ +:+           +:+        +:+         \n", KGRN);
@@ -50,4 +50,24 @@ void print_menu()
   printf("                                            (3) Load Game\n");
   printf("                                            (4) Exit\n\n");
   printf("                                      Please Input Your Choice : ");
+}
+
+void print_game(){
+  printf("\e[1;1H\e[2J");
+  printf("%s\t UANG: %.1f\t NYAWA: %d\t TIME: %d\n", ElmtName(gameData).TabKata, Money(gameData), Life(gameData), PlayerTick(player));
+  TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
+  printf("\n");
+
+  printf("ANTRIAN PELANGGAN : ");
+  PrintQueue(waitingList); printf("\n");
+
+  printf("ORDERAN PELANGGAN : ");
+  TulisIsiTab(OrderList(player));
+  printf("\n");
+
+  printf("ISI HAND : ");
+  PrintStack(OnHand(player)); printf("\n");
+
+  printf("ISI TRAY : ");
+  PrintStack(OnTray(player)); printf("\n");
 }

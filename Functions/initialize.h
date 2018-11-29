@@ -15,6 +15,8 @@
 extern Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 extern Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
 
+extern int NextCustomerArr;
+
 void InitKataCommand();
 void InitGame(Game *G);
 void InitPlayer(Player *P);
@@ -22,11 +24,5 @@ void InitRoom(Room *R);
 void InitDapur(Room *R);
 void InitMap(Room *R, POINT PlPoint);
 void InitGraph(GRAPH *Gr);
-
-// RANDOM CUSTOMER MASUK KE QUEUE
-void returnCustomer(Customer *C, int N);
-void randomCustomer(Player P, CustQueue *Q);
-int randomInteger();
-boolean checkPlayerTick(Player P);
 
 #endif

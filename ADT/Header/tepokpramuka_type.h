@@ -311,6 +311,7 @@ extern Game gameData;
 extern Player player;
 extern CustQueue waitingList;
 extern BinTree recipeTree;
+extern int NextCustomerArr;
 
 #define RestoSizeM 10
 #define RestoSizeN 10

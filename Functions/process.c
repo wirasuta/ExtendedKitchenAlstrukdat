@@ -312,7 +312,7 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
                 counter++;
             } else {
                 NoTable = GetTableNumber(P,*R);
-                TimeWaiting(CustTemp) = (rand()%(35+1-30))+30;
+                TimeWaiting(CustTemp) = (rand() % (30 + 1 -20)) + 20;
                 CustomerSeat(TableNo(*R,NoTable)) = CustTemp;
                 IsOccupied(TableNo(*R,NoTable)) = true;
                 placed = true;
@@ -424,13 +424,13 @@ void TickOrder (Room *R){
         if(IsOccupied(T) == true){
             C = CustomerSeat(T);
             if(StatOrder(OrderC(C)) == '#'){
-               TimeWaiting(C) -= 1;
+               TimeWaiting(CustomerSeat(TableNo(*R,i))) -= 1;
             }
         }
     }
 }
 
-void CheckTickOrder (Room *R){
+void CheckTickOrder (Room *R, Game *G){
     int i;
     Customer C;
     Table T;
@@ -440,8 +440,229 @@ void CheckTickOrder (Room *R){
         if(IsOccupied(T) == true){
             C = CustomerSeat(T);
             if(TimeWaiting(C) == 0 ){
-               IsOccupied(T) = false;
+              Life(*G) -=1;
+              IsOccupied(TableNo(*R,i)) = false;
+              OrderCStatus(CustomerSeat(TableNo(*R, i))) = '$';
             }
         }
+    }
+}
+
+void TickGame(Game *G, Player *P, CustQueue *waitingList){
+  PlayerTick(*P)++;
+  //counter customer ngantri
+  addTick(waitingList);
+  del0Tick(waitingList);
+  int i;
+  for (i = 1; i <=4 ; i++) {
+    TickOrder(&Ruang(*G, i));
+    CheckTickOrder(&(Ruang(*G, i)), G);
+  }
+  randomCustomer(*P, waitingList);
+}
+
+void returnCustomer(Customer *C, int N){
+    Customer arrC[20];
+
+    arrC[0].Star = false;
+    arrC[0].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[0].TimeWaiting = -999;
+    arrC[0].SumOfCustomer = 2;
+    arrC[0].Position.X = -999;
+    arrC[0].Position.Y = -999;
+    arrC[0].Food.Status = '#';
+    arrC[0].Food.Name.TabKata[0]=' ';
+    arrC[0].Food.Name.TabKata[1]='b';
+    arrC[0].Food.Name.TabKata[2]='a';
+    arrC[0].Food.Name.TabKata[3]='n';
+    arrC[0].Food.Name.TabKata[4]='a';
+    arrC[0].Food.Name.TabKata[5]='n';
+    arrC[0].Food.Name.TabKata[6]='a';
+    arrC[0].Food.Name.TabKata[7]='s';
+    arrC[0].Food.Name.TabKata[8]='p';
+    arrC[0].Food.Name.TabKata[9]='l';
+    arrC[0].Food.Name.TabKata[10]='i';
+    arrC[0].Food.Name.TabKata[11]='t';
+    arrC[0].Food.Name.TabKata[12]='\0';
+    arrC[0].Food.Name.Length=12;
+    arrC[0].Food.Nomor = -999;
+
+    arrC[1].Star = false;
+    arrC[1].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[1].TimeWaiting = -999;
+    arrC[1].SumOfCustomer = 4;
+    arrC[1].Position.X = -999;
+    arrC[1].Position.Y = -999;
+    arrC[1].Food.Status = '#';
+    arrC[1].Food.Name.TabKata[0]=' ';
+    arrC[1].Food.Name.TabKata[1]='s';
+    arrC[1].Food.Name.TabKata[2]='u';
+    arrC[1].Food.Name.TabKata[3]='n';
+    arrC[1].Food.Name.TabKata[4]='d';
+    arrC[1].Food.Name.TabKata[5]='a';
+    arrC[1].Food.Name.TabKata[6]='e';
+    arrC[1].Food.Name.TabKata[7]='\0';
+    arrC[1].Food.Name.Length=7;
+    arrC[1].Food.Nomor = -999;
+
+    arrC[2].Star = true;
+    arrC[2].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[2].TimeWaiting = -999;
+    arrC[2].SumOfCustomer = 4;
+    arrC[2].Position.X = -999;
+    arrC[2].Position.Y = -999;
+    arrC[2].Food.Status = '#';
+    arrC[2].Food.Name.TabKata[0]=' ';
+    arrC[2].Food.Name.TabKata[1]='b';
+    arrC[2].Food.Name.TabKata[2]='u';
+    arrC[2].Food.Name.TabKata[3]='r';
+    arrC[2].Food.Name.TabKata[4]='g';
+    arrC[2].Food.Name.TabKata[5]='e';
+    arrC[2].Food.Name.TabKata[6]='r';
+    arrC[2].Food.Name.TabKata[7]='\0';
+    arrC[2].Food.Name.Length=7;
+    arrC[2].Food.Nomor = -999;
+
+    arrC[3].Star = true;
+    arrC[3].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[3].TimeWaiting = -999;
+    arrC[3].SumOfCustomer = 3;
+    arrC[3].Position.X = -999;
+    arrC[3].Position.Y = -999;
+    arrC[3].Food.Status = '#';
+    arrC[3].Food.Name.TabKata[0]=' ';
+    arrC[3].Food.Name.TabKata[1]='n';
+    arrC[3].Food.Name.TabKata[2]='a';
+    arrC[3].Food.Name.TabKata[3]='s';
+    arrC[3].Food.Name.TabKata[4]='i';
+    arrC[3].Food.Name.TabKata[5]='t';
+    arrC[3].Food.Name.TabKata[6]='e';
+    arrC[3].Food.Name.TabKata[7]='l';
+    arrC[3].Food.Name.TabKata[8]='u';
+    arrC[3].Food.Name.TabKata[9]='r';
+    arrC[3].Food.Name.TabKata[10]='d';
+    arrC[3].Food.Name.TabKata[11]='a';
+    arrC[3].Food.Name.TabKata[12]='d';
+    arrC[3].Food.Name.TabKata[13]='a';
+    arrC[3].Food.Name.TabKata[14]='r';
+    arrC[3].Food.Name.TabKata[15]='\0';
+    arrC[3].Food.Name.Length=15;
+    arrC[3].Food.Nomor = -999;
+
+    arrC[4].Star = true;
+    arrC[4].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[4].TimeWaiting = -999;
+    arrC[4].SumOfCustomer = 1;
+    arrC[4].Position.X = -999;
+    arrC[4].Position.Y = -999;
+    arrC[4].Food.Status = '#';
+    arrC[4].Food.Name.TabKata[0]=' ';
+    arrC[4].Food.Name.TabKata[1]='s';
+    arrC[4].Food.Name.TabKata[2]='p';
+    arrC[4].Food.Name.TabKata[3]='a';
+    arrC[4].Food.Name.TabKata[4]='g';
+    arrC[4].Food.Name.TabKata[5]='h';
+    arrC[4].Food.Name.TabKata[6]='e';
+    arrC[4].Food.Name.TabKata[7]='t';
+    arrC[4].Food.Name.TabKata[8]='t';
+    arrC[4].Food.Name.TabKata[9]='i';
+    arrC[4].Food.Name.TabKata[10]='c';
+    arrC[4].Food.Name.TabKata[11]='a';
+    arrC[4].Food.Name.TabKata[12]='r';
+    arrC[4].Food.Name.TabKata[13]='b';
+    arrC[4].Food.Name.TabKata[14]='o';
+    arrC[4].Food.Name.TabKata[15]='n';
+    arrC[4].Food.Name.TabKata[16]='a';
+    arrC[4].Food.Name.TabKata[17]='r';
+    arrC[4].Food.Name.TabKata[18]='a';
+    arrC[4].Food.Name.TabKata[19]='\0';
+    arrC[4].Food.Name.Length=19;
+    arrC[4].Food.Nomor = -999;
+
+    arrC[5].Star = false;
+    arrC[5].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[5].TimeWaiting = -999;
+    arrC[5].SumOfCustomer = 1;
+    arrC[5].Position.X = -999;
+    arrC[5].Position.Y = -999;
+    arrC[5].Food.Status = '#';
+    arrC[5].Food.Name.TabKata[0]=' ';
+    arrC[5].Food.Name.TabKata[1]='s';
+    arrC[5].Food.Name.TabKata[2]='p';
+    arrC[5].Food.Name.TabKata[3]='a';
+    arrC[5].Food.Name.TabKata[4]='g';
+    arrC[5].Food.Name.TabKata[5]='h';
+    arrC[5].Food.Name.TabKata[6]='e';
+    arrC[5].Food.Name.TabKata[7]='t';
+    arrC[5].Food.Name.TabKata[8]='t';
+    arrC[5].Food.Name.TabKata[9]='i';
+    arrC[5].Food.Name.TabKata[10]='b';
+    arrC[5].Food.Name.TabKata[11]='o';
+    arrC[5].Food.Name.TabKata[12]='l';
+    arrC[5].Food.Name.TabKata[13]='o';
+    arrC[5].Food.Name.TabKata[14]='g';
+    arrC[5].Food.Name.TabKata[15]='n';
+    arrC[5].Food.Name.TabKata[16]='e';
+    arrC[5].Food.Name.TabKata[17]='s';
+    arrC[5].Food.Name.TabKata[18]='e';
+    arrC[5].Food.Name.TabKata[19]='\0';
+    arrC[5].Food.Name.Length=19;
+    arrC[5].Food.Nomor = -999;
+
+    arrC[6].Star = true;
+    arrC[6].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[6].TimeWaiting = -999;
+    arrC[6].SumOfCustomer = 4;
+    arrC[6].Position.X = -999;
+    arrC[6].Position.Y = -999;
+    arrC[6].Food.Status = '#';
+    arrC[6].Food.Name.TabKata[0]=' ';
+    arrC[6].Food.Name.TabKata[1]='n';
+    arrC[6].Food.Name.TabKata[2]='a';
+    arrC[6].Food.Name.TabKata[3]='s';
+    arrC[6].Food.Name.TabKata[4]='i';
+    arrC[6].Food.Name.TabKata[5]='a';
+    arrC[6].Food.Name.TabKata[6]='y';
+    arrC[6].Food.Name.TabKata[7]='a';
+    arrC[6].Food.Name.TabKata[8]='m';
+    arrC[6].Food.Name.TabKata[9]='g';
+    arrC[6].Food.Name.TabKata[10]='o';
+    arrC[6].Food.Name.TabKata[11]='r';
+    arrC[6].Food.Name.TabKata[12]='e';
+    arrC[6].Food.Name.TabKata[13]='n';
+    arrC[6].Food.Name.TabKata[14]='g';
+    arrC[6].Food.Name.TabKata[15]='\0';
+    arrC[6].Food.Name.Length=15;
+    arrC[6].Food.Nomor = -999;
+
+    arrC[7].Star = false;
+    arrC[7].TimeQueue = (rand() % (25 + 1 -15)) + 15;
+    arrC[7].TimeWaiting = -999;
+    arrC[7].SumOfCustomer = 4;
+    arrC[7].Position.X = -999;
+    arrC[7].Position.Y = -999;
+    arrC[7].Food.Status = '#';
+    arrC[7].Food.Name.TabKata[0]=' ';
+    arrC[7].Food.Name.TabKata[1]='h';
+    arrC[7].Food.Name.TabKata[2]='o';
+    arrC[7].Food.Name.TabKata[3]='t';
+    arrC[7].Food.Name.TabKata[4]='d';
+    arrC[7].Food.Name.TabKata[5]='o';
+    arrC[7].Food.Name.TabKata[6]='g';
+    arrC[7].Food.Name.TabKata[7]='\0';
+    arrC[7].Food.Name.Length=7;
+    arrC[7].Food.Nomor = -999;
+
+    *C = arrC[N];
+}
+
+void randomCustomer(Player P, CustQueue *Q){
+    Customer C;
+    //boolean tickCount;
+
+    if (PlayerTick(P) == NextCustomerArr){
+        NextCustomerArr = PlayerTick(P) + (rand() % 10);
+        returnCustomer(&C, rand() % 8);
+        AddQueue(Q, C);
     }
 }
