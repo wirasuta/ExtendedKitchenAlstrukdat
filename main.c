@@ -26,17 +26,20 @@ Ingredients ujiIngredient;
 
 
 int main(int argc, char const *argv[]) {
+  char input_raw;
   int input;
   Kata command;
 
   print_title();
   print_menu();
 
-  scanf("%d",&input);
-  while ((input!=1)&&(input!=2)&&(input!=3)&&(input!=4)){
+  scanf("%c", &input_raw);
+  while ((input_raw!='1') && (input_raw!='2') && (input_raw!='3') && (input_raw!='4')){
       printf("Inputan salah. Silahkan input angka yang valid.\n");
-      scanf("%d",&input);
+      scanf("%c",&input_raw);
   }
+  input = input_raw-'0';
+
   InitKataCommand();
   InitGame(&gameData);
   InitPlayer(&player);
@@ -49,9 +52,7 @@ int main(int argc, char const *argv[]) {
     }
     RoomStructID(Ruang(gameData, roomCount)) = roomCount;
   }
-
   CreateEmptyQueue(&waitingList, 20);
-
   buildRecipe(&recipeTree);
 
   while (input!=4){
@@ -182,6 +183,7 @@ int main(int argc, char const *argv[]) {
                     InitMap(&(Ruang(gameData, roomCount)), MakePOINT(0, 0));
                   }
                 }
+                printf("\e[1;1H\e[2J");
                 printf("Chef Engi berada di ruang %d\n", RoomID(player));
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
