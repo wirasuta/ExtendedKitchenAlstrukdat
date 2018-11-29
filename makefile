@@ -1,2 +1,2 @@
 compile:
-	gcc main.c ADT/Impl/*.c Progress/*.c -o main
+	gcc main.c ADT/Impl/*.c Functions/*.c -o main

@@ -8,6 +8,10 @@
 #include "../ADT/Header/point.h"
 #include "../ADT/Header/bintree.h"
 #include "../ADT/Header/mesinkata.h"
+#include "../ADT/Header/matriks.h"
+#include "../ADT/Header/roomgraph.h"
+#include "../ADT/Header/boolean.h"
+
 /*
 e. ORDER | Array
 Command ini digunakan untuk mengambil order dari meja yang bersebelahan
@@ -32,6 +36,17 @@ bertetanggaan
 l. RECIPE | Graf
 Command ini digunakan untuk menampilkan pohon makanan.
 */
+
+boolean pathFilled(MATRIKS M, int x , int Y);
+// Menghasilkan true jika "kotak" sudah terisi
+
+void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID);
+// I.S : Sembarang
+// F.S : Menghasilkan koordinat baru untuk move player
+
+void move(MATRIKS *M, int *X, int *Y,Kata command, int *roomID);
+// I.S : Sembarang
+// F.S : Memindahkan player menuju koordinat baru sesuai perintah
 
 boolean IsNearTable (Player P, Room R);
 //mengembalikan true jika posisi pemain berada di dekat meja
@@ -68,7 +83,7 @@ void TakeOrder(Player *P, Room *R);
 
 void PlaceCustomer (Player P, CustQueue *Q, Room *R);
 
-void PutToTray(Player *P, BinTree *Adr, POINT T);
+void PutToTray(Player *P, BinTree C_Food, POINT T);
 //I.S sembarang
 //F.S Mengubah kondisi Tray, jika sesuai dengan Food tree, maka makanan
 //    berhasil dibuat, makanan dimasukkan ke stack Tray

@@ -135,7 +135,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 0)).TabKata[4] = 'i';
   IngName(Ingredient(*R, 0)).TabKata[5] = 'n';
   IngName(Ingredient(*R, 0)).TabKata[6] = 'g';
-  IngName(Ingredient(*R, 0)).Length = 6;
+  IngName(Ingredient(*R, 0)).Length = 7;
   PosIngredients(Ingredient(*R, 0)) = MakePOINT(1, 1);
 
   IngName(Ingredient(*R, 1)).TabKata[0] = ' ';
@@ -145,7 +145,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 1)).TabKata[4] = 'd';
   IngName(Ingredient(*R, 1)).TabKata[5] = 'o';
   IngName(Ingredient(*R, 1)).TabKata[6] = 'k';
-  IngName(Ingredient(*R, 1)).Length = 6;
+  IngName(Ingredient(*R, 1)).Length = 7;
   PosIngredients(Ingredient(*R, 1)) = MakePOINT(1, 2);
 
   IngName(Ingredient(*R, 2)).TabKata[0] = ' ';
@@ -154,7 +154,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 2)).TabKata[3] = 'r';
   IngName(Ingredient(*R, 2)).TabKata[4] = 'p';
   IngName(Ingredient(*R, 2)).TabKata[5] = 'u';
-  IngName(Ingredient(*R, 2)).Length = 5;
+  IngName(Ingredient(*R, 2)).Length = 6;
   PosIngredients(Ingredient(*R, 2)) = MakePOINT(1, 3);
 
   IngName(Ingredient(*R, 3)).TabKata[0] = ' ';
@@ -164,7 +164,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 3)).TabKata[4] = 'r';
   IngName(Ingredient(*R, 3)).TabKata[5] = 'i';
   IngName(Ingredient(*R, 3)).TabKata[6] = 'm';
-  IngName(Ingredient(*R, 3)).Length = 6;
+  IngName(Ingredient(*R, 3)).Length = 7;
   PosIngredients(Ingredient(*R, 3)) = MakePOINT(1, 4);
 
   IngName(Ingredient(*R, 4)).TabKata[0] = ' ';
@@ -172,7 +172,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 4)).TabKata[2] = 'a';
   IngName(Ingredient(*R, 4)).TabKata[3] = 's';
   IngName(Ingredient(*R, 4)).TabKata[4] = 'i';
-  IngName(Ingredient(*R, 4)).Length = 4;
+  IngName(Ingredient(*R, 4)).Length = 5;
   PosIngredients(Ingredient(*R, 4)) = MakePOINT(1, 5);
 
   IngName(Ingredient(*R, 5)).TabKata[0] = ' ';
@@ -180,7 +180,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 5)).TabKata[2] = 'o';
   IngName(Ingredient(*R, 5)).TabKata[3] = 't';
   IngName(Ingredient(*R, 5)).TabKata[4] = 'i';
-  IngName(Ingredient(*R, 5)).Length = 4;
+  IngName(Ingredient(*R, 5)).Length = 5;
   PosIngredients(Ingredient(*R, 5)) = MakePOINT(1, 6);
 
   IngName(Ingredient(*R, 6)).TabKata[0] = ' ';
@@ -193,7 +193,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 6)).TabKata[7] = 't';
   IngName(Ingredient(*R, 6)).TabKata[8] = 't';
   IngName(Ingredient(*R, 6)).TabKata[9] = 'i';
-  IngName(Ingredient(*R, 6)).Length = 9;
+  IngName(Ingredient(*R, 6)).Length = 10;
   PosIngredients(Ingredient(*R, 6)) = MakePOINT(1, 7);
 
   IngName(Ingredient(*R, 7)).TabKata[0] = ' ';
@@ -203,7 +203,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 7)).TabKata[4] = 'a';
   IngName(Ingredient(*R, 7)).TabKata[5] = 'n';
   IngName(Ingredient(*R, 7)).TabKata[6] = 'g';
-  IngName(Ingredient(*R, 7)).Length = 6;
+  IngName(Ingredient(*R, 7)).Length = 7;
   PosIngredients(Ingredient(*R, 7)) = MakePOINT(1, 8);
 
   IngName(Ingredient(*R, 8)).TabKata[0] = ' ';
@@ -215,7 +215,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 8)).TabKata[6] = 'e';
   IngName(Ingredient(*R, 8)).TabKata[7] = 'r';
   IngName(Ingredient(*R, 8)).TabKata[8] = 'i';
-  IngName(Ingredient(*R, 8)).Length = 8;
+  IngName(Ingredient(*R, 8)).Length = 9;
   PosIngredients(Ingredient(*R, 8)) = MakePOINT(1, 9);
 
   IngName(Ingredient(*R, 9)).TabKata[0] = ' ';
@@ -224,7 +224,7 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 9)).TabKata[3] = 'l';
   IngName(Ingredient(*R, 9)).TabKata[4] = 'u';
   IngName(Ingredient(*R, 9)).TabKata[5] = 'r';
-  IngName(Ingredient(*R, 9)).Length = 5;
+  IngName(Ingredient(*R, 9)).Length = 6;
   PosIngredients(Ingredient(*R, 9)) = MakePOINT(1, 10);
 
   IngName(Ingredient(*R, 10)).TabKata[0] = ' ';
@@ -238,8 +238,8 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 10)).TabKata[8] = 'e';
   IngName(Ingredient(*R, 10)).TabKata[9] = 'n';
   IngName(Ingredient(*R, 10)).TabKata[10] = 'g';
-  IngName(Ingredient(*R, 10)).Length = 10;
-  PosIngredients(Ingredient(*R, 10)) = MakePOINT(3, 3);
+  IngName(Ingredient(*R, 10)).Length = 11;
+  PosIngredients(Ingredient(*R, 10)) = MakePOINT(4, 3);
 
   IngName(Ingredient(*R, 11)).TabKata[0] = ' ';
   IngName(Ingredient(*R, 11)).TabKata[1] = 'p';
@@ -247,8 +247,8 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 11)).TabKata[3] = 't';
   IngName(Ingredient(*R, 11)).TabKata[4] = 't';
   IngName(Ingredient(*R, 11)).TabKata[5] = 'y';
-  IngName(Ingredient(*R, 11)).Length = 5;
-  PosIngredients(Ingredient(*R, 11)) = MakePOINT(4, 3);
+  IngName(Ingredient(*R, 11)).Length = 6;
+  PosIngredients(Ingredient(*R, 11)) = MakePOINT(5, 3);
 
   IngName(Ingredient(*R, 12)).TabKata[0] = ' ';
   IngName(Ingredient(*R, 12)).TabKata[1] = 's';
@@ -256,8 +256,8 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 12)).TabKata[3] = 's';
   IngName(Ingredient(*R, 12)).TabKata[4] = 'i';
   IngName(Ingredient(*R, 12)).TabKata[5] = 's';
-  IngName(Ingredient(*R, 12)).Length = 5;
-  PosIngredients(Ingredient(*R, 12)) = MakePOINT(5, 3);
+  IngName(Ingredient(*R, 12)).Length = 6;
+  PosIngredients(Ingredient(*R, 12)) = MakePOINT(6, 3);
 
   IngName(Ingredient(*R, 13)).TabKata[0] = ' ';
   IngName(Ingredient(*R, 13)).TabKata[1] = 'b';
@@ -269,8 +269,8 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 13)).TabKata[7] = 'e';
   IngName(Ingredient(*R, 13)).TabKata[8] = 's';
   IngName(Ingredient(*R, 13)).TabKata[9] = 'e';
-  IngName(Ingredient(*R, 13)).Length = 9;
-  PosIngredients(Ingredient(*R, 13)) = MakePOINT(3, 6);
+  IngName(Ingredient(*R, 13)).Length = 10;
+  PosIngredients(Ingredient(*R, 13)) = MakePOINT(4, 6);
 
   IngName(Ingredient(*R, 14)).TabKata[0] = ' ';
   IngName(Ingredient(*R, 14)).TabKata[1] = 'c';
@@ -282,16 +282,16 @@ void InitDapur(Room *R){
   IngName(Ingredient(*R, 14)).TabKata[7] = 'a';
   IngName(Ingredient(*R, 14)).TabKata[8] = 'r';
   IngName(Ingredient(*R, 14)).TabKata[9] = 'a';
-  IngName(Ingredient(*R, 14)).Length = 9;
-  PosIngredients(Ingredient(*R, 14)) = MakePOINT(4, 6);
+  IngName(Ingredient(*R, 14)).Length = 10;
+  PosIngredients(Ingredient(*R, 14)) = MakePOINT(5, 6);
 
   IngName(Ingredient(*R, 15)).TabKata[0] = ' ';
   IngName(Ingredient(*R, 15)).TabKata[1] = 'k';
   IngName(Ingredient(*R, 15)).TabKata[2] = 'e';
   IngName(Ingredient(*R, 15)).TabKata[3] = 'j';
   IngName(Ingredient(*R, 15)).TabKata[4] = 'u';
-  IngName(Ingredient(*R, 15)).Length = 4;
-  PosIngredients(Ingredient(*R, 15)) = MakePOINT(5, 6);
+  IngName(Ingredient(*R, 15)).Length = 5;
+  PosIngredients(Ingredient(*R, 15)) = MakePOINT(6, 6);
 }
 
 void returnCustomer(Customer *C, int N){
@@ -489,6 +489,89 @@ void returnCustomer(Customer *C, int N){
     *C = arrC[N];
 }
 
+void InitKataCommand(){
+  KataGU.TabKata[0] = 'G';
+  KataGU.TabKata[1] = 'U';
+  KataGU.Length = 2;
+
+  KataGD.TabKata[0] = 'G';
+  KataGD.TabKata[1] = 'D';
+  KataGD.Length = 2;
+
+  KataGL.TabKata[0] = 'G';
+  KataGL.TabKata[1] = 'L';
+  KataGL.Length = 2;
+
+  KataGR.TabKata[0] = 'G';
+  KataGR.TabKata[1] = 'R';
+  KataGR.Length = 2;
+
+  KataORDER.TabKata[0] = 'O';
+  KataORDER.TabKata[1] = 'R';
+  KataORDER.TabKata[2] = 'D';
+  KataORDER.TabKata[3] = 'E';
+  KataORDER.TabKata[4] = 'R';
+  KataORDER.Length = 5;
+
+  KataPUT.TabKata[0] = 'P';
+  KataPUT.TabKata[1] = 'U';
+  KataPUT.TabKata[2] = 'T';
+  KataPUT.Length = 3;
+
+  KataTAKE.TabKata[0] = 'T';
+  KataTAKE.TabKata[1] = 'A';
+  KataTAKE.TabKata[2] = 'K';
+  KataTAKE.TabKata[3] = 'E';
+  KataTAKE.Length = 4;
+
+  KataCH.TabKata[0] = 'C';
+  KataCH.TabKata[1] = 'H';
+  KataCH.Length = 2;
+
+  KataCT.TabKata[0] = 'C';
+  KataCT.TabKata[1] = 'T';
+  KataCT.Length = 2;
+
+  KataPLACE.TabKata[0] = 'P';
+  KataPLACE.TabKata[1] = 'L';
+  KataPLACE.TabKata[2] = 'A';
+  KataPLACE.TabKata[3] = 'C';
+  KataPLACE.TabKata[4] = 'E';
+  KataPLACE.Length = 5;
+
+  KataGIVE.TabKata[0] = 'G';
+  KataGIVE.TabKata[1] = 'I';
+  KataGIVE.TabKata[2] = 'V';
+  KataGIVE.TabKata[3] = 'E';
+  KataGIVE.Length = 4;
+
+  KataRECIPE.TabKata[0] = 'R';
+  KataRECIPE.TabKata[1] = 'E';
+  KataRECIPE.TabKata[2] = 'C';
+  KataRECIPE.TabKata[3] = 'I';
+  KataRECIPE.TabKata[4] = 'P';
+  KataRECIPE.TabKata[5] = 'E';
+  KataRECIPE.Length = 6;
+
+  KataSAVE.TabKata[0] = 'S';
+  KataSAVE.TabKata[1] = 'A';
+  KataSAVE.TabKata[2] = 'V';
+  KataSAVE.TabKata[3] = 'E';
+  KataSAVE.Length = 4;
+
+  KataLOAD.TabKata[0] = 'L';
+  KataLOAD.TabKata[1] = 'O';
+  KataLOAD.TabKata[2] = 'A';
+  KataLOAD.TabKata[3] = 'D';
+  KataLOAD.Length = 4;
+
+  KataEXIT.TabKata[0] = 'E';
+  KataEXIT.TabKata[1] = 'X';
+  KataEXIT.TabKata[2] = 'I';
+  KataEXIT.TabKata[3] = 'T';
+  KataEXIT.Length = 4;
+}
+
 void randomCustomer(Player P, CustQueue *Q){
     int random;
     Customer C;
@@ -497,7 +580,6 @@ void randomCustomer(Player P, CustQueue *Q){
     if (checkPlayerTick(P)){
         random = (rand() % 8);
         returnCustomer(&C, random);
-        printf("Added customer %d to queue, status order is %c\n", random, StatOrder(OrderC(C)));
         AddQueue(Q, C);
     }
 }
@@ -505,7 +587,8 @@ void randomCustomer(Player P, CustQueue *Q){
 int randomInteger(){
     int random;
 
-    random = (rand() % (15 + 1 - 8)) + 8;
+    //random = (rand() % (15 + 1 - 8)) + 8;
+    random = 1;
     return random;
 }
 

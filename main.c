@@ -9,10 +9,9 @@
 #include "ADT/Header/stackt.h"
 #include "ADT/Header/bintree.h"
 #include "ADT/Header/tepokpramuka_type.h"
-#include "Progress/move.h"
-#include "Progress/process.h"
-#include "Progress/command.h"
-#include "Progress/initialize.h"
+#include "Functions/process.h"
+#include "Functions/initialize.h"
+#include "Functions/draw.h"
 
 Kata KataGU, KataGD, KataGL, KataGR, KataORDER, KataPUT, KataTAKE, KataCH, KataCT;
 Kata KataPLACE, KataGIVE, KataRECIPE, KataSAVE, KataLOAD, KataEXIT;
@@ -30,10 +29,8 @@ int main(int argc, char const *argv[]) {
   int input;
   Kata command;
 
-  printf("(1)New Game\n");
-  printf("(2)Start Game\n");
-  printf("(3)Load Game\n");
-  printf("(4)Exit\n");
+  print_title();
+  print_menu();
 
   scanf("%d",&input);
   while ((input!=1)&&(input!=2)&&(input!=3)&&(input!=4)){
@@ -111,7 +108,7 @@ int main(int argc, char const *argv[]) {
                 }
                 else if (IsKataSama(command, KataPUT)){
                     //fungsi PUT
-                    PutToTray(&player, &recipeTree, PosTray(Ruang(gameData, RoomID(player))));
+                    PutToTray(&player, recipeTree, PosTray(Ruang(gameData, RoomID(player))));
 
                     PlayerTick(player)++;
                     //counter customer ngantri
@@ -189,6 +186,8 @@ int main(int argc, char const *argv[]) {
                 TulisMATRIKS(Layout(Ruang(gameData, RoomID(player))));
                 printf("\n");
 
+                printf("DUIT : %.1f",Money(gameData)); printf("\n");
+
                 printf("ANTRIAN PELANGGAN : ");
                 PrintQueue(waitingList); printf("\n");
 
@@ -199,6 +198,9 @@ int main(int argc, char const *argv[]) {
                 printf("ISI HAND : ");
                 PrintStack(OnHand(player)); printf("\n");
 
+                printf("ISI TRAY : ");
+                PrintStack(OnTray(player)); printf("\n");
+
                 printf("Masukkan command: ");
                 scanf("%s", command.TabKata);
             }
@@ -206,16 +208,6 @@ int main(int argc, char const *argv[]) {
             break;
       }
   }
-
-  if (input==4){
-      printf("Permainan berakhir! Sampai jumpa!\n");
-      printf("    CREDITS:\n");
-      printf("    Ainun Fitryh Vianiryzki\n");
-      printf("    I Pute Gede Wirasuta\n");
-      printf("    Kintan Sekar Adinda\n");
-      printf("    M. Rifky I Bariansyah\n");
-      printf("    Pandyaka Aptanagi\n");
-      printf("    Raihan Asyraf\n");
-  }
+  print_credits();
   return 0;
 }

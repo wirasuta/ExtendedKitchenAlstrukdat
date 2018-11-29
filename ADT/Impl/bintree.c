@@ -743,7 +743,7 @@ void buildRecipe(BinTree *P){
 
   AddDaunTerkiri(&Left(Right(Left(Resep))), T[17]);
 
-  AddDaunTerkanan(&Right(Right(Left(Resep))), T[18]);
+  AddDaunTerkiri(&Right(Right(Left(Resep))), T[18]);
 
   AddDaunTerkiri(&Left(Left(Right(Resep))), T[19]);
 

@@ -46,7 +46,7 @@ void Push (Stack * S, Kata X)
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 	{
 		// Kamus
-		int l,i;
+		int i;
 		// Algoritma
 		if ( IsStackEmpty(*S) )
 			{
@@ -57,43 +57,45 @@ void Push (Stack * S, Kata X)
 				(*S).TOP = (*S).TOP +1;
 			}
 
-		l = X.Length;
-
-		for (i=0; i < l+1; i++)
+		for (i=0; i < X.Length+1; i++){
 			InfoTop(*S).TabKata[i] = X.TabKata[i];
-	};
+		}
+
+		InfoTop(*S).Length = X.Length;
+	}
 
 /* ************ Menghapus sebuah elemen Stack ************ */
 void Pop (Stack * S, Kata *X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+{
+	// Kamus
+	int l,i;
 
-	{
-		// Kamus
-		int l,i;
+	// Algoritma
+	l = InfoTop(*S).Length;
 
-		// Algoritma
-		l = InfoTop(*S).Length;
-		for (i=0; i<l+1; i++)
-			(*X).TabKata[i] = InfoTop(*S).TabKata[i];
-		(*X).Length = l;
+	for (i=0; i<l+1; i++){
+		(*X).TabKata[i] = InfoTop(*S).TabKata[i];
+	}
+	(*X).Length = l;
 
-		if ( (*S).TOP == 1)
-			{
-				CreateEmptyStack(S);
-			}
-		else
-			{
-				(*S).TOP = (*S).TOP - 1;
-			};
-	};
+	if ( (*S).TOP == 1)
+		{
+			CreateEmptyStack(S);
+		}
+	else
+		{
+			(*S).TOP = (*S).TOP - 1;
+		}
+}
 
 void PrintStack (Stack S){
 	Kata CurrTop;
 	while (!IsStackEmpty(S)) {
-		printf("%s", InfoTop(S).TabKata);
 		Pop(&S, &CurrTop);
+		printf("%s", CurrTop.TabKata);
 		if (!IsStackEmpty(S)) {
 			printf(" -> ");
 		}

@@ -2,6 +2,129 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+boolean pathFilled(MATRIKS M ,int X, int Y)
+{
+    return ((MatElmt(M, X, Y) == 'X') || (MatElmt(M, X, Y) == 'M') || (MatElmt(M, X, Y) == 'T') || (MatElmt(M, X, Y) == 'C') || (MatElmt(M, X, Y) == '1') || (MatElmt(M, X, Y) == '2') || (MatElmt(M, X, Y) == '3') || (MatElmt(M, X, Y) == '4'));
+    // tinggal tambah kalo X, Y < Btsmin Ruangan dan X, Y > Btsmax Ruangan
+}
+
+void newCoordinate(MATRIKS M, int *X, int *Y, Kata command, int *roomID)
+{
+    if (IsKataSama(command, KataGU))
+    {
+        if (pathFilled(M, *X-1, *Y))
+        {
+         printf("Path is Filled! \n");
+        }
+        else if ( (*X-1) < 1 )
+        {
+            int i=0;
+            adrEdgeNode nextRoom = Nil;
+            while (i<=4 && nextRoom==Nil) {
+              i++;
+              nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+            }
+            if (nextRoom != Nil) {
+              *roomID = RoomNumber(NextRoom(nextRoom));
+              *X = Absis(DestTile(nextRoom));
+              *Y = Ordinat(DestTile(nextRoom));
+            }else{
+              printf("You can't move through a wall, duh");
+            }
+        }
+        else
+        {
+        *X = *X - 1;
+        }
+    }
+    else if (IsKataSama(command, KataGD))
+    {
+        if (pathFilled(M, *X+1, *Y))
+        {
+         printf("Path is Filled! \n");
+        }
+        else if ( (*X+1) > RestoSizeM )
+        {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = RoomNumber(NextRoom(nextRoom));
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
+            printf("You can't move through a wall, duh");
+          }
+        }
+        else
+        {
+        *X = *X + 1;
+        }
+    }
+    else if (IsKataSama(command, KataGL))
+    {
+        if (pathFilled(M, *X, *Y-1))
+        {
+         printf("Path is Filled! \n");
+        }
+        else if ( (*Y-1) < 1 )
+        {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = RoomNumber(NextRoom(nextRoom));
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
+            printf("You can't move through a wall, duh");
+          }
+        }
+        else
+        {
+        *Y = *Y - 1;
+        }
+    }
+    else if (IsKataSama(command, KataGR))
+    {
+        if (pathFilled(M, *X, *Y+1))
+        {
+         printf("Path is Filled! \n");
+        }
+        else if ( (*Y+1) > RestoSizeN )
+        {
+          int i=0;
+          adrEdgeNode nextRoom = Nil;
+          while (i<=4 && nextRoom==Nil) {
+            i++;
+            nextRoom = SearchEdgeNode(RoomGraph(gameData), MakePOINT(*X,*Y), *roomID, i);
+          }
+          if (nextRoom != Nil) {
+            *roomID = RoomNumber(NextRoom(nextRoom));
+            *X = Absis(DestTile(nextRoom));
+            *Y = Ordinat(DestTile(nextRoom));
+          }else{
+            printf("You can't move through a wall, duh");
+          }
+        }
+        else
+        {
+        *Y = *Y + 1;
+        }
+    }
+}
+
+void move(MATRIKS *M, int *X, int *Y,Kata command, int *roomID)
+{
+        newCoordinate(*M, Y, X, command, roomID);
+}
+
 boolean IsNearTable (Player P, Room R){
     boolean check;
     int i,j;
@@ -164,7 +287,7 @@ void TakeOrder(Player *P, Room *R){
         NoTableOrder(OrderC(C)) = NoTable;
         OrderName(OrderC(C)) = OrderCName(C);
         AddAsLastEl(&(OrderList(*P)),OrderC(C));
-        StatOrder(OrderC(C)) = '!';
+        OrderCStatus(CustomerSeat(TableNo(*R,NoTable))) = '!';
     } else {
         printf("GAGAL MENGAMBIL ORDER !!!\n");
     }
@@ -202,50 +325,49 @@ void PlaceCustomer (Player P, CustQueue *Q, Room *R) {
     }
 }
 
-void PutToTray(Player *P, BinTree *Adr, POINT T){
+void PutToTray(Player *P, BinTree C_Food, POINT T){
     boolean check;
     Stack checkStack,Temp;
     Kata food;
-    BinTree C_Food;
 
     if(IsNearTray(*P,T)) {
         check = true;
-        C_Food = *Adr;
 
-        //BUG : Infinite Loop, Fungsi IsNearTray sudah benar
         CreateEmptyStack(&checkStack);
         CreateEmptyStack(&Temp);
         while(!IsStackEmpty(OnHand(*P))) {
             Pop(&OnHand(*P),&food);
             Push(&checkStack,food);
             Push(&Temp,food);
-            printf("%s\n", food.TabKata);
         }
 
-        while((!check) || (!IsTreeEmpty(C_Food)) || (!IsStackEmpty(checkStack))) {
-                if(IsKataSama(InfoTop(checkStack),Akar(C_Food))) {
-                    Pop(&checkStack,&food);
-                    if(IsKataSama(Akar(Left(C_Food)), food)) {
-                        C_Food = Left(C_Food);
-                    } else {
-                        C_Food = Right(C_Food);
-                    }
-                } else {
-                    check = false;
+        while( check && !IsTreeEmpty(C_Food) && !IsStackEmpty(checkStack) ) {
+            if(IsKataSama(InfoTop(checkStack),Akar(C_Food))) {
+                Pop(&checkStack,&food);
+                if (!IsStackEmpty(checkStack)) {
+                  if(IsKataSama(Akar(Left(C_Food)), InfoTop(checkStack))) {
+                    C_Food = Left(C_Food);
+                  } else if(IsKataSama(Akar(Right(C_Food)), InfoTop(checkStack))){
+                    C_Food = Right(C_Food);
+                  }
                 }
+            } else {
+                check = false;
+            }
         }
     }
-
     if(check == false) {
         while(!IsStackEmpty(Temp)) {
             Pop(&Temp,&food);
             Push(&OnHand(*P),food);
         }
-        printf("GAGAL MEMBUAT MAKANAN!!!\n");
+        printf("TIDAK SESUAI RESEP. GAGAL MEMBUAT MAKANAN!!!\n");
 
     } else {
-        if(!IsBiner(C_Food)) {
-            Push(&OnTray(*P),Akar(Left(C_Food)));
+        PrintTree(C_Food, 2);
+        if(IsUnerLeft(C_Food)) {
+            Push(&(OnTray(*P)),Akar(Left(C_Food)));
+            CreateEmptyStack(&(OnHand(*P)));
         } else {
             printf("BAHAN MAKANAN KURANG LENGKAP!\n");
         }
@@ -271,6 +393,7 @@ void TakeIngredient(Player *P, Room R){
 
 void GiveFood(Player *P, Room *R, Game *G,BinTree RTree){
     Kata orinput;
+    Order Temp;
     double Koef;
     int NoTable;
 
@@ -280,6 +403,7 @@ void GiveFood(Player *P, Room *R, Game *G,BinTree RTree){
         Money(*G) += (NormalPrice * Koef);
         NoTable = GetTableNumber(*P,*R);
         IsOccupied(TableNo(*R,NoTable)) = false;
+        DelEli(&OrderList(*P), SearchIndex(OrderList(*P), NoTable, orinput), &Temp);
     } else {
         printf("GAGAL MEMBERIKAN ORDER MAKANAN !!!\n");
     }

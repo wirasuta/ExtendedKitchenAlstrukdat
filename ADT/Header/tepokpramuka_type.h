@@ -69,6 +69,7 @@ typedef struct{
 #define OrderC(C) (C).Food
 #define OrderCName(C) (C).Food.Name
 #define OrderCNomor(C) (C).Food.Nomor
+#define OrderCStatus(C) (C).Food.Status
 
 /* Definisi elemen dan koleksi objek */
 /*typedef struct {
@@ -239,7 +240,7 @@ typedef struct {
 #define RoomID(P) (P).RoomID
 
 typedef struct {
-    POINT Point[IdxMax]; //posisi table dan kursi dalam (X,Y)
+    POINT Point[IdxMax]; //posisi table dan OrderCkursi dalam (X,Y)
 		//Point[0] : Posisi Meja
 		//Point[1] : Posisi Kursi kiri
 		//Point[2] : Posisi Kursi kanan
