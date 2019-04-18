@@ -1,3 +1,1 @@
 # Tubes Alstrukdat
-
-Semangat gaes
